@@ -19,13 +19,15 @@ import { initErrorHandler } from './error-handler.js';
 import { initToastSystem } from './ui-toast.js';
 import { initSpinnerSystem } from './loading-spinner.js';
 import { initTouchGestures } from './touch-gestures.js';
+import { initBottomSheetSystem } from './bottom-sheet.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
-// Initialize error handling, toast notifications, and loading spinners
+// Initialize error handling, toast notifications, loading spinners, and bottom sheets
 initErrorHandler();
 initToastSystem();
 initSpinnerSystem();
+initBottomSheetSystem();
 
 // Preload pitch assets to eliminate 404s
 const preloadImg1 = new Image();
