@@ -487,18 +487,241 @@ body.flab-body {
 }
 
 /* Responsive adjustments */
+
+/* Large tablets and small desktops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .flab-app {
+    gap: clamp(12px, 2vw, 32px);
+    padding: clamp(12px, 2vw, 24px);
+  }
+
+  .flab-sidepanel {
+    width: 260px;
+    min-width: 260px;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .flab-title {
+    font-size: 22px;
+  }
+}
+
+/* Tablets and large phones (481px - 768px) */
 @media (max-width: 768px) {
+  body.flab-body {
+    padding: 16px clamp(12px, 2vw, 24px);
+  }
+
   .flab-app {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
   }
 
   .flab-sidepanel {
     order: 2;
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-top: 1px solid var(--flab-outline);
+    padding: 16px;
   }
 
   .flab-pitch-wrapper {
     order: 1;
     min-height: 400px;
+  }
+
+  .flab-toolbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .flab-tool {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 140px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .flab-actions {
+    gap: 10px;
+  }
+
+  .flab-action {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .toolbar-row {
+    flex-wrap: wrap;
+  }
+
+  .flab-keytips {
+    display: none; /* Hide keyboard shortcuts on mobile */
+  }
+}
+
+/* Small phones (360px - 480px) */
+@media (max-width: 480px) {
+  body.flab-body {
+    padding: 12px 8px;
+  }
+
+  .flab-app {
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .flab-sidepanel {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .flab-title {
+    font-size: 20px;
+  }
+
+  .flab-subtitle {
+    font-size: 13px;
+  }
+
+  .flab-toolbar {
+    gap: 6px;
+  }
+
+  .flab-tool {
+    flex: 1 1 100%;
+    min-width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .flab-tool svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .flab-actions {
+    gap: 8px;
+  }
+
+  .flab-action {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .btn-group .flab-action {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .toolbar-row .flab-action {
+    flex: 1 1 100%;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  /* Modal adjustments for small screens */
+  .flab-help__content {
+    padding: 16px;
+    max-width: calc(100vw - 32px);
+  }
+
+  /* Pitch wrapper adjustments */
+  .flab-pitch-wrapper {
+    min-height: 300px;
+  }
+}
+
+/* Extra small phones (< 360px) */
+@media (max-width: 359px) {
+  body.flab-body {
+    padding: 8px 4px;
+  }
+
+  .flab-app {
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .flab-sidepanel {
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .flab-title {
+    font-size: 18px;
+  }
+
+  .flab-tool,
+  .flab-action {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Landscape orientation on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .flab-app {
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .flab-sidepanel {
+    order: 1;
+    border-right: 1px solid var(--flab-outline);
+    border-top: none;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  .flab-pitch-wrapper {
+    order: 2;
+  }
+
+  .flab-toolbar {
+    flex-direction: column;
+  }
+
+  .flab-tool {
+    flex: 1 1 auto;
+  }
+
+  .flab-keytips {
+    display: none;
+  }
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .flab-field {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .flab-spinner-icon,
+  .flab-spinner-path {
+    animation: none !important;
   }
 }
