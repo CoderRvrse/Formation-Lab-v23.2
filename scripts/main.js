@@ -18,6 +18,7 @@ import { initPassLayer } from './pass.init.js';
 import { initErrorHandler } from './error-handler.js';
 import { initToastSystem } from './ui-toast.js';
 import { initSpinnerSystem } from './loading-spinner.js';
+import { initTouchGestures } from './touch-gestures.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
@@ -59,6 +60,7 @@ window.addEventListener('DOMContentLoaded', async () => {
   initDrag();
   initPassTool();
   initKeyboard();
+  initTouchGestures(); // Mobile touch gestures (pinch-zoom, long-press)
 
   // Initialize pass layer (for audit)
   initPassLayer();
