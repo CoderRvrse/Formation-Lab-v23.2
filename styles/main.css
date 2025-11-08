@@ -1154,19 +1154,28 @@ a:focus-visible {
   }
 }
 /* Fullscreen mode styles */
-.flab-pitch-wrapper.flab-fullscreen {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  z-index: 9999;
-  background: var(--flab-bg-start);
+/* When element enters fullscreen via Fullscreen API, browser automatically fills viewport */
+/* We just need to adjust internal layout and remove decorative styling */
+
+.flab-pitch-wrapper:fullscreen,
+.flab-pitch-wrapper:-webkit-full-screen,
+.flab-pitch-wrapper:-moz-full-screen,
+.flab-pitch-wrapper:-ms-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.flab-pitch-wrapper.flab-fullscreen .flab-field {
+/* Make field fill fullscreen wrapper and remove decorations */
+.flab-pitch-wrapper:fullscreen .flab-field,
+.flab-pitch-wrapper:-webkit-full-screen .flab-field,
+.flab-pitch-wrapper:-moz-full-screen .flab-field,
+.flab-pitch-wrapper:-ms-fullscreen .flab-field {
   width: 100% !important;
   height: 100% !important;
   max-width: 100% !important;
@@ -1175,34 +1184,24 @@ a:focus-visible {
   padding: 0 !important;
   border-radius: 0 !important;
   box-shadow: none !important;
+  /* Change background-size to contain to maintain aspect ratio */
+  background-size: contain !important;
 }
 
-/* Hide sidebar when pitch is fullscreen */
-body.flab-fullscreen-active .flab-sidepanel {
-  display: none !important;
-}
-
-/* Expand app container in fullscreen */
-body.flab-fullscreen-active .flab-app {
-  display: block !important;
+/* Ensure SVG arrow layer fills the field */
+.flab-pitch-wrapper:fullscreen #arrow-layer,
+.flab-pitch-wrapper:-webkit-full-screen #arrow-layer,
+.flab-pitch-wrapper:-moz-full-screen #arrow-layer,
+.flab-pitch-wrapper:-ms-fullscreen #arrow-layer {
   width: 100% !important;
   height: 100% !important;
-  max-width: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border-radius: 0 !important;
 }
 
-/* Fullscreen pitch should fill entire viewport */
-.flab-fullscreen .flab-field img {
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-
-/* Ensure SVG and overlays scale properly */
-.flab-fullscreen .flab-arrow-layer,
-.flab-fullscreen .flab-players {
+/* Ensure players container fills the field */
+.flab-pitch-wrapper:fullscreen .flab-players,
+.flab-pitch-wrapper:-webkit-full-screen .flab-players,
+.flab-pitch-wrapper:-moz-full-screen .flab-players,
+.flab-pitch-wrapper:-ms-fullscreen .flab-players {
   width: 100% !important;
   height: 100% !important;
 }

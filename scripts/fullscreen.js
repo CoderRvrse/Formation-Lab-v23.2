@@ -181,17 +181,8 @@ function handleFullscreenChange() {
   isFullscreen = !!currentlyFullscreen;
   updateFullscreenButton();
 
-  // Add/remove fullscreen class for styling
-  const pitchWrapper = document.querySelector('.flab-pitch-wrapper');
-  if (pitchWrapper) {
-    if (isFullscreen) {
-      pitchWrapper.classList.add('flab-fullscreen');
-      document.body.classList.add('flab-fullscreen-active');
-    } else {
-      pitchWrapper.classList.remove('flab-fullscreen');
-      document.body.classList.remove('flab-fullscreen-active');
-    }
-  }
+  // CSS :fullscreen pseudo-class handles styling automatically
+  // No need to manually add/remove classes
 }
 
 /**
