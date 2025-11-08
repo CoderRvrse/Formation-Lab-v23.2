@@ -17,7 +17,25 @@ function focusFirst() {
   }
 }
 
-// trapFocus moved to accessibility.js to avoid duplicate exports
+function trapFocus(e) {
+  if (e.key !== 'Tab') return;
+
+  const focusableItems = [...document.querySelectorAll('#presetMenu .preset-menu__item[tabindex="0"]')];
+  const firstItem = focusableItems[0];
+  const lastItem = focusableItems[focusableItems.length - 1];
+
+  if (e.shiftKey) {
+    if (document.activeElement === firstItem) {
+      e.preventDefault();
+      lastItem?.focus();
+    }
+  } else {
+    if (document.activeElement === lastItem) {
+      e.preventDefault();
+      firstItem?.focus();
+    }
+  }
+}
 
 function placeMenuFixed(menu, anchor) {
   const r = anchor.getBoundingClientRect();
@@ -190,8 +208,9 @@ function openMenu(anchor) {
     document.addEventListener('mousedown', handleOutsideClick, { once: true });
   }, 0);
 
-  // Keyboard navigation (focus trapping handled by accessibility.js)
+  // Keyboard navigation and focus trapping
   document.addEventListener('keydown', handleKeydown);
+  document.addEventListener('keydown', trapFocus);
 }
 
 function closeMenu() {
@@ -217,6 +236,7 @@ function closeMenu() {
   window.removeEventListener('scroll', menu.__relayout);
   window.removeEventListener('resize', menu.__relayout);
   document.removeEventListener('keydown', handleKeydown);
+  document.removeEventListener('keydown', trapFocus);
 
   // Safety cleanup
   if (menu.__relayout) {

@@ -19,13 +19,21 @@ import { initErrorHandler } from './error-handler.js';
 import { initToastSystem } from './ui-toast.js';
 import { initSpinnerSystem } from './loading-spinner.js';
 import { initTouchGestures } from './touch-gestures.js';
+import { initBottomSheetSystem } from './bottom-sheet.js';
+import { initAccessibility, addLandmarks, addAriaLabels, addSkipLink } from './accessibility.js';
+import { initUndoRedo, saveUndoState } from './undo-redo.js';
+import { initTheme } from './theme.js';
+import { initShare } from './share.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
-// Initialize error handling, toast notifications, and loading spinners
+// Initialize error handling, toast notifications, loading spinners, bottom sheets, accessibility, and theme
 initErrorHandler();
 initToastSystem();
 initSpinnerSystem();
+initBottomSheetSystem();
+initAccessibility();
+initTheme(); // Initialize theme early to prevent flash
 
 // Preload pitch assets to eliminate 404s
 const preloadImg1 = new Image();
@@ -70,6 +78,20 @@ window.addEventListener('DOMContentLoaded', async () => {
   wirePresetDropdown();
   wireEraseMenu();
   wirePassStyleMenu();
+
+  // Initialize accessibility features (ARIA landmarks, labels, skip link)
+  addSkipLink();
+  addLandmarks();
+  addAriaLabels();
+
+  // Initialize undo/redo system
+  initUndoRedo();
+
+  // Save initial state for undo/redo
+  saveUndoState('Initial formation');
+
+  // Initialize share system
+  initShare();
 
   // Initialize ball animation system
   import('./animate.js').then(({ ensureBallLayer, preloadBall }) => {

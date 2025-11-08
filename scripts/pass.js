@@ -7,6 +7,7 @@ import { ensureHeadMarker, rebuildAllMarkers } from './pass.markers.js';
 import { headPxFor, headTrimPx } from './pass.headsize.js';
 import { getArrowSvg, ensureGroup } from './svgroot.js';
 import { logPass } from './logger.js';
+import { saveUndoState } from './undo-redo.js';
 
 // Helper to get CSS variable in pixels
 function getVarPx(varName, fallback = 0) {
@@ -704,6 +705,9 @@ export function commitArrow(fromId, point, curved = false, control = null) {
 
   // Highlight the new pass
   setTimeout(() => highlightPass(passId), 100);
+
+  // Save state for undo
+  saveUndoState(`Add pass from player ${fromId}`);
 }
 
 export function renderArrows() {
@@ -786,12 +790,16 @@ export function clearLastPass() {
   if (arr.length > 0) {
     arr.pop();
     console.log('Cleared last pass');
+    // Save state for undo
+    saveUndoState('Delete last pass');
   }
 }
 
 export function clearAllPasses() {
   FLAB.arrows = [];
   console.log('Cleared all passes');
+  // Save state for undo
+  saveUndoState('Clear all passes');
 }
 
 export function initPassTool() {
