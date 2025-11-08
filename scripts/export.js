@@ -3,6 +3,9 @@ import { FLAB, PITCH_LAND, PITCH_PORT, PASS } from './state.js';
 import { normToView, getVar, insetFromA, insetFromB } from './geometry.js';
 import { ARROW_ASSETS } from './assets.arrows.js';
 import { headPxFor, headTrimPx } from './pass.headsize.js';
+import { showSpinner, hideSpinner } from './loading-spinner.js';
+import { handleError } from './error-handler.js';
+import { showSuccessToast, showErrorToast } from './ui-toast.js';
 const JERSEY_SIZE = 56;
 
 // Bleed configuration (moved from geometry to avoid circular dependency)
@@ -269,64 +272,92 @@ function drawPlayers(ctx, width, height) {
 }
 
 export async function exportPNG() {
-  showToast("Exporting formation...");
-
-  const field = document.querySelector('.flab-field');
-  const dpr = window.devicePixelRatio || 1;
-  const wCss = Math.max(1, field?.clientWidth || 800);
-  const hCss = Math.max(1, field?.clientHeight || 600);
-
-  const canvas = document.createElement("canvas");
-  canvas.width = Math.round(wCss * dpr);
-  canvas.height = Math.round(hCss * dpr);
-  const ctx = canvas.getContext("2d");
-  if (!ctx) {
-    console.error("Canvas context unavailable for export.");
-    showToast("Export failed - canvas unavailable");
-    return;
-  }
-  ctx.scale(dpr, dpr);
+  const spinnerId = showSpinner("Exporting formation...");
 
   try {
-    await ensureJerseyReady();
+    const field = document.querySelector('.flab-field');
+    const dpr = window.devicePixelRatio || 1;
+    const wCss = Math.max(1, field?.clientWidth || 800);
+    const hCss = Math.max(1, field?.clientHeight || 600);
+
+    const canvas = document.createElement("canvas");
+    canvas.width = Math.round(wCss * dpr);
+    canvas.height = Math.round(hCss * dpr);
+    const ctx = canvas.getContext("2d");
+
+    if (!ctx) {
+      throw new Error('Canvas context unavailable for export');
+    }
+
+    ctx.scale(dpr, dpr);
+
+    // Try to load jersey image (non-critical)
+    try {
+      await ensureJerseyReady();
+    } catch (error) {
+      console.warn('Jersey image load failed (non-critical):', error);
+    }
+
+    // 1) Draw pitch from active orientation
+    const pitchSrc = FLAB.orientation === 'portrait' ? PITCH_PORT : PITCH_LAND;
+    const img = new Image();
+    img.src = pitchSrc;
+
+    try {
+      await img.decode();
+    } catch (error) {
+      throw new Error('Failed to load pitch image. Please try again.');
+    }
+
+    ctx.drawImage(img, 0, 0, wCss, hCss);
+
+    // 2) Draw arrows/jerseys/halo-based passes
+    drawArrows(ctx, wCss, hCss);
+    drawPlayers(ctx, wCss, hCss);
+
+    // Add subtle watermark
+    ctx.save();
+    ctx.font = '12px "Segoe UI", Arial, sans-serif';
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    ctx.textAlign = 'right';
+    ctx.fillText(`Formation Lab ${FLAB.version}`, wCss - 10, hCss - 10);
+    ctx.restore();
+
+    // 3) Convert to data URL and download
+    let url;
+    try {
+      url = canvas.toDataURL('image/png');
+    } catch (error) {
+      throw new Error('Failed to create image data. Canvas may be too large.');
+    }
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `formation-${Date.now()}.png`;
+    a.click();
+
+    // Success!
+    hideSpinner(spinnerId);
+    showSuccessToast("Formation exported successfully!");
+
+    logTelemetry("export_png", {
+      width: canvas.width,
+      height: canvas.height,
+      arrows: FLAB.arrows.length,
+      dpr,
+      success: true
+    });
+
   } catch (error) {
-    console.warn('jersey_load_fallback', error);
+    hideSpinner(spinnerId);
+    handleError(error, 'export', true);
+    showErrorToast('Export failed. Please try again.');
+
+    logTelemetry("export_png", {
+      error: error.message,
+      success: false
+    });
   }
-
-  // 1) Draw pitch from active orientation
-  const pitchSrc = FLAB.orientation === 'portrait' ? PITCH_PORT : PITCH_LAND;
-  const img = new Image();
-  img.src = pitchSrc;
-  await img.decode();
-  ctx.drawImage(img, 0, 0, wCss, hCss);
-
-  // 2) Draw arrows/jerseys/halo-based passes exactly as today
-  drawArrows(ctx, wCss, hCss);
-  drawPlayers(ctx, wCss, hCss);
-
-  // Add subtle watermark
-  ctx.save();
-  ctx.font = '12px "Segoe UI", Arial, sans-serif';
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
-  ctx.textAlign = 'right';
-  ctx.fillText(`Formation Lab ${FLAB.version}`, wCss - 10, hCss - 10);
-  ctx.restore();
-
-  // 3) Download
-  const url = canvas.toDataURL('image/png');
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'formation.png';
-  a.click();
-
-  showToast("Formation exported successfully!");
-
-  logTelemetry("export_png", {
-    width: canvas.width,
-    height: canvas.height,
-    arrows: FLAB.arrows.length,
-    dpr
-  });
 }
 
 window.__mod_export = true;
