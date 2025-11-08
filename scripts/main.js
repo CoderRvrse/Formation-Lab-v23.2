@@ -24,6 +24,7 @@ import { initAccessibility, addLandmarks, addAriaLabels, addSkipLink } from './a
 import { initUndoRedo, saveUndoState } from './undo-redo.js';
 import { initTheme } from './theme.js';
 import { initShare } from './share.js';
+import { initFullscreen } from './fullscreen.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
@@ -92,6 +93,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize share system
   initShare();
+
+  // Initialize fullscreen mode
+  initFullscreen();
 
   // Initialize ball animation system
   import('./animate.js').then(({ ensureBallLayer, preloadBall }) => {

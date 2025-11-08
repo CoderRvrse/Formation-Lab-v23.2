@@ -6,6 +6,7 @@
 @import url("./components/presets.css");
 @import url("./components/passstyle.css");
 @import url("./components/ball.css");
+@import url("./components/fullscreen.css");
 
 :root {
   color-scheme: light;
@@ -402,6 +403,279 @@ body.flab-body {
   animation: flab-spinner-rotate 0.8s linear infinite;
 }
 
+/* Bottom sheet modals (mobile) */
+.flab-sheet-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4000;
+  pointer-events: none;
+}
+
+.flab-sheet-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: all;
+}
+
+.flab-sheet-overlay.visible {
+  opacity: 1;
+}
+
+.flab-sheet {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  max-height: 90vh;
+  background: var(--flab-surface);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  backdrop-filter: blur(16px);
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.4);
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: all;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.flab-sheet.visible {
+  transform: translateY(0);
+}
+
+.flab-sheet-handle {
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  margin: 12px auto 8px;
+  cursor: grab;
+}
+
+.flab-sheet-handle:active {
+  cursor: grabbing;
+}
+
+.flab-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--flab-outline);
+}
+
+.flab-sheet-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--flab-text);
+}
+
+.flab-sheet-close {
+  background: none;
+  border: none;
+  color: var(--flab-text);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.flab-sheet-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.flab-sheet-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.flab-sheet-footer {
+  display: flex;
+  gap: 12px;
+  padding: 16px 20px;
+  border-top: 1px solid var(--flab-outline);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.flab-sheet-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flab-sheet-btn.primary {
+  background: var(--flab-accent);
+  color: #0b2b66;
+}
+
+.flab-sheet-btn.primary:hover {
+  background: var(--flab-accent-dark);
+}
+
+.flab-sheet-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--flab-text);
+  border: 1px solid var(--flab-outline);
+}
+
+.flab-sheet-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.flab-sheet-btn.danger {
+  background: rgba(244, 67, 54, 0.9);
+  color: white;
+}
+
+.flab-sheet-btn.danger:hover {
+  background: rgba(211, 47, 47, 0.9);
+}
+
+/* Center modals (desktop fallback) */
+.flab-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 4000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: 20px;
+}
+
+.flab-modal.visible {
+  opacity: 1;
+}
+
+.flab-modal-content {
+  background: var(--flab-surface);
+  border-radius: 16px;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flab-modal.visible .flab-modal-content {
+  transform: scale(1);
+}
+
+.flab-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--flab-outline);
+}
+
+.flab-modal-header h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--flab-text);
+}
+
+.flab-modal-close {
+  background: none;
+  border: none;
+  color: var(--flab-text);
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background 0.2s ease;
+}
+
+.flab-modal-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.flab-modal-body {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+}
+
+.flab-modal-footer {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+  border-top: 1px solid var(--flab-outline);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.flab-modal-btn {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.flab-modal-btn.primary {
+  background: var(--flab-accent);
+  color: #0b2b66;
+}
+
+.flab-modal-btn.primary:hover {
+  background: var(--flab-accent-dark);
+}
+
+.flab-modal-btn.secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--flab-text);
+  border: 1px solid var(--flab-outline);
+}
+
+.flab-modal-btn.secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
 /* Touch gestures */
 .flab-touch-enabled {
   touch-action: none;
@@ -486,19 +760,397 @@ body.flab-body {
   border: 0;
 }
 
+/* Accessibility features */
+
+/* Skip link */
+.flab-skip-link {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  z-index: 9999;
+  background: var(--flab-accent);
+  color: #0b2b66;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s ease;
+}
+
+.flab-skip-link:focus {
+  top: 20px;
+  outline: 3px solid var(--flab-accent-dark);
+  outline-offset: 2px;
+}
+
+/* Screen reader announcer */
+.flab-sr-announcer {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Keyboard navigation mode - enhanced focus indicators */
+.flab-keyboard-nav *:focus {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+}
+
+.flab-keyboard-nav button:focus,
+.flab-keyboard-nav .flab-tool:focus,
+.flab-keyboard-nav .flab-action:focus {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(255, 212, 71, 0.3);
+}
+
+.flab-keyboard-nav .flab-player:focus {
+  outline: 4px solid var(--flab-accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 8px rgba(255, 212, 71, 0.4);
+}
+
+/* Focus visible - modern approach */
+button:focus-visible,
+.flab-tool:focus-visible,
+.flab-action:focus-visible,
+a:focus-visible {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+}
+
+/* Remove outline for mouse users (only show for keyboard) */
+button:focus:not(:focus-visible),
+.flab-tool:focus:not(:focus-visible),
+.flab-action:focus:not(:focus-visible),
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* High contrast focus for players */
+.flab-player:focus-visible {
+  outline: 4px solid var(--flab-accent);
+  outline-offset: 4px;
+}
+
+/* Improved button accessibility */
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+button[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ARIA live region visibility */
+[aria-live] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Focus trap container */
+.flab-focus-trap {
+  isolation: isolate;
+}
+
+/* Improved link accessibility */
+a {
+  color: var(--flab-accent);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--flab-accent-dark);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor;
+  }
+
+  button,
+  .flab-tool,
+  .flab-action {
+    border: 2px solid currentColor;
+  }
+
+  button:focus,
+  .flab-tool:focus,
+  .flab-action:focus {
+    outline: 4px solid var(--flab-accent);
+    outline-offset: 4px;
+  }
+}
+
+/* Forced colors mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  button,
+  .flab-tool,
+  .flab-action {
+    border: 1px solid ButtonText;
+  }
+
+  button:focus,
+  .flab-tool:focus,
+  .flab-action:focus {
+    outline: 3px solid Highlight;
+  }
+}
+
 /* Responsive adjustments */
+
+/* Large tablets and small desktops (768px - 1024px) */
+@media (max-width: 1024px) {
+  .flab-app {
+    gap: clamp(12px, 2vw, 32px);
+    padding: clamp(12px, 2vw, 24px);
+  }
+
+  .flab-sidepanel {
+    width: 260px;
+    min-width: 260px;
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .flab-title {
+    font-size: 22px;
+  }
+}
+
+/* Tablets and large phones (481px - 768px) */
 @media (max-width: 768px) {
+  body.flab-body {
+    padding: 16px clamp(12px, 2vw, 24px);
+  }
+
   .flab-app {
     grid-template-columns: 1fr;
     grid-template-rows: auto 1fr;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
   }
 
   .flab-sidepanel {
     order: 2;
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-top: 1px solid var(--flab-outline);
+    padding: 16px;
   }
 
   .flab-pitch-wrapper {
     order: 1;
     min-height: 400px;
+  }
+
+  .flab-toolbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .flab-tool {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 140px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .flab-actions {
+    gap: 10px;
+  }
+
+  .flab-action {
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .toolbar-row {
+    flex-wrap: wrap;
+  }
+
+  .flab-keytips {
+    display: none; /* Hide keyboard shortcuts on mobile */
+  }
+}
+
+/* Small phones (360px - 480px) */
+@media (max-width: 480px) {
+  body.flab-body {
+    padding: 12px 8px;
+  }
+
+  .flab-app {
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .flab-sidepanel {
+    padding: 12px;
+    gap: 16px;
+  }
+
+  .flab-title {
+    font-size: 20px;
+  }
+
+  .flab-subtitle {
+    font-size: 13px;
+  }
+
+  .flab-toolbar {
+    gap: 6px;
+  }
+
+  .flab-tool {
+    flex: 1 1 100%;
+    min-width: 100%;
+    padding: 12px 14px;
+    font-size: 14px;
+  }
+
+  .flab-tool svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .flab-actions {
+    gap: 8px;
+  }
+
+  .flab-action {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .btn-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .btn-group .flab-action {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  .toolbar-row .flab-action {
+    flex: 1 1 100%;
+    font-size: 14px;
+    padding: 12px 14px;
+  }
+
+  /* Modal adjustments for small screens */
+  .flab-help__content {
+    padding: 16px;
+    max-width: calc(100vw - 32px);
+  }
+
+  /* Pitch wrapper adjustments */
+  .flab-pitch-wrapper {
+    min-height: 300px;
+  }
+}
+
+/* Extra small phones (< 360px) */
+@media (max-width: 359px) {
+  body.flab-body {
+    padding: 8px 4px;
+  }
+
+  .flab-app {
+    gap: 8px;
+    padding: 8px;
+    border-radius: 8px;
+  }
+
+  .flab-sidepanel {
+    padding: 10px;
+    gap: 12px;
+  }
+
+  .flab-title {
+    font-size: 18px;
+  }
+
+  .flab-tool,
+  .flab-action {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
+
+/* Landscape orientation on mobile devices */
+@media (max-height: 500px) and (orientation: landscape) {
+  .flab-app {
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .flab-sidepanel {
+    order: 1;
+    border-right: 1px solid var(--flab-outline);
+    border-top: none;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  .flab-pitch-wrapper {
+    order: 2;
+  }
+
+  .flab-toolbar {
+    flex-direction: column;
+  }
+
+  .flab-tool {
+    flex: 1 1 auto;
+  }
+
+  .flab-keytips {
+    display: none;
+  }
+}
+
+/* High DPI / Retina displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .flab-field {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .flab-spinner-icon,
+  .flab-spinner-path {
+    animation: none !important;
   }
 }
