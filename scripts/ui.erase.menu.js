@@ -165,25 +165,7 @@ function focusFirst() {
   }
 }
 
-function trapFocus(e) {
-  if (e.key !== 'Tab') return;
-
-  const focusableItems = [...document.querySelectorAll('#eraseMenu .erase-menu__item[tabindex="0"]')];
-  const firstItem = focusableItems[0];
-  const lastItem = focusableItems[focusableItems.length - 1];
-
-  if (e.shiftKey) {
-    if (document.activeElement === firstItem) {
-      e.preventDefault();
-      lastItem?.focus();
-    }
-  } else {
-    if (document.activeElement === lastItem) {
-      e.preventDefault();
-      firstItem?.focus();
-    }
-  }
-}
+// trapFocus moved to accessibility.js to avoid duplicate exports
 
 function handleKeydown(e) {
   if (e.key === 'Escape') {
@@ -238,9 +220,8 @@ function openMenu(anchor) {
     setTimeout(focusFirst, 50);
   });
 
-  // Event listeners
+  // Event listeners (focus trapping handled by accessibility.js)
   document.addEventListener('keydown', handleKeydown);
-  document.addEventListener('keydown', trapFocus);
 
   // Click outside to close
   const onDocumentClick = (e) => {
@@ -275,7 +256,6 @@ function closeMenu() {
 
   // Cleanup event listeners
   document.removeEventListener('keydown', handleKeydown);
-  document.removeEventListener('keydown', trapFocus);
 }
 
 export function wireEraseMenu() {
