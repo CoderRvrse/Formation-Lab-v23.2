@@ -15,20 +15,14 @@ import { wirePresetDropdown } from './ui.presets.menu.js';
 import { wireEraseMenu } from './ui.erase.menu.js';
 import { wirePassStyleMenu } from './ui.passstyle.menu.js';
 import { initPassLayer } from './pass.init.js';
+import { initErrorHandler } from './error-handler.js';
+import { initToastSystem } from './ui-toast.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
-// Global error logging (dev only)
-if (location.hostname === '127.0.0.1' || location.hostname === 'localhost') {
-  window.onerror = (message, source, line, column, error) => {
-    console.warn('[FLAB]', window.FLAB_VERSION, message, `${source}:${line}:${column}`, error);
-    return false; // Don't prevent default error handling
-  };
-
-  window.addEventListener('unhandledrejection', event => {
-    console.warn('[FLAB]', window.FLAB_VERSION, 'Unhandled Promise rejection:', event.reason);
-  });
-}
+// Initialize error handling and toast notification system
+initErrorHandler();
+initToastSystem();
 
 // Preload pitch assets to eliminate 404s
 const preloadImg1 = new Image();
