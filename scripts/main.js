@@ -20,14 +20,16 @@ import { initToastSystem } from './ui-toast.js';
 import { initSpinnerSystem } from './loading-spinner.js';
 import { initTouchGestures } from './touch-gestures.js';
 import { initBottomSheetSystem } from './bottom-sheet.js';
+import { initAccessibility, addLandmarks, addAriaLabels, addSkipLink, enableKeyboardNavigation } from './accessibility.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
-// Initialize error handling, toast notifications, loading spinners, and bottom sheets
+// Initialize error handling, toast notifications, loading spinners, bottom sheets, and accessibility
 initErrorHandler();
 initToastSystem();
 initSpinnerSystem();
 initBottomSheetSystem();
+initAccessibility();
 
 // Preload pitch assets to eliminate 404s
 const preloadImg1 = new Image();
@@ -72,6 +74,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   wirePresetDropdown();
   wireEraseMenu();
   wirePassStyleMenu();
+
+  // Initialize accessibility features (ARIA landmarks, labels, skip link, keyboard nav)
+  addSkipLink();
+  addLandmarks();
+  addAriaLabels();
+  enableKeyboardNavigation();
 
   // Initialize ball animation system
   import('./animate.js').then(({ ensureBallLayer, preloadBall }) => {
