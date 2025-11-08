@@ -23,6 +23,7 @@ import { initBottomSheetSystem } from './bottom-sheet.js';
 import { initAccessibility, addLandmarks, addAriaLabels, addSkipLink, enableKeyboardNavigation } from './accessibility.js';
 import { initUndoRedo, saveUndoState } from './undo-redo.js';
 import { initTheme } from './theme.js';
+import { initShare } from './share.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
@@ -89,6 +90,9 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // Save initial state for undo/redo
   saveUndoState('Initial formation');
+
+  // Initialize share system
+  initShare();
 
   // Initialize ball animation system
   import('./animate.js').then(({ ensureBallLayer, preloadBall }) => {
