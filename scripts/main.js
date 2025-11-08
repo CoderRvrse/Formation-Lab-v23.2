@@ -17,12 +17,14 @@ import { wirePassStyleMenu } from './ui.passstyle.menu.js';
 import { initPassLayer } from './pass.init.js';
 import { initErrorHandler } from './error-handler.js';
 import { initToastSystem } from './ui-toast.js';
+import { initSpinnerSystem } from './loading-spinner.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
-// Initialize error handling and toast notification system
+// Initialize error handling, toast notifications, and loading spinners
 initErrorHandler();
 initToastSystem();
+initSpinnerSystem();
 
 // Preload pitch assets to eliminate 404s
 const preloadImg1 = new Image();
