@@ -2,14 +2,21 @@
   "name": "formation-lab",
   "version": "23.4.3",
   "description": "Formation Lab - youth soccer tactics board",
+  "type": "module",
   "scripts": {
     "build": "node scripts/build.mjs",
     "serve": "npx http-server -p 5500 .",
-    "dev": "npm run serve"
+    "dev": "npm run serve",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "esbuild": "^0.23.0",
     "@playwright/test": "^1.40.0",
-    "http-server": "^14.1.1"
+    "http-server": "^14.1.1",
+    "vitest": "^1.0.0",
+    "@vitest/coverage-v8": "^1.0.0",
+    "happy-dom": "^12.10.3"
   }
 }

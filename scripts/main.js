@@ -24,6 +24,7 @@ import { initAccessibility, addLandmarks, addAriaLabels, addSkipLink, enableKeyb
 import { initUndoRedo, saveUndoState } from './undo-redo.js';
 import { initTheme } from './theme.js';
 import { initShare } from './share.js';
+import './performance.js'; // Performance monitoring (auto-init in dev)
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
