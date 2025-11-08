@@ -649,13 +649,9 @@ export function commitArrow(fromId, point, curved = false, control = null) {
 
   // NEW: Use anchor system for entity-based arrow attachment
   // Get locked target from aim state (visual feedback during drag)
+  // ONLY snap to player if aim-locked during drag, NOT on proximity
   const lockId = FLAB.aim?.lockedId ?? null;
-
-  // Try to find if we're close to a player (snap behavior)
-  const nearbyPlayerId = findNearbyPlayer(point.x, point.y, 40);
-
-  // Decision: use aim-locked player if available, else use nearby player
-  const toPlayerId = lockId || nearbyPlayerId || null;
+  const toPlayerId = lockId || null;
 
   // Get passer position for metadata
   const passer = getPlayer(fromId);
