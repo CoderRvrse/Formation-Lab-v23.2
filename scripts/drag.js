@@ -51,7 +51,12 @@ function startPointerStream(ev) {
       window.removeEventListener('pointercancel', _stream.up, true);
       try { document.getElementById('pitchMount')?.releasePointerCapture(_stream.id); } catch {}
       _stream = null;
-      if (FLAB.passArm?.drawing) commitPass();
+      if (FLAB.passArm?.drawing) {
+        // Update latest position with final mouse position before committing
+        const finalPos = toView(e.clientX, e.clientY);
+        FLAB.passArm.latest = finalPos;
+        commitPass();
+      }
     }
   };
   window.addEventListener('pointermove', _stream.move, true);
