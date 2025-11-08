@@ -1,0 +1,315 @@
+/* Formation Lab v23.2+ - Light Mode Theme */
+
+/* Light mode color palette */
+:root[data-theme="light"],
+body.theme-light {
+  color-scheme: light;
+
+  /* Background colors */
+  --flab-bg-start: #e8f4f8;
+  --flab-bg-end: #d4e9f7;
+  --flab-surface: rgba(255, 255, 255, 0.95);
+
+  /* Text colors */
+  --flab-text: #1a2332;
+  --flab-muted: rgba(26, 35, 50, 0.65);
+
+  /* Accent colors */
+  --flab-accent: #0066cc;
+  --flab-accent-dark: #0052a3;
+
+  /* Border and outline colors */
+  --flab-outline: rgba(26, 35, 50, 0.15);
+
+  /* Pitch colors */
+  --flab-pitch-green: #4a9d5f;
+  --flab-pitch-line: rgba(255, 255, 255, 0.95);
+
+  /* Shadow colors */
+  --flab-shadow: rgba(0, 0, 0, 0.15);
+
+  /* Tool colors */
+  --flab-tool-bg: rgba(255, 255, 255, 0.75);
+  --flab-tool-active: rgba(0, 102, 204, 0.15);
+  --flab-tool-border: rgba(26, 35, 50, 0.12);
+
+  /* Player colors */
+  --flab-player-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --flab-halo-glow: rgba(0, 102, 204, 0.25);
+
+  /* Pass/arrow colors */
+  --pass-color: #0066cc;
+  --pass-opacity: 0.9;
+}
+
+/* Body background gradient for light mode */
+body.theme-light {
+  background: radial-gradient(circle at top, rgba(100, 180, 255, 0.15), transparent 60%),
+    linear-gradient(160deg, var(--flab-bg-start), var(--flab-bg-end));
+}
+
+/* App container */
+body.theme-light .flab-app {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.85));
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+}
+
+/* Buttons and tools in light mode */
+body.theme-light .flab-tool,
+body.theme-light .flab-action {
+  background: var(--flab-tool-bg);
+  color: var(--flab-text);
+  border-color: var(--flab-outline);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+body.theme-light .flab-tool:hover,
+body.theme-light .flab-action:hover {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+body.theme-light .flab-tool.active,
+body.theme-light .flab-tool[aria-pressed="true"] {
+  background: var(--flab-tool-active);
+  color: var(--flab-accent);
+  border-color: var(--flab-accent);
+}
+
+/* Toast notifications in light mode */
+body.theme-light .flab-toast {
+  background: var(--flab-surface);
+  border-color: var(--flab-outline);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  color: var(--flab-text);
+}
+
+body.theme-light .flab-toast-error {
+  background: rgba(220, 38, 38, 0.95);
+  border-color: rgba(248, 113, 113, 0.5);
+  color: white;
+}
+
+body.theme-light .flab-toast-success {
+  background: rgba(21, 128, 61, 0.95);
+  border-color: rgba(74, 222, 128, 0.5);
+  color: white;
+}
+
+body.theme-light .flab-toast-warning {
+  background: rgba(217, 119, 6, 0.95);
+  border-color: rgba(251, 191, 36, 0.5);
+  color: white;
+}
+
+/* Spinner in light mode */
+body.theme-light .flab-spinner {
+  background: var(--flab-surface);
+  border-color: var(--flab-outline);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  color: var(--flab-text);
+}
+
+body.theme-light .flab-spinner-path {
+  stroke: var(--flab-accent);
+}
+
+/* Modals in light mode */
+body.theme-light .flab-help__content,
+body.theme-light .flab-modal-content,
+body.theme-light .flab-sheet {
+  background: var(--flab-surface);
+  border-color: var(--flab-outline);
+  color: var(--flab-text);
+}
+
+body.theme-light .flab-modal,
+body.theme-light .flab-sheet-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Help modal close button */
+body.theme-light .flab-help__close:hover,
+body.theme-light .flab-modal-close:hover,
+body.theme-light .flab-sheet-close:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Bottom sheet handle */
+body.theme-light .flab-sheet-handle {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Inputs and text in light mode */
+body.theme-light input,
+body.theme-light select,
+body.theme-light textarea {
+  background: white;
+  border-color: var(--flab-outline);
+  color: var(--flab-text);
+}
+
+body.theme-light input:focus,
+body.theme-light select:focus,
+body.theme-light textarea:focus {
+  border-color: var(--flab-accent);
+  outline-color: var(--flab-accent);
+}
+
+/* Presets panel in light mode */
+body.theme-light .flab-sidepanel {
+  background: transparent;
+}
+
+/* Title and subtitle */
+body.theme-light .flab-title {
+  color: var(--flab-text);
+}
+
+body.theme-light .flab-subtitle {
+  color: var(--flab-muted);
+}
+
+/* Players in light mode */
+body.theme-light .flab-player {
+  box-shadow: var(--flab-player-shadow);
+}
+
+body.theme-light .flab-player .num {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Halo/selection ring in light mode */
+body.theme-light .flab-halo {
+  box-shadow: 0 0 0 3px var(--flab-halo-glow);
+}
+
+/* Field in light mode */
+body.theme-light .flab-field {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+/* Pass/arrow styles in light mode */
+body.theme-light .flab-arrow-path {
+  stroke: var(--pass-color);
+  stroke-opacity: var(--pass-opacity);
+}
+
+/* Focus indicators in light mode */
+body.theme-light button:focus-visible,
+body.theme-light .flab-tool:focus-visible,
+body.theme-light .flab-action:focus-visible,
+body.theme-light a:focus-visible {
+  outline-color: var(--flab-accent);
+}
+
+body.theme-light .flab-keyboard-nav *:focus {
+  outline-color: var(--flab-accent);
+}
+
+/* Skip link in light mode */
+body.theme-light .flab-skip-link {
+  background: var(--flab-accent);
+  color: white;
+}
+
+body.theme-light .flab-skip-link:focus {
+  outline-color: var(--flab-accent-dark);
+}
+
+/* Links in light mode */
+body.theme-light a {
+  color: var(--flab-accent);
+}
+
+body.theme-light a:hover {
+  color: var(--flab-accent-dark);
+}
+
+/* Disabled states in light mode */
+body.theme-light button:disabled,
+body.theme-light button[aria-disabled="true"] {
+  opacity: 0.4;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* Theme toggle button styling */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.theme-icon {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.theme-label {
+  font-size: 14px;
+}
+
+/* Smooth theme transition */
+:root,
+body,
+.flab-app,
+.flab-tool,
+.flab-action,
+.flab-player,
+.flab-toast,
+.flab-spinner,
+.flab-modal,
+.flab-sheet {
+  transition: background-color 0.3s ease,
+              color 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Disable transitions if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  :root,
+  body,
+  .flab-app,
+  .flab-tool,
+  .flab-action,
+  .flab-player,
+  .flab-toast,
+  .flab-spinner,
+  .flab-modal,
+  .flab-sheet {
+    transition: none !important;
+  }
+}
+
+/* Adjust pass colors for better visibility in light mode */
+body.theme-light [data-pass-style="solid"] .flab-arrow-path {
+  stroke: #0066cc;
+}
+
+body.theme-light [data-pass-style="dashed"] .flab-arrow-path {
+  stroke: #0052a3;
+}
+
+body.theme-light [data-pass-style="dotted"] .flab-arrow-path {
+  stroke: #004080;
+}
+
+/* Zoom indicator in light mode */
+body.theme-light .flab-zoom-indicator {
+  background: var(--flab-surface);
+  border-color: var(--flab-outline);
+  color: var(--flab-text);
+}
+
+/* Loading spinner inline */
+body.theme-light .flab-inline-loader {
+  color: var(--flab-muted);
+}
+
+/* Noscript warning */
+body.theme-light .flab-noscript {
+  background: #dc2626;
+  color: white;
+}

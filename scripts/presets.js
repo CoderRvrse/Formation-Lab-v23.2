@@ -2,6 +2,7 @@
 import { FLAB } from './state.js';
 import { p2n_view } from './geometry.js';
 import { relayoutAllPlayers } from './render.js';
+import { saveUndoState } from './undo-redo.js';
 
 // Formation presets in normalized canonical coordinates
 const FORMATIONS = {
@@ -59,6 +60,9 @@ export function applyPreset(name) {
   });
 
   console.log(`📋 Applied formation preset: ${name}`);
+
+  // Save state for undo
+  saveUndoState(`Apply preset: ${name}`);
 }
 
 // Get available preset names

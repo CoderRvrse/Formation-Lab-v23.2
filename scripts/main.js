@@ -21,15 +21,18 @@ import { initSpinnerSystem } from './loading-spinner.js';
 import { initTouchGestures } from './touch-gestures.js';
 import { initBottomSheetSystem } from './bottom-sheet.js';
 import { initAccessibility, addLandmarks, addAriaLabels, addSkipLink, enableKeyboardNavigation } from './accessibility.js';
+import { initUndoRedo, saveUndoState } from './undo-redo.js';
+import { initTheme } from './theme.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
-// Initialize error handling, toast notifications, loading spinners, bottom sheets, and accessibility
+// Initialize error handling, toast notifications, loading spinners, bottom sheets, accessibility, and theme
 initErrorHandler();
 initToastSystem();
 initSpinnerSystem();
 initBottomSheetSystem();
 initAccessibility();
+initTheme(); // Initialize theme early to prevent flash
 
 // Preload pitch assets to eliminate 404s
 const preloadImg1 = new Image();
@@ -80,6 +83,12 @@ window.addEventListener('DOMContentLoaded', async () => {
   addLandmarks();
   addAriaLabels();
   enableKeyboardNavigation();
+
+  // Initialize undo/redo system
+  initUndoRedo();
+
+  // Save initial state for undo/redo
+  saveUndoState('Initial formation');
 
   // Initialize ball animation system
   import('./animate.js').then(({ ensureBallLayer, preloadBall }) => {

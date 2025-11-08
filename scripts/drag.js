@@ -2,6 +2,7 @@
 import { FLAB } from './state.js';
 import { n2p_view, p2n_view, clampPx, toView } from './geometry.js';
 import { beginPassPreview, updatePassPreview, commitPass } from './pass.js';
+import { saveUndoState } from './undo-redo.js';
 
 const SLOP_PX = 6;
 const ROLE_LABELS = {
@@ -284,6 +285,8 @@ function onPlayerPointerUp(evt, playerId) {
     if (el?.hasPointerCapture?.(evt.pointerId)) {
       el.releasePointerCapture(evt.pointerId);
     }
+    // Save state for undo after successful drag
+    saveUndoState(`Move player ${playerId}`);
   }
 
   field.classList.remove("lab-pressing", "is-engaged");
