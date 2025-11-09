@@ -54,26 +54,94 @@ body.theme-light .flab-app {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
+/* Sidepanel styling in light mode */
+body.theme-light .flab-sidepanel {
+  background: var(--flab-surface);
+  border-right-color: var(--flab-outline);
+}
+
+body.theme-light .flab-toolbar {
+  border-bottom-color: var(--flab-outline);
+}
+
+body.theme-light .action-group {
+  border-bottom-color: var(--flab-outline);
+}
+
+body.theme-light .action-group__title {
+  color: var(--flab-muted);
+}
+
 /* Buttons and tools in light mode */
-body.theme-light .flab-tool,
-body.theme-light .flab-action {
+body.theme-light .flab-tool {
   background: var(--flab-tool-bg);
   color: var(--flab-text);
   border-color: var(--flab-outline);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-body.theme-light .flab-tool:hover,
-body.theme-light .flab-action:hover {
+body.theme-light .flab-tool:hover:not([aria-pressed="true"]) {
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  border-color: rgba(26, 35, 50, 0.2);
 }
 
-body.theme-light .flab-tool.active,
+body.theme-light .flab-tool:focus-visible {
+  outline-color: var(--flab-accent);
+}
+
 body.theme-light .flab-tool[aria-pressed="true"] {
   background: var(--flab-tool-active);
   color: var(--flab-accent);
   border-color: var(--flab-accent);
+  box-shadow: inset 0 0 0 1px rgba(0, 102, 204, 0.2);
+}
+
+/* Primary action buttons in light mode */
+body.theme-light .flab-action {
+  background: var(--flab-accent);
+  color: white;
+  border: none;
+}
+
+body.theme-light .flab-action:hover:not(:disabled) {
+  background: var(--flab-accent-dark);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+}
+
+body.theme-light .flab-action:active:not(:disabled) {
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+}
+
+body.theme-light .flab-action:focus-visible {
+  outline-color: #0b2b66;
+}
+
+body.theme-light .flab-action:disabled {
+  opacity: 0.5;
+}
+
+/* Pass style button in light mode */
+body.theme-light .passstyle-trigger__name {
+  color: white;
+}
+
+/* Keyboard tips in light mode */
+body.theme-light .flab-keytips {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: var(--flab-outline);
+}
+
+body.theme-light .flab-keytips h2 {
+  color: var(--flab-text);
+}
+
+body.theme-light .flab-keytips li {
+  color: var(--flab-muted);
+}
+
+body.theme-light .flab-keytips kbd {
+  background: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.12);
+  color: var(--flab-text);
 }
 
 /* Toast notifications in light mode */

@@ -1,4 +1,11 @@
-/* Toolbar component styles */
+/* ═══════════════════════════════════════════════════════════════
+   FORMATION LAB - PROFESSIONAL SIDEPANEL & TOOLBAR
+   Modern, organized, clean button layout with semantic grouping
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────────────────────────────
+   SIDEPANEL CONTAINER
+   ───────────────────────────────────────────────────────────── */
 .flab-sidepanel {
   width: 280px;
   min-width: 280px;
@@ -9,142 +16,283 @@
   display: flex;
   flex-direction: column;
   padding: 20px;
-  gap: 24px;
+  gap: 20px;
+  overflow-y: auto;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   HEADER - BRANDING & TITLE
+   ───────────────────────────────────────────────────────────── */
 .flab-header {
   text-align: center;
+  padding-bottom: 4px;
 }
 
 .flab-title {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 700;
-  margin: 0 0 8px 0;
+  margin: 0 0 6px 0;
   color: var(--flab-text);
+  letter-spacing: -0.3px;
 }
 
 .flab-badge {
-  font-size: 12px;
-  font-weight: 500;
+  font-size: 10px;
+  font-weight: 600;
   color: var(--flab-muted);
   background: rgba(255, 255, 255, 0.08);
-  padding: 2px 8px;
+  padding: 3px 10px;
   border-radius: 12px;
-  margin-left: 8px;
+  margin-left: 6px;
+  letter-spacing: 0.5px;
 }
 
 .flab-subtitle {
-  font-size: 14px;
+  font-size: 12px;
   color: var(--flab-muted);
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   TOOLBAR - EDITOR MODE BUTTONS (Select/Pass/Erase/Help)
+   ───────────────────────────────────────────────────────────── */
 .flab-toolbar {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  border-bottom: 1px solid var(--flab-outline);
+  padding-bottom: 16px;
 }
 
 .flab-tool {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 12px;
-  padding: 12px 16px;
+  padding: 10px 14px;
   background: var(--flab-tool-bg);
   border: 1px solid var(--flab-tool-border);
   border-radius: 8px;
   color: var(--flab-text);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
   text-align: left;
+  white-space: nowrap;
+  user-select: none;
 }
 
-.flab-tool:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+.flab-tool:hover:not([aria-pressed="true"]) {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.flab-tool:focus-visible {
+  outline: 2px solid var(--flab-accent);
+  outline-offset: -2px;
 }
 
 .flab-tool[aria-pressed="true"] {
-  background: var(--flab-tool-active);
+  background: rgba(255, 193, 7, 0.15);
   border-color: var(--flab-accent);
+  color: var(--flab-accent);
+  box-shadow: inset 0 0 0 1px rgba(255, 193, 7, 0.3);
 }
 
 .flab-tool svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: currentColor;
+  flex-shrink: 0;
 }
 
+/* Special style for help button */
+.flab-tool--help {
+  margin-top: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   ACTIONS SECTION - PRIMARY & SECONDARY ACTIONS
+   ───────────────────────────────────────────────────────────── */
 .flab-actions {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0;
 }
 
+/* Action Group Container */
+.action-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--flab-outline);
+}
+
+.action-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.action-group__title {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--flab-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 0 4px;
+  margin-bottom: 2px;
+  margin-top: 4px;
+}
+
+.action-group:first-child .action-group__title {
+  margin-top: 0;
+}
+
+/* Primary Actions */
 .flab-action {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 16px;
+  padding: 11px 14px;
   background: var(--flab-accent);
   color: #0b2b66;
   border: none;
   border-radius: 8px;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
+  white-space: nowrap;
+  user-select: none;
+  min-height: 40px;
 }
 
-.flab-action:hover {
+.flab-action:hover:not(:disabled) {
   background: var(--flab-accent-dark);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25);
+}
+
+.flab-action:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.15);
+}
+
+.flab-action:focus-visible {
+  outline: 2px solid #0b2b66;
+  outline-offset: 2px;
+}
+
+.flab-action:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .flab-action svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
+  flex-shrink: 0;
 }
 
+/* Secondary Actions (grouped in rows) */
 .toolbar-row {
-  display: flex;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
 }
 
 .toolbar-row .flab-action {
-  flex: 1;
-  font-size: 12px;
-  padding: 8px 12px;
+  font-size: 11px;
+  padding: 8px 10px;
+  min-height: 36px;
 }
 
-.btn-group {
+.toolbar-row .flab-action svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Two-column row variant */
+.toolbar-row--two {
+  grid-template-columns: 1fr 1fr;
+}
+
+.toolbar-row--two .flab-action {
+  font-size: 12px;
+  padding: 9px 12px;
+  min-height: 38px;
+}
+
+/* Pass style dropdown button */
+.flab-action[id="btnPassStyle"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 14px;
+}
+
+.passstyle-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.passstyle-trigger__name {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.passstyle-trigger__chevron {
+  width: 12px;
+  height: 12px;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.flab-action[id="btnPassStyle"][aria-expanded="true"] .passstyle-trigger__chevron {
+  transform: scaleY(-1);
+}
+
+/* Playback controls (hidden by default) */
+#passPlaybackControls {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6px;
 }
 
-.btn-group .flab-action {
+#passPlaybackControls .flab-action {
   font-size: 11px;
-  padding: 6px 8px;
+  padding: 8px 10px;
+  min-height: 36px;
 }
 
+/* ─────────────────────────────────────────────────────────────
+   KEYBOARD TIPS - QUICK REFERENCE AT BOTTOM
+   ───────────────────────────────────────────────────────────── */
 .flab-keytips {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  padding: 16px;
+  padding: 12px 14px;
   margin-top: auto;
+  border: 1px solid var(--flab-outline);
 }
 
 .flab-keytips h2 {
-  font-size: 14px;
-  font-weight: 600;
-  margin: 0 0 12px 0;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
   color: var(--flab-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .flab-keytips ul {
@@ -154,21 +302,102 @@
 }
 
 .flab-keytips li {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--flab-muted);
-  margin-bottom: 6px;
+  margin-bottom: 5px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  line-height: 1.4;
+}
+
+.flab-keytips li:last-child {
+  margin-bottom: 0;
 }
 
 .flab-keytips kbd {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 4px;
-  padding: 2px 6px;
-  font-size: 10px;
-  font-family: monospace;
+  padding: 2px 5px;
+  font-size: 9px;
+  font-family: 'Monaco', 'Courier New', monospace;
   color: var(--flab-text);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   RESPONSIVE BEHAVIOR (Mobile & Tablet)
+   ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .flab-sidepanel {
+    width: 100%;
+    min-width: auto;
+    max-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--flab-outline);
+    flex-direction: row;
+    overflow-x: auto;
+    padding: 12px 16px;
+    gap: 12px;
+  }
+
+  .flab-header {
+    display: none;
+  }
+
+  .flab-toolbar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    border-bottom: none;
+    padding-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .flab-tool {
+    flex-direction: column;
+    padding: 8px 6px;
+    gap: 4px;
+    font-size: 10px;
+    min-height: 60px;
+  }
+
+  .flab-tool span {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .flab-tool svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .flab-actions {
+    display: none;
+  }
+
+  .flab-keytips {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .flab-sidepanel {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .flab-toolbar {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .flab-tool {
+    min-height: 56px;
+    padding: 6px 4px;
+    font-size: 9px;
+  }
 }
 
