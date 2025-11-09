@@ -85,20 +85,20 @@ body.flab-body {
   gap: 0;
 }
 
-.flab-app.flab-app--sidepanel-collapsed .flab-sidepanel {
-  overflow: hidden;
-  width: 0;
-  padding: 0;
-  opacity: 0;
+.flab-sidepanel {
   transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.flab-app.flab-app--sidepanel-collapsed .flab-sidepanel {
+  width: 0 !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  opacity: 0;
+  overflow: hidden;
 }
 
 .flab-app.flab-app--sidepanel-collapsed .flab-pitch-wrapper {
   min-width: 100%;
-}
-
-.flab-sidepanel {
-  transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* Noscript and help modal styles */
