@@ -36,68 +36,55 @@
           </button>
         </nav>
         <div class="flab-actions" aria-label="Primary actions">
-          <!-- Primary Actions Row -->
+          <!-- Primary Actions: Export & Reset (2 wide) -->
           <div class="actions-row">
-            <button type="button" class="flab-action flab-action--primary" id="exportButton" title="Export current formation as PNG">
+            <button type="button" class="flab-action" id="exportButton" title="Export formation as PNG">
               <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#export"></use></svg>
               <span>Export</span>
             </button>
-            <button type="button" class="flab-action flab-action--primary" id="resetButton" title="Reset to default 4-3-3 formation">
+            <button type="button" class="flab-action" id="resetButton" title="Reset to 4-3-3">
               <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#reset"></use></svg>
               <span>Reset</span>
             </button>
           </div>
 
-          <!-- Formation Controls -->
-          <div class="actions-row">
-            <button type="button" class="flab-action flab-action--secondary" id="btnLandscape" title="Switch to landscape orientation">Landscape</button>
-            <button type="button" class="flab-action flab-action--secondary" id="btnPortrait" title="Switch to portrait orientation">Portrait</button>
+          <!-- Orientation: Landscape/Portrait/Flip (3 wide) -->
+          <div class="actions-row actions-row--three">
+            <button type="button" class="flab-action" id="btnLandscape" title="Landscape">L</button>
+            <button type="button" class="flab-action" id="btnPortrait" title="Portrait">P</button>
+            <button type="button" class="flab-action" id="btnFlip" title="Flip">↔</button>
           </div>
 
-          <button type="button" class="flab-action flab-action--full" id="btnFlip" title="Flip formation sides">Flip Sides</button>
-
-          <!-- Preset & Style Controls -->
-          <button type="button" class="flab-action flab-action--primary" id="btnPassStyle" aria-haspopup="menu" aria-expanded="false" title="Choose pass arrow style">
-            <div class="passstyle-trigger">
-              <span class="passstyle-trigger__name">Solid</span>
-              <svg class="passstyle-trigger__chevron" aria-hidden="true" focusable="false" width="12" height="8" viewBox="0 0 12 8">
-                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </div>
+          <!-- Pass Style (Full width dropdown) -->
+          <button type="button" class="flab-action" id="btnPassStyle" aria-haspopup="menu" aria-expanded="false" title="Pass style">
+            <span class="passstyle-trigger__name">Pass Style:</span>
+            <span class="passstyle-value">Solid</span>
+            <svg class="passstyle-trigger__chevron" aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6">
+              <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+            </svg>
           </button>
 
-          <!-- Display Mode -->
-          <button type="button" class="flab-action flab-action--full" id="btnFullscreen" title="Toggle fullscreen mode" aria-label="Toggle fullscreen mode">
+          <!-- Fullscreen (Full width) -->
+          <button type="button" class="flab-action" id="btnFullscreen" title="Fullscreen mode">
             <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#expand"></use></svg>
             <span>Fullscreen</span>
           </button>
 
-          <!-- Preset Actions (Compact) -->
-          <div class="actions-row actions-row--tight">
-            <button type="button" class="flab-action flab-action--compact" id="btnSavePreset" title="Save current formation">Save</button>
-            <button type="button" class="flab-action flab-action--compact" id="btnApplyDefault" title="Apply default preset">Apply</button>
-            <button type="button" class="flab-action flab-action--compact" id="btnManagePresets" title="Manage presets">Manage</button>
+          <!-- Presets: Save/Apply/Manage (3 wide) -->
+          <div class="actions-row actions-row--three">
+            <button type="button" class="flab-action flab-action--sm" id="btnSavePreset" title="Save">S</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnApplyDefault" title="Apply">A</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnManagePresets" title="Manage">M</button>
           </div>
 
           <!-- Playback Controls (hidden by default) -->
-          <div id="passPlaybackControls" style="display: none;" class="actions-row">
-            <button type="button" class="flab-action flab-action--compact" id="btnPlayLast" disabled title="Play last pass sequence">
-              <span>▶ Last</span>
-            </button>
-            <button type="button" class="flab-action flab-action--compact" id="btnPlayAll" disabled title="Play all passes">
-              <span>▶ All</span>
-            </button>
-            <button type="button" class="flab-action flab-action--compact" id="btnStopPlayback" disabled title="Stop playback">
-              <span>⏹</span>
-            </button>
-            <button type="button" class="flab-action flab-action--compact" id="btnDiagnostics" title="Show ball playback diagnostics">
-              <span>🔍</span>
-            </button>
+          <div id="passPlaybackControls" style="display: none;" class="actions-row actions-row--four">
+            <button type="button" class="flab-action flab-action--sm" id="btnPlayLast" disabled title="▶ Last">▶L</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnPlayAll" disabled title="▶ All">▶A</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnStopPlayback" disabled title="Stop">⏹</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnDiagnostics" title="Diag">🔍</button>
           </div>
         </div>
-        <button type="button" class="flab-keytips-btn" id="keytipsButton" title="View keyboard shortcuts" aria-label="Show keyboard shortcuts">
-          <span>?</span>
-        </button>
       </section>
       <section class="flab-pitch-wrapper" aria-label="Pitch canvas">
         <div class="flab-field" id="pitchMount" data-field-version="v23.4">

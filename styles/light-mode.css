@@ -138,19 +138,6 @@ body.theme-light .flab-keytips li {
   color: var(--flab-muted);
 }
 
-/* Keyboard shortcuts button in light mode */
-body.theme-light .flab-keytips-btn {
-  background: rgba(0, 0, 0, 0.06);
-  border-color: var(--flab-outline);
-  color: var(--flab-muted);
-}
-
-body.theme-light .flab-keytips-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-  color: var(--flab-text);
-  border-color: rgba(0, 0, 0, 0.15);
-}
-
 /* Toast notifications in light mode */
 body.theme-light .flab-toast {
   background: var(--flab-surface);

@@ -115,98 +115,89 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   ACTIONS SECTION - CLEAN, MINIMAL BUTTON LAYOUT
+   ACTIONS SECTION - SMART MINIMAL LAYOUT
    ───────────────────────────────────────────────────────────── */
 .flab-actions {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 /* Action rows for grouping related buttons */
 .actions-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.actions-row--tight {
-  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
 }
 
-/* Primary Actions - Full Width */
+.actions-row--three {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.actions-row--four {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+/* Base Button Style */
 .flab-action {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 10px 12px;
+  gap: 6px;
+  padding: 9px 11px;
   background: var(--flab-accent);
   color: #0b2b66;
   border: none;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease;
   white-space: nowrap;
   user-select: none;
-  min-height: 38px;
+  min-height: 36px;
 }
 
 .flab-action:hover:not(:disabled) {
   background: var(--flab-accent-dark);
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
 }
 
 .flab-action:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(255, 193, 7, 0.1);
+  box-shadow: 0 1px 3px rgba(255, 193, 7, 0.1);
 }
 
 .flab-action:focus-visible {
   outline: 2px solid #0b2b66;
-  outline-offset: 2px;
+  outline-offset: 1px;
 }
 
 .flab-action:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
 }
 
 .flab-action svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   fill: currentColor;
   flex-shrink: 0;
 }
 
-/* Button Variants */
-.flab-action--primary {
-  grid-column: 1 / -1;
-}
-
-.flab-action--secondary {
-  font-size: 11px;
-  padding: 8px 10px;
-  min-height: 36px;
-}
-
-.flab-action--full {
-  grid-column: 1 / -1;
-}
-
-.flab-action--compact {
+/* Small button variant for compact rows */
+.flab-action--sm {
   font-size: 10px;
   padding: 6px 8px;
   min-height: 32px;
 }
 
-.flab-action--compact svg {
-  width: 14px;
-  height: 14px;
+.flab-action--sm svg {
+  width: 12px;
+  height: 12px;
 }
 
 /* Pass style dropdown button */
@@ -234,41 +225,6 @@
   transform: scaleY(-1);
 }
 
-/* ─────────────────────────────────────────────────────────────
-   KEYBOARD SHORTCUTS BUTTON - MINIMAL (?) INDICATOR
-   ───────────────────────────────────────────────────────────── */
-.flab-keytips-btn {
-  margin-top: auto;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid var(--flab-outline);
-  border-radius: 6px;
-  color: var(--flab-muted);
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  align-self: center;
-}
-
-.flab-keytips-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  color: var(--flab-text);
-  border-color: rgba(255, 255, 255, 0.2);
-}
-
-.flab-keytips-btn:active {
-  transform: scale(0.95);
-}
-
-.flab-keytips-btn:focus-visible {
-  outline: 2px solid var(--flab-accent);
-  outline-offset: 2px;
-}
 
 /* ─────────────────────────────────────────────────────────────
    RESPONSIVE BEHAVIOR (Mobile & Tablet)
