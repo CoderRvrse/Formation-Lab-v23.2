@@ -112,9 +112,6 @@ export function initTheme() {
   const theme = getCurrentTheme();
   applyTheme(theme);
 
-  // Add theme toggle button to UI
-  addThemeToggleButton();
-
   // Listen for system theme changes
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
