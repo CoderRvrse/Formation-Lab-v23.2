@@ -1,6 +1,7 @@
 /* Formation Lab v23.4.3 - Modular CSS */
 @import url("./components/field.css");
 @import url("./components/player.css");
+@import url("./components/player-editor.css");
 @import url("./components/arrows.css");
 @import url("./components/toolbar.css");
 @import url("./components/presets.css");

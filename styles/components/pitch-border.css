@@ -135,7 +135,174 @@
 .flab-app--fullscreen .flab-field {
   box-shadow:
     inset 0 0 60px rgba(0, 0, 0, 0.4),
-    inset 0 0 100px rgba(0, 0, 0, 0.2);
+    inset 0 0 100px rgba(0, 0, 0, 0.2),
+    0 0 80px rgba(50, 205, 80, 0.6),
+    0 0 140px rgba(60, 200, 90, 0.4);
+}
+
+/* Enhanced animations for portrait mode (non-fullscreen) */
+.flab-field.is-portrait:not(.flab-app--fullscreen .flab-field) {
+  position: relative;
+}
+
+/* Layer 1: White light tracing along border edges */
+.flab-field.is-portrait::before {
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(
+    90deg,
+    rgba(50, 205, 80, 0.9) 0%,
+    rgba(255, 255, 255, 0.95) 15%,
+    rgba(240, 250, 245, 0.9) 25%,
+    rgba(50, 205, 80, 0.85) 40%,
+    rgba(60, 200, 90, 0.8) 60%,
+    rgba(255, 255, 255, 0.95) 75%,
+    rgba(240, 250, 245, 0.9) 85%,
+    rgba(50, 205, 80, 0.9) 100%
+  ) 1;
+  background-size: 400% 400%;
+  animation: borderLightTrace 6s linear infinite;
+  box-shadow:
+    inset 0 0 30px rgba(0, 0, 0, 0.4),
+    0 0 25px rgba(255, 255, 255, 0.4),
+    0 0 50px rgba(50, 205, 80, 0.5);
+}
+
+/* Layer 2: Pulsing grass green outer glow */
+.flab-field.is-portrait::after {
+  border-width: 3px;
+  opacity: 0.7;
+  background: linear-gradient(
+    90deg,
+    rgba(45, 190, 75, 0.7) 0%,
+    rgba(60, 210, 95, 0.75) 16%,
+    rgba(50, 200, 85, 0.8) 33%,
+    rgba(180, 230, 200, 0.5) 50%,
+    rgba(55, 195, 80, 0.8) 66%,
+    rgba(65, 215, 100, 0.75) 83%,
+    rgba(45, 190, 75, 0.7) 100%
+  );
+  background-size: 600% 600%;
+  animation: portraitGlowPulse 6s ease infinite, portraitColorShift 10s linear infinite;
+  filter: blur(2px);
+}
+
+/* Layer 3: White glow traveling around border perimeter */
+.flab-pitch-wrapper:has(.flab-field.is-portrait:not(.flab-app--fullscreen .flab-field))::after {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: 18px;
+  background: transparent;
+  box-shadow:
+    inset 0 0 0 3px transparent,
+    0 0 20px rgba(255, 255, 255, 0.6);
+  animation: borderPerimeterGlow 4s linear infinite;
+}
+
+/* Keyframe animations for portrait mode */
+@keyframes borderLightTrace {
+  0% {
+    border-image-source: linear-gradient(
+      90deg,
+      rgba(50, 205, 80, 0.9) 0%,
+      rgba(255, 255, 255, 0.95) 15%,
+      rgba(240, 250, 245, 0.9) 25%,
+      rgba(50, 205, 80, 0.85) 40%,
+      rgba(60, 200, 90, 0.8) 60%,
+      rgba(255, 255, 255, 0.95) 75%,
+      rgba(240, 250, 245, 0.9) 85%,
+      rgba(50, 205, 80, 0.9) 100%
+    );
+  }
+  50% {
+    border-image-source: linear-gradient(
+      90deg,
+      rgba(60, 200, 90, 0.8) 0%,
+      rgba(50, 205, 80, 0.9) 15%,
+      rgba(255, 255, 255, 0.95) 40%,
+      rgba(240, 250, 245, 0.9) 50%,
+      rgba(50, 205, 80, 0.85) 60%,
+      rgba(60, 200, 90, 0.8) 85%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+  }
+  100% {
+    border-image-source: linear-gradient(
+      90deg,
+      rgba(50, 205, 80, 0.9) 0%,
+      rgba(255, 255, 255, 0.95) 15%,
+      rgba(240, 250, 245, 0.9) 25%,
+      rgba(50, 205, 80, 0.85) 40%,
+      rgba(60, 200, 90, 0.8) 60%,
+      rgba(255, 255, 255, 0.95) 75%,
+      rgba(240, 250, 245, 0.9) 85%,
+      rgba(50, 205, 80, 0.9) 100%
+    );
+  }
+}
+
+@keyframes borderPerimeterGlow {
+  0% {
+    box-shadow:
+      0 -4px 15px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  25% {
+    box-shadow:
+      4px 0 15px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 4px 15px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  75% {
+    box-shadow:
+      -4px 0 15px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    box-shadow:
+      0 -4px 15px rgba(255, 255, 255, 0.7),
+      0 0 8px rgba(255, 255, 255, 0.3);
+  }
+}
+
+@keyframes portraitGlowPulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes portraitColorShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 600% 50%;
+  }
+}
+
+
+/* Enhanced grass green glow shadow for portrait mode borders only */
+.flab-field.is-portrait {
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.4),
+    inset 0 0 40px rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(50, 205, 80, 0.5),
+    0 0 100px rgba(60, 200, 90, 0.35);
 }
 
 /* Mobile optimizations */
@@ -164,5 +331,14 @@
     bottom: -2px;
     border-width: 2px;
     padding: 2px;
+  }
+
+  /* Reduce portrait mode effects on mobile for performance */
+  .flab-field.is-portrait::before {
+    animation-duration: 12s;
+  }
+
+  .flab-field.is-portrait::after {
+    filter: blur(1px);
   }
 }

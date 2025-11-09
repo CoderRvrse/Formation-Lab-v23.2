@@ -35,9 +35,114 @@
   max-height: none;
   border-radius: 0;
   box-shadow: none;
-  background-size: 100% 100% !important;
+  background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
+}
+
+/* Animated grass green border light for fullscreen pitch */
+.flab-app--fullscreen .flab-field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  border: 5px solid transparent;
+  border-style: solid;
+  border-image: linear-gradient(
+    90deg,
+    rgba(50, 205, 80, 0.9) 0%,
+    rgba(255, 255, 255, 0.95) 15%,
+    rgba(240, 250, 245, 0.9) 25%,
+    rgba(50, 205, 80, 0.85) 40%,
+    rgba(60, 200, 90, 0.8) 60%,
+    rgba(255, 255, 255, 0.95) 75%,
+    rgba(240, 250, 245, 0.9) 85%,
+    rgba(50, 205, 80, 0.9) 100%
+  ) 1;
+  animation: fullscreenBorderTrace 5s linear infinite;
+  box-shadow:
+    inset 0 0 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(255, 255, 255, 0.5),
+    0 0 60px rgba(50, 205, 80, 0.6);
+}
+
+/* Pulsing grass green glow effect */
+.flab-app--fullscreen .flab-field::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow:
+    inset 0 0 50px rgba(50, 205, 80, 0.4),
+    inset 0 0 100px rgba(60, 200, 90, 0.3);
+  animation: fullscreenGrassGlow 4s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+/* Border tracing animation for fullscreen */
+@keyframes fullscreenBorderTrace {
+  0% {
+    border-image-source: linear-gradient(
+      90deg,
+      rgba(50, 205, 80, 0.9) 0%,
+      rgba(255, 255, 255, 0.95) 15%,
+      rgba(240, 250, 245, 0.9) 25%,
+      rgba(50, 205, 80, 0.85) 40%,
+      rgba(60, 200, 90, 0.8) 60%,
+      rgba(255, 255, 255, 0.95) 75%,
+      rgba(240, 250, 245, 0.9) 85%,
+      rgba(50, 205, 80, 0.9) 100%
+    );
+  }
+  50% {
+    border-image-source: linear-gradient(
+      90deg,
+      rgba(60, 200, 90, 0.8) 0%,
+      rgba(50, 205, 80, 0.9) 15%,
+      rgba(255, 255, 255, 0.95) 40%,
+      rgba(240, 250, 245, 0.9) 50%,
+      rgba(50, 205, 80, 0.85) 60%,
+      rgba(60, 200, 90, 0.8) 85%,
+      rgba(255, 255, 255, 0.95) 100%
+    );
+  }
+  100% {
+    border-image-source: linear-gradient(
+      90deg,
+      rgba(50, 205, 80, 0.9) 0%,
+      rgba(255, 255, 255, 0.95) 15%,
+      rgba(240, 250, 245, 0.9) 25%,
+      rgba(50, 205, 80, 0.85) 40%,
+      rgba(60, 200, 90, 0.8) 60%,
+      rgba(255, 255, 255, 0.95) 75%,
+      rgba(240, 250, 245, 0.9) 85%,
+      rgba(50, 205, 80, 0.9) 100%
+    );
+  }
+}
+
+/* Grass green glow pulsing animation */
+@keyframes fullscreenGrassGlow {
+  0%, 100% {
+    opacity: 0.4;
+    box-shadow:
+      inset 0 0 40px rgba(50, 205, 80, 0.3),
+      inset 0 0 80px rgba(60, 200, 90, 0.2);
+  }
+  50% {
+    opacity: 0.7;
+    box-shadow:
+      inset 0 0 60px rgba(50, 205, 80, 0.5),
+      inset 0 0 120px rgba(60, 200, 90, 0.4);
+  }
 }
 
 /* Fullscreen body styles */

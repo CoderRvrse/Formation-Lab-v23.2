@@ -51,6 +51,11 @@ export function enterFullscreen() {
   // Add close X button
   addCloseButton();
 
+  // Ensure proper orientation for device type (desktop stays landscape)
+  import('./orientation.js').then(({ autoOrientation }) => {
+    autoOrientation();
+  });
+
   // Trigger any resize handlers
   window.dispatchEvent(new Event('resize'));
 
@@ -92,6 +97,14 @@ export function exitFullscreen() {
 
   // Remove close X button
   removeCloseButton();
+
+  // Re-check orientation after restoring normal layout
+  // Wait for sidepanel to be restored before checking orientation
+  setTimeout(() => {
+    import('./orientation.js').then(({ autoOrientation }) => {
+      autoOrientation();
+    });
+  }, 50);
 
   // Trigger any resize handlers
   window.dispatchEvent(new Event('resize'));

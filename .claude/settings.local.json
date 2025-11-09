@@ -8,7 +8,12 @@
       "Bash(node scripts/ci-audit.mjs:*)",
       "Bash(pkill:*)",
       "Bash(git pull:*)",
-      "Bash(git stash:*)"
+      "Bash(git stash:*)",
+      "Bash(timeout 60 node:*)",
+      "Bash(timeout 90 node:*)",
+      "Bash(/dev/null)",
+      "Bash(git push:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

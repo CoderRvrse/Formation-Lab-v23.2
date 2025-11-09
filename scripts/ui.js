@@ -214,8 +214,26 @@ export function wireUI() {
   const btnLandscape = document.getElementById('btnLandscape');
   const btnPortrait = document.getElementById('btnPortrait');
   btnLandscape?.addEventListener('click', () => {
-    setOrientation('landscape');
-    saveSettings({ orientation: 'landscape' });
+    // On desktop, landscape mode = fullscreen mode for better display
+    import('./orientation.js').then(({ autoOrientation }) => {
+      // Check if we're on desktop
+      const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.screen.width <= 1024 || window.screen.height <= 1024;
+      const mobilePattern = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      const isMobileUA = mobilePattern.test(navigator.userAgent);
+      const isMobile = (hasTouch && isSmallScreen) || isMobileUA;
+
+      if (!isMobile) {
+        // Desktop: trigger fullscreen instead
+        import('./fullscreen.js').then(({ enterFullscreen }) => {
+          enterFullscreen();
+        });
+      } else {
+        // Mobile: just set orientation
+        setOrientation('landscape');
+        saveSettings({ orientation: 'landscape' });
+      }
+    });
   });
   btnPortrait?.addEventListener('click', () => {
     setOrientation('portrait');
