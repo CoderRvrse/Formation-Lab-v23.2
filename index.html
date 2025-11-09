@@ -12,13 +12,14 @@
   <body class="flab-body">
     <noscript class="flab-noscript">Formation Lab requires JavaScript to run. Please enable it to use the tactics editor.</noscript>
     <main class="flab-app" data-version="v23.4.7.1">
+      <!-- Collapse toggle button - always accessible even when sidepanel is hidden -->
+      <button type="button" class="flab-collapse-toggle" id="btnCollapseSidepanel" title="Toggle sidepanel" aria-expanded="true">
+        <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#chevron-left"></use></svg>
+      </button>
       <section class="flab-sidepanel" aria-label="Formation Lab controls">
         <header class="flab-header">
           <div class="flab-header__top">
             <h1 class="flab-title">Formation Lab <span class="flab-badge">v23.4.7.1</span></h1>
-            <button type="button" class="flab-collapse-toggle" id="btnCollapseSidepanel" title="Toggle sidepanel" aria-expanded="true">
-              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#chevron-left"></use></svg>
-            </button>
           </div>
           <p class="flab-subtitle">Design youth soccer drills with drag, pass arrows, and instant exports.</p>
         </header>
