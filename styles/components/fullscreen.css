@@ -377,3 +377,75 @@ body.flab-body--fullscreen .flab-app {
     height: 40px;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────
+   FULLSCREEN OVERLAY BUTTON (on pitch canvas)
+   ───────────────────────────────────────────────────────────── */
+
+.flab-fullscreen-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 24, 60, 0.85);
+  color: var(--flab-text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 40;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  font-size: 0;
+  pointer-events: auto;
+}
+
+.flab-fullscreen-overlay svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flab-fullscreen-overlay:hover {
+  background: rgba(12, 68, 140, 0.9);
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.flab-fullscreen-overlay:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Hide overlay in normal mode, show in fullscreen */
+.flab-field .flab-fullscreen-overlay {
+  display: flex;
+}
+
+.flab-app--fullscreen .flab-field .flab-fullscreen-overlay {
+  display: none;
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .flab-fullscreen-overlay {
+    top: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .flab-fullscreen-overlay svg {
+    width: 18px;
+    height: 18px;
+  }
+}

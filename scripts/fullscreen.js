@@ -44,6 +44,9 @@ export function enterFullscreen() {
   if (button) {
     button.setAttribute('aria-pressed', 'true');
     button.classList.add('flab-action--active');
+    // Update button title for overlay version
+    button.setAttribute('title', 'Exit fullscreen mode');
+    // Update span text if it exists (for non-overlay versions)
     const span = button.querySelector('span');
     if (span) span.textContent = 'Exit Fullscreen';
   }
@@ -91,6 +94,9 @@ export function exitFullscreen() {
   if (button) {
     button.setAttribute('aria-pressed', 'false');
     button.classList.remove('flab-action--active');
+    // Update button title for overlay version
+    button.setAttribute('title', 'Fullscreen mode');
+    // Update span text if it exists (for non-overlay versions)
     const span = button.querySelector('span');
     if (span) span.textContent = 'Fullscreen';
   }

@@ -70,12 +70,6 @@
             </svg>
           </button>
 
-          <!-- Fullscreen (Full width) -->
-          <button type="button" class="flab-action" id="btnFullscreen" title="Fullscreen mode">
-            <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#expand"></use></svg>
-            <span>Fullscreen</span>
-          </button>
-
           <!-- Presets: Save/Apply/Manage (3 wide) -->
           <div class="actions-row actions-row--three">
             <button type="button" class="flab-action flab-action--sm" id="btnSavePreset" title="Save current formation">
@@ -168,6 +162,10 @@
           <div class="flab-players" role="presentation"></div>
           <div class="flab-halo" id="flabHalo" aria-hidden="true"></div>
           <div class="flab-toast-host" id="toastHost" aria-live="polite" aria-atomic="true"></div>
+          <!-- Fullscreen overlay button -->
+          <button type="button" class="flab-fullscreen-overlay" id="btnFullscreen" title="Fullscreen mode">
+            <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#expand"></use></svg>
+          </button>
         </div>
       </section>
     </main>
