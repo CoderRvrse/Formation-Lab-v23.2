@@ -50,6 +50,11 @@ function collapseSidepanel(app, toggleBtn) {
   isSidepanelCollapsed = true;
   localStorage.setItem('flab-sidepanel-collapsed', 'true');
   console.log('Sidepanel collapsed');
+
+  // Auto-trigger fullscreen when sidepanel collapses
+  import('./fullscreen.js').then(({ enterFullscreen }) => {
+    enterFullscreen();
+  });
 }
 
 /**
@@ -62,6 +67,11 @@ function expandSidepanel(app, toggleBtn) {
   isSidepanelCollapsed = false;
   localStorage.setItem('flab-sidepanel-collapsed', 'false');
   console.log('Sidepanel expanded');
+
+  // Auto-exit fullscreen when sidepanel expands
+  import('./fullscreen.js').then(({ exitFullscreen }) => {
+    exitFullscreen();
+  });
 }
 
 /**
