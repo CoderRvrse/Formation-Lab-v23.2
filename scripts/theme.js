@@ -112,6 +112,9 @@ export function initTheme() {
   const theme = getCurrentTheme();
   applyTheme(theme);
 
+  // Wire up theme toggle button
+  initThemeToggleButton();
+
   // Listen for system theme changes
   if (window.matchMedia) {
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
@@ -126,6 +129,47 @@ export function initTheme() {
   }
 
   console.log('✅ Theme system initialized');
+}
+
+/**
+ * Initialize theme toggle button
+ */
+function initThemeToggleButton() {
+  const toggleBtn = document.getElementById('btnThemeToggle');
+  if (!toggleBtn) {
+    console.warn('Theme toggle button not found');
+    return;
+  }
+
+  // Update button icon based on current theme
+  updateThemeIcon();
+
+  // Add click handler
+  toggleBtn.addEventListener('click', () => {
+    toggleTheme();
+    updateThemeIcon();
+  });
+}
+
+/**
+ * Update theme toggle button icon
+ */
+function updateThemeIcon() {
+  const toggleBtn = document.getElementById('btnThemeToggle');
+  if (!toggleBtn) return;
+
+  const svg = toggleBtn.querySelector('svg use');
+  const theme = getCurrentTheme();
+
+  if (theme === THEMES.LIGHT) {
+    // Show moon icon when in light mode (switch to dark)
+    if (svg) svg.setAttribute('href', 'assets/icons.svg#moon');
+    toggleBtn.setAttribute('title', 'Switch to dark mode');
+  } else {
+    // Show sun icon when in dark mode (switch to light)
+    if (svg) svg.setAttribute('href', 'assets/icons.svg#sun');
+    toggleBtn.setAttribute('title', 'Switch to light mode');
+  }
 }
 
 /**
