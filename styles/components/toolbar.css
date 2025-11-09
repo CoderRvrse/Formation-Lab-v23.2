@@ -4,6 +4,30 @@
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────
+   INVISIBLE HOVER BAR - EXPAND SIDEPANEL ON HOVER
+   ───────────────────────────────────────────────────────────── */
+.flab-sidepanel-hover-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 8px;
+  height: 100%;
+  cursor: pointer;
+  z-index: 45;
+  background: transparent;
+  transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.flab-app--sidepanel-collapsed .flab-sidepanel-hover-bar {
+  width: 8px;
+}
+
+.flab-app--sidepanel-collapsed .flab-sidepanel-hover-bar:hover {
+  width: 60px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ─────────────────────────────────────────────────────────────
    SIDEPANEL CONTAINER
    ───────────────────────────────────────────────────────────── */
 .flab-sidepanel {

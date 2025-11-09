@@ -12,10 +12,8 @@
   <body class="flab-body">
     <noscript class="flab-noscript">Formation Lab requires JavaScript to run. Please enable it to use the tactics editor.</noscript>
     <main class="flab-app" data-version="v23.4.7.1">
-      <!-- Collapse toggle button - always accessible even when sidepanel is hidden -->
-      <button type="button" class="flab-collapse-toggle" id="btnCollapseSidepanel" title="Toggle sidepanel" aria-expanded="true">
-        <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#chevron-left"></use></svg>
-      </button>
+      <!-- Invisible hover bar on left edge - hover to expand sidepanel -->
+      <div class="flab-sidepanel-hover-bar" id="sidepanelHoverBar" aria-label="Hover to expand sidepanel"></div>
       <section class="flab-sidepanel" aria-label="Formation Lab controls">
         <header class="flab-header">
           <div class="flab-header__top">

@@ -9,11 +9,11 @@ let isSidepanelCollapsed = false;
  * Initialize sidepanel collapse functionality
  */
 export function initSidepanelCollapse() {
-  const toggleBtn = document.getElementById('btnCollapseSidepanel');
+  const hoverBar = document.getElementById('sidepanelHoverBar');
   const app = document.querySelector('.flab-app');
 
-  if (!toggleBtn || !app) {
-    console.warn('Sidepanel collapse button or app container not found');
+  if (!hoverBar || !app) {
+    console.warn('Sidepanel hover bar or app container not found');
     return;
   }
 
@@ -21,19 +21,24 @@ export function initSidepanelCollapse() {
   const savedState = localStorage.getItem('flab-sidepanel-collapsed');
   if (savedState === 'true') {
     isSidepanelCollapsed = true;
-    collapseSidepanel(app, toggleBtn);
+    collapseSidepanel(app);
   } else {
     // Ensure expanded state
     isSidepanelCollapsed = false;
     localStorage.setItem('flab-sidepanel-collapsed', 'false');
   }
 
-  // Add click handler
-  toggleBtn.addEventListener('click', () => {
+  // Add hover handler - expand on hover when collapsed
+  hoverBar.addEventListener('mouseenter', () => {
     if (isSidepanelCollapsed) {
-      expandSidepanel(app, toggleBtn);
-    } else {
-      collapseSidepanel(app, toggleBtn);
+      expandSidepanel(app);
+    }
+  });
+
+  // Allow double-click to collapse again
+  hoverBar.addEventListener('dblclick', () => {
+    if (!isSidepanelCollapsed) {
+      collapseSidepanel(app);
     }
   });
 
@@ -43,10 +48,8 @@ export function initSidepanelCollapse() {
 /**
  * Collapse the sidepanel
  */
-function collapseSidepanel(app, toggleBtn) {
+function collapseSidepanel(app) {
   app.classList.add('flab-app--sidepanel-collapsed');
-  toggleBtn.setAttribute('aria-expanded', 'false');
-  toggleBtn.setAttribute('title', 'Expand sidepanel');
   isSidepanelCollapsed = true;
   localStorage.setItem('flab-sidepanel-collapsed', 'true');
   console.log('Sidepanel collapsed');
@@ -60,10 +63,8 @@ function collapseSidepanel(app, toggleBtn) {
 /**
  * Expand the sidepanel
  */
-function expandSidepanel(app, toggleBtn) {
+function expandSidepanel(app) {
   app.classList.remove('flab-app--sidepanel-collapsed');
-  toggleBtn.setAttribute('aria-expanded', 'true');
-  toggleBtn.setAttribute('title', 'Collapse sidepanel');
   isSidepanelCollapsed = false;
   localStorage.setItem('flab-sidepanel-collapsed', 'false');
   console.log('Sidepanel expanded');
