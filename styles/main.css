@@ -76,6 +76,21 @@ body.flab-body {
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   position: relative;
   isolation: isolate;
+  transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Collapsed sidepanel state */
+.flab-app.flab-app--sidepanel-collapsed {
+  grid-template-columns: 0 1fr;
+  gap: 0;
+}
+
+.flab-app.flab-app--sidepanel-collapsed .flab-sidepanel {
+  display: none;
+}
+
+.flab-app.flab-app--sidepanel-collapsed .flab-pitch-wrapper {
+  min-width: 100%;
 }
 
 /* Noscript and help modal styles */

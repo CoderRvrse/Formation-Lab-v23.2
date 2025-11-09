@@ -29,12 +29,55 @@
   border-bottom: 1px solid var(--flab-outline);
 }
 
+.flab-header__top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+}
+
 .flab-title {
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 2px 0;
   color: var(--flab-text);
   letter-spacing: -0.2px;
+}
+
+.flab-collapse-toggle {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--flab-text);
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.flab-collapse-toggle:hover {
+  background: rgba(255, 193, 7, 0.15);
+  border-color: rgba(255, 193, 7, 0.3);
+  color: var(--flab-accent);
+}
+
+.flab-collapse-toggle svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flab-collapse-toggle[aria-expanded="false"] svg {
+  transform: scaleX(-1);
 }
 
 .flab-badge {
