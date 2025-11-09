@@ -17,11 +17,15 @@ export function initSidepanelCollapse() {
     return;
   }
 
-  // Check localStorage for saved state
+  // Check localStorage for saved state (default to expanded/false)
   const savedState = localStorage.getItem('flab-sidepanel-collapsed');
   if (savedState === 'true') {
     isSidepanelCollapsed = true;
     collapseSidepanel(app, toggleBtn);
+  } else {
+    // Ensure expanded state
+    isSidepanelCollapsed = false;
+    localStorage.setItem('flab-sidepanel-collapsed', 'false');
   }
 
   // Add click handler
