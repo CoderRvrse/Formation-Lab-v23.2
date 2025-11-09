@@ -1,0 +1,33 @@
+/* Sidepanel Redesign - Main Entry Point */
+
+/*
+ * Formation Lab v23.4+ Sidepanel Redesign
+ * Modern, accessible, and responsive sidepanel component
+ *
+ * This modular CSS structure follows the design system defined in DESIGN-SYSTEM.md
+ * All components are mobile-first, accessible, and optimized for performance.
+ */
+
+/* Import modular components */
+@import url("./_colors.css");
+@import url("./_layout.css");
+@import url("./_buttons.css");
+@import url("./_animations.css");
+@import url("./_responsive.css");
+
+/*
+ * Usage:
+ * 1. Import this file in your main.css: @import url("./components/sidepanel-redesign/index.css");
+ * 2. Or link directly in HTML: <link rel="stylesheet" href="styles/components/sidepanel-redesign/index.css">
+ * 3. Ensure this loads AFTER base styles but BEFORE utility classes
+ */
+
+/*
+ * Design System Compliance:
+ * - WCAG AA accessible (4.5:1 contrast minimum)
+ * - Touch-friendly (44x44px minimum)
+ * - Keyboard navigable (visible focus states)
+ * - Reduced motion support
+ * - High contrast mode support
+ * - Mobile responsive (320px to 4K)
+ */

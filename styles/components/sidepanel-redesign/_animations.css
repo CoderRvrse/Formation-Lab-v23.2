@@ -1,0 +1,364 @@
+/* Sidepanel Redesign - Animations & Transitions */
+
+/* ===== Animation Variables ===== */
+:root {
+  /* Duration */
+  --duration-instant: 0ms;
+  --duration-fast: 100ms;
+  --duration-normal: 150ms;
+  --duration-moderate: 200ms;
+  --duration-slow: 300ms;
+  --duration-slower: 400ms;
+
+  /* Easing */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== Keyframe Animations ===== */
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Slide up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide down */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scale bounce */
+@keyframes scaleBounce {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Spin (loading) */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulse */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Glow pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(255, 212, 71, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(255, 212, 71, 0.6);
+  }
+}
+
+/* Shake (error feedback) */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  10%, 30%, 50%, 70%, 90% {
+    transform: translateX(-4px);
+  }
+  20%, 40%, 60%, 80% {
+    transform: translateX(4px);
+  }
+}
+
+/* Wiggle (notification) */
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Stagger entrance (for list items) */
+@keyframes staggerIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===== Transition Classes ===== */
+
+/* Standard transitions */
+.transition-all {
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.transition-colors {
+  transition: background-color var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out),
+              color var(--duration-normal) var(--ease-out);
+}
+
+.transition-transform {
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.transition-opacity {
+  transition: opacity var(--duration-normal) var(--ease-out);
+}
+
+/* ===== Entrance Animations ===== */
+
+/* Page load stagger */
+.flab-sidepanel.animate-in > * {
+  animation: staggerIn var(--duration-moderate) var(--ease-out) backwards;
+}
+
+.flab-sidepanel.animate-in > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+
+.flab-sidepanel.animate-in > *:nth-child(2) {
+  animation-delay: 50ms;
+}
+
+.flab-sidepanel.animate-in > *:nth-child(3) {
+  animation-delay: 100ms;
+}
+
+.flab-sidepanel.animate-in > *:nth-child(4) {
+  animation-delay: 150ms;
+}
+
+.flab-sidepanel.animate-in > *:nth-child(5) {
+  animation-delay: 200ms;
+}
+
+.flab-sidepanel.animate-in > *:nth-child(6) {
+  animation-delay: 250ms;
+}
+
+/* ===== Hover & Interaction Effects ===== */
+
+/* Lift on hover */
+.flab-lift-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Scale on hover */
+.flab-scale-hover:hover {
+  transform: scale(1.02);
+}
+
+/* Glow on hover */
+.flab-glow-hover:hover {
+  box-shadow: var(--glow-accent);
+}
+
+/* Press effect */
+.flab-press:active {
+  transform: scale(0.95);
+}
+
+/* ===== Loading States ===== */
+
+.flab-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.flab-loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Skeleton loader */
+.flab-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== Success/Error Feedback ===== */
+
+.flab-success-flash {
+  animation: successFlash var(--duration-slow) var(--ease-out);
+}
+
+@keyframes successFlash {
+  0%, 100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(76, 175, 80, 0.2);
+  }
+}
+
+.flab-error-shake {
+  animation: shake 0.4s var(--ease-in-out);
+}
+
+/* ===== Notification Badge Pulse ===== */
+
+.flab-badge-pulse {
+  animation: badgePulse 2s var(--ease-in-out) infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+/* ===== Ripple Effect (Material Design style) ===== */
+
+.flab-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.flab-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.flab-ripple:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===== Reduced Motion Support ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .flab-sidepanel.animate-in > * {
+    animation: none !important;
+  }
+
+  .flab-loading::after,
+  .flab-skeleton {
+    animation: none !important;
+  }
+}
+
+/* ===== Page Transition States ===== */
+
+/* Entering */
+.flab-enter {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.flab-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity var(--duration-moderate) var(--ease-out),
+              transform var(--duration-moderate) var(--ease-out);
+}
+
+/* Exiting */
+.flab-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.flab-exit-active {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity var(--duration-normal) var(--ease-in),
+              transform var(--duration-normal) var(--ease-in);
+}

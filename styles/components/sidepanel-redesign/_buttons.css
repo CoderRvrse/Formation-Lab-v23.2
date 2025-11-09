@@ -1,0 +1,333 @@
+/* Sidepanel Redesign - Button Components */
+
+/* ===== Button Base ===== */
+.flab-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-primary, "Inter", sans-serif);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms cubic-bezier(0, 0, 0.2, 1);
+  border: none;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  position: relative;
+}
+
+.flab-btn:disabled,
+.flab-btn[aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ===== Button Variants ===== */
+
+/* Primary Button */
+.btn-primary,
+.flab-action {
+  background: linear-gradient(135deg, var(--flab-accent) 0%, var(--flab-accent-dark) 100%);
+  color: #0b2b66;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(255, 212, 71, 0.3);
+}
+
+.btn-primary:hover,
+.flab-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 212, 71, 0.4);
+  background: linear-gradient(135deg, var(--flab-primary-400) 0%, var(--flab-accent) 100%);
+}
+
+.btn-primary:active,
+.flab-action:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 4px rgba(255, 212, 71, 0.3);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--flab-text);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  backdrop-filter: blur(8px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.btn-secondary:active {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(0);
+}
+
+/* Tertiary/Ghost Button */
+.btn-tertiary {
+  background: transparent;
+  color: var(--flab-text);
+  border: none;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-tertiary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.btn-tertiary:active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+/* Tool/Mode Button */
+.flab-tool {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: rgba(5, 24, 60, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--flab-text);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+}
+
+.flab-tool::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 212, 71, 0.1) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.flab-tool:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(2px);
+}
+
+.flab-tool:hover::before {
+  opacity: 1;
+}
+
+.flab-tool[aria-pressed="true"] {
+  background: var(--flab-tool-active);
+  border-color: var(--flab-accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 71, 0.2);
+}
+
+.flab-tool[aria-pressed="true"]::before {
+  opacity: 0;
+}
+
+.flab-tool svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Icon Button */
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: var(--flab-text);
+  padding: 0;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* ===== Button Sizes ===== */
+
+/* Small */
+.btn-sm,
+.flab-btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+  border-radius: 6px;
+}
+
+/* Medium (default) */
+.btn-md,
+.flab-btn-md {
+  padding: 12px 20px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+/* Large */
+.btn-lg,
+.flab-btn-lg {
+  padding: 14px 28px;
+  font-size: 16px;
+  border-radius: 10px;
+}
+
+/* ===== Button States ===== */
+
+/* Loading */
+.btn-loading,
+.flab-button-loading {
+  position: relative;
+  color: transparent;
+  pointer-events: none;
+}
+
+.btn-loading::after,
+.flab-button-loading::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 50%;
+  left: 50%;
+  margin: -8px 0 0 -8px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: flab-spinner-rotate 0.8s linear infinite;
+}
+
+/* Focus (keyboard) */
+.flab-btn:focus-visible,
+.btn-primary:focus-visible,
+.btn-secondary:focus-visible,
+.btn-tertiary:focus-visible,
+.flab-tool:focus-visible,
+.flab-action:focus-visible {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(255, 212, 71, 0.3);
+}
+
+/* Active/Pressed State for Toggle Buttons */
+.btn-toggle[aria-pressed="true"],
+.flab-tool[aria-pressed="true"] {
+  background: var(--flab-tool-active);
+  border-color: var(--flab-accent);
+  box-shadow: 0 0 0 3px rgba(255, 212, 71, 0.2);
+}
+
+/* ===== Button Groups ===== */
+
+.btn-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-group > button {
+  flex: 1;
+}
+
+/* Toolbar Row (inline buttons) */
+.toolbar-row {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.toolbar-row .flab-action {
+  flex: 1;
+  font-size: 12px;
+  padding: 10px 14px;
+  white-space: nowrap;
+}
+
+/* ===== Icon + Text Layout ===== */
+
+.flab-btn svg,
+.flab-action svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* ===== Touch Device Adjustments ===== */
+
+@media (hover: none) and (pointer: coarse) {
+  .flab-btn,
+  .btn-primary,
+  .btn-secondary,
+  .flab-tool,
+  .flab-action {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Remove hover states on touch devices */
+  .flab-btn:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover,
+  .flab-tool:hover,
+  .flab-action:hover {
+    transform: none;
+  }
+
+  /* Add active states for touch feedback */
+  .flab-btn:active,
+  .btn-primary:active,
+  .btn-secondary:active,
+  .flab-tool:active,
+  .flab-action:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+}
+
+/* ===== Reduced Motion Support ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .flab-btn,
+  .btn-primary,
+  .btn-secondary,
+  .btn-tertiary,
+  .flab-tool,
+  .flab-action {
+    transition-duration: 0.01ms !important;
+  }
+
+  .btn-loading::after,
+  .flab-button-loading::after {
+    animation: none !important;
+  }
+}

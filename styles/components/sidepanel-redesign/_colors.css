@@ -1,0 +1,47 @@
+/* Sidepanel Redesign - Color Variables */
+
+:root {
+  /* Extended Primary Gradient */
+  --flab-primary-50: #fff9e6;
+  --flab-primary-100: #fff3cc;
+  --flab-primary-200: #ffe799;
+  --flab-primary-300: #ffdb66;
+  --flab-primary-400: #ffcf33;
+  --flab-primary-500: #ffd447;
+  --flab-primary-600: #f5bd23;
+  --flab-primary-700: #e0a000;
+  --flab-primary-800: #b38000;
+  --flab-primary-900: #805c00;
+
+  /* Neutral Grays */
+  --flab-gray-50: #f8fafc;
+  --flab-gray-100: #e9ecf2;
+  --flab-gray-200: #d1d5db;
+  --flab-gray-300: #9ca3af;
+  --flab-gray-400: #6b7280;
+  --flab-gray-500: #4b5563;
+  --flab-gray-600: #374151;
+  --flab-gray-700: #1f2937;
+  --flab-gray-800: #111827;
+  --flab-gray-900: #030712;
+
+  /* Surface Elevations */
+  --flab-surface-1: rgba(10, 18, 68, 0.6);
+  --flab-surface-2: rgba(15, 28, 85, 0.7);
+  --flab-surface-3: rgba(20, 38, 102, 0.8);
+
+  /* Semantic Colors */
+  --flab-success: #4caf50;
+  --flab-success-dark: #45a049;
+  --flab-warning: #ff9800;
+  --flab-warning-dark: #fb8c00;
+  --flab-error: #f44336;
+  --flab-error-dark: #e53935;
+  --flab-info: #2196f3;
+  --flab-info-dark: #1e88e5;
+
+  /* Glow Effects */
+  --glow-accent: 0 0 16px rgba(255, 212, 71, 0.4);
+  --glow-success: 0 0 16px rgba(76, 175, 80, 0.4);
+  --glow-error: 0 0 16px rgba(244, 67, 54, 0.4);
+}

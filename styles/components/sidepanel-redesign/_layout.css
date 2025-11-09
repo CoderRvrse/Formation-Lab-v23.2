@@ -1,0 +1,301 @@
+/* Sidepanel Redesign - Layout & Structure */
+
+/* ===== Spacing Variables ===== */
+:root {
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  --gap-xs: var(--space-1);
+  --gap-sm: var(--space-2);
+  --gap-md: var(--space-3);
+  --gap-lg: var(--space-4);
+  --gap-xl: var(--space-6);
+
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-3xl: 24px;
+}
+
+/* ===== Sidepanel Container ===== */
+.flab-sidepanel {
+  width: 320px;
+  min-width: 320px;
+  background: var(--flab-surface-1);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-right: 1px solid var(--flab-outline);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6);
+  gap: var(--space-6);
+  position: relative;
+}
+
+/* Enhanced surface with subtle gradient */
+.flab-sidepanel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(180deg, rgba(255, 212, 71, 0.05) 0%, transparent 100%);
+  border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.flab-sidepanel > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== Header Section ===== */
+.flab-header {
+  text-align: center;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.flab-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0 0 var(--space-2) 0;
+  color: var(--flab-text);
+  letter-spacing: -0.5px;
+}
+
+.flab-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--flab-muted);
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-left: var(--space-2);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.flab-subtitle {
+  font-size: 14px;
+  color: var(--flab-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ===== Toolbar Section (Mode Buttons) ===== */
+.flab-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+/* Tool buttons (already defined in _buttons.css) */
+
+/* ===== Actions Section ===== */
+.flab-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-md);
+}
+
+/* Group divider */
+.flab-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+  padding: var(--space-4);
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.flab-actions-group + .flab-actions-group {
+  margin-top: var(--gap-md);
+}
+
+/* Group label */
+.flab-actions-group-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--flab-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: var(--gap-xs);
+}
+
+/* ===== Key Tips Section ===== */
+.flab-keytips {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  margin-top: auto;
+}
+
+.flab-keytips h2 {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 var(--gap-md) 0;
+  color: var(--flab-text);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.flab-keytips ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+
+.flab-keytips li {
+  font-size: 12px;
+  color: var(--flab-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--gap-sm);
+  line-height: 1.5;
+}
+
+.flab-keytips kbd {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-sm);
+  padding: 3px 7px;
+  font-size: 10px;
+  font-family: "SF Mono", "Consolas", monospace;
+  color: var(--flab-text);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  min-width: 24px;
+  text-align: center;
+  display: inline-block;
+}
+
+/* ===== Pass Style Selector ===== */
+.passstyle-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--gap-sm);
+}
+
+.passstyle-trigger__name {
+  flex: 1;
+  text-align: left;
+}
+
+.passstyle-trigger__chevron {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+button[aria-expanded="true"] .passstyle-trigger__chevron {
+  transform: rotate(180deg);
+}
+
+/* ===== Dividers ===== */
+.flab-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+  margin: var(--gap-md) 0;
+}
+
+/* ===== Card Pattern for Action Groups ===== */
+.flab-card {
+  background: var(--flab-surface-2);
+  border: 1px solid var(--flab-outline);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4);
+  backdrop-filter: blur(16px);
+}
+
+/* ===== Scrollbar Styling (for overflow sections) ===== */
+.flab-sidepanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.flab-sidepanel::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.flab-sidepanel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
+.flab-sidepanel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===== Visual Accents ===== */
+
+/* Accent line (optional decorative element) */
+.flab-header::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--flab-accent), var(--flab-accent-dark));
+  border-radius: 2px;
+  margin: var(--space-4) auto 0;
+}
+
+/* ===== Badge & Pill Components ===== */
+.flab-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--flab-text);
+}
+
+.flab-pill--accent {
+  background: rgba(255, 212, 71, 0.2);
+  border-color: rgba(255, 212, 71, 0.4);
+  color: var(--flab-accent);
+}
+
+.flab-pill--success {
+  background: rgba(76, 175, 80, 0.2);
+  border-color: rgba(76, 175, 80, 0.4);
+  color: var(--flab-success);
+}
+
+/* ===== Help Button Styling ===== */
+.flab-tool--help {
+  margin-top: var(--gap-sm);
+  background: rgba(33, 150, 243, 0.15);
+  border-color: rgba(33, 150, 243, 0.3);
+}
+
+.flab-tool--help:hover {
+  background: rgba(33, 150, 243, 0.25);
+  border-color: rgba(33, 150, 243, 0.4);
+}

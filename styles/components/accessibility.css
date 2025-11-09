@@ -1,0 +1,546 @@
+/* Formation Lab - Accessibility Enhancements */
+
+/*
+ * WCAG AA Compliance Module
+ * Ensures keyboard navigation, screen reader support, and high contrast modes
+ */
+
+/* ===== Screen Reader Only Utilities ===== */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* ===== Skip Links ===== */
+
+.flab-skip-link {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  z-index: 9999;
+  background: var(--flab-accent);
+  color: #0b2b66;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: top 0.2s ease;
+}
+
+.flab-skip-link:focus {
+  top: 20px;
+  outline: 3px solid var(--flab-accent-dark);
+  outline-offset: 2px;
+}
+
+/* ===== Screen Reader Announcer (Live Regions) ===== */
+
+.flab-sr-announcer {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+[aria-live] {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* Make toast notifications visible but keep them in live region */
+.flab-toast-host[aria-live] {
+  position: fixed;
+  left: auto;
+  width: auto;
+  height: auto;
+  overflow: visible;
+  top: 20px;
+  right: 20px;
+  z-index: 2000;
+}
+
+/* ===== Keyboard Navigation Mode ===== */
+
+/*
+ * Enhanced focus indicators when using keyboard navigation
+ * Applied via JavaScript when Tab key is detected
+ */
+
+.flab-keyboard-nav *:focus {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+}
+
+.flab-keyboard-nav button:focus,
+.flab-keyboard-nav .flab-tool:focus,
+.flab-keyboard-nav .flab-action:focus {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgba(255, 212, 71, 0.3);
+}
+
+.flab-keyboard-nav .flab-player:focus {
+  outline: 4px solid var(--flab-accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 8px rgba(255, 212, 71, 0.4);
+}
+
+/* ===== Focus-Visible Support (Modern Browsers) ===== */
+
+/*
+ * Only show focus indicators for keyboard users, not mouse clicks
+ * Supported in all modern browsers
+ */
+
+button:focus-visible,
+.flab-tool:focus-visible,
+.flab-action:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(255, 212, 71, 0.25);
+}
+
+/* Remove default focus for mouse users */
+button:focus:not(:focus-visible),
+.flab-tool:focus:not(:focus-visible),
+.flab-action:focus:not(:focus-visible),
+a:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
+}
+
+/* ===== High Contrast Focus for Interactive Elements ===== */
+
+.flab-player:focus-visible {
+  outline: 4px solid var(--flab-accent);
+  outline-offset: 4px;
+  box-shadow: 0 0 0 8px rgba(255, 212, 71, 0.3);
+}
+
+.flab-tool:focus-visible {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(255, 212, 71, 0.3);
+}
+
+/* ===== Button Accessibility Improvements ===== */
+
+button {
+  cursor: pointer;
+}
+
+button:disabled,
+button[aria-disabled="true"],
+[role="button"][aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Ensure disabled buttons announce their state */
+button:disabled::after,
+button[aria-disabled="true"]::after {
+  content: " (disabled)";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ===== Focus Trap Container ===== */
+
+.flab-focus-trap {
+  isolation: isolate;
+}
+
+/* Prevent focus from escaping modal dialogs */
+.flab-help[aria-hidden="false"] ~ * {
+  pointer-events: none;
+}
+
+.flab-help[aria-hidden="false"] {
+  pointer-events: all;
+}
+
+/* ===== Link Accessibility ===== */
+
+a {
+  color: var(--flab-accent);
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--flab-accent-dark);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* Ensure links have clear active state */
+a:active {
+  color: var(--flab-primary-700);
+}
+
+/* ===== Form Accessibility ===== */
+
+/* Visible labels for all form fields */
+label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--flab-text);
+  margin-bottom: 6px;
+}
+
+/* Required field indicator */
+label.required::after,
+label[aria-required="true"]::after {
+  content: " *";
+  color: var(--flab-error);
+  font-weight: 700;
+}
+
+/* Input focus states */
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 3px solid var(--flab-accent);
+  outline-offset: 2px;
+  border-color: var(--flab-accent);
+}
+
+/* Error states */
+input[aria-invalid="true"],
+select[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: var(--flab-error);
+  outline-color: var(--flab-error);
+}
+
+/* Error message styling */
+.flab-error-message {
+  color: var(--flab-error);
+  font-size: 13px;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.flab-error-message::before {
+  content: "⚠";
+  font-size: 14px;
+}
+
+/* ===== High Contrast Mode Support ===== */
+
+@media (prefers-contrast: high) {
+  * {
+    border-color: currentColor;
+  }
+
+  button,
+  .flab-tool,
+  .flab-action,
+  input,
+  select,
+  textarea {
+    border: 2px solid currentColor;
+  }
+
+  button:focus,
+  .flab-tool:focus,
+  .flab-action:focus,
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 4px solid var(--flab-accent);
+    outline-offset: 4px;
+  }
+
+  /* Ensure sufficient contrast for disabled elements */
+  button:disabled,
+  button[aria-disabled="true"] {
+    opacity: 0.7;
+    border-style: dashed;
+  }
+}
+
+/* ===== Forced Colors Mode (Windows High Contrast) ===== */
+
+@media (forced-colors: active) {
+  button,
+  .flab-tool,
+  .flab-action {
+    border: 1px solid ButtonText;
+  }
+
+  button:focus,
+  .flab-tool:focus,
+  .flab-action:focus {
+    outline: 3px solid Highlight;
+    outline-offset: 2px;
+  }
+
+  button:disabled,
+  button[aria-disabled="true"] {
+    border-color: GrayText;
+    color: GrayText;
+  }
+
+  .flab-tool[aria-pressed="true"] {
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+
+  a {
+    color: LinkText;
+  }
+
+  a:visited {
+    color: VisitedText;
+  }
+
+  a:active {
+    color: ActiveText;
+  }
+}
+
+/* ===== Reduced Transparency (Accessibility Setting) ===== */
+
+@media (prefers-reduced-transparency: reduce) {
+  .flab-surface,
+  .flab-sidepanel,
+  .flab-tool,
+  .flab-action {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(10, 18, 68, 0.95);
+  }
+}
+
+/* ===== Tooltip Accessibility ===== */
+
+[role="tooltip"] {
+  position: absolute;
+  z-index: 5000;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+[aria-describedby]:focus-visible + [role="tooltip"],
+[aria-describedby]:hover + [role="tooltip"] {
+  opacity: 1;
+}
+
+/* ===== Announce Loading States ===== */
+
+[aria-busy="true"]::after {
+  content: " (loading)";
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ===== Modal Dialog Accessibility ===== */
+
+[role="dialog"][aria-modal="true"] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 4000;
+}
+
+/* Prevent background scrolling when modal is open */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ===== Custom Focus Indicators for Specific Components ===== */
+
+/* Player tokens */
+.flab-player {
+  cursor: pointer;
+  position: relative;
+}
+
+.flab-player:focus-visible {
+  outline: 4px solid var(--flab-accent);
+  outline-offset: 4px;
+  z-index: 10;
+}
+
+/* SVG elements */
+svg:focus-visible {
+  outline: 2px solid var(--flab-accent);
+  outline-offset: 2px;
+}
+
+/* ===== Keyboard Shortcut Hints ===== */
+
+kbd,
+.flab-kbd {
+  display: inline-block;
+  padding: 3px 7px;
+  font-size: 11px;
+  font-family: "SF Mono", "Consolas", monospace;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  color: var(--flab-text);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  min-width: 24px;
+  text-align: center;
+}
+
+/* ===== Progress Indicators ===== */
+
+[role="progressbar"] {
+  position: relative;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+[role="progressbar"]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--flab-accent);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  width: var(--progress, 0%);
+}
+
+/* ===== Status Messages ===== */
+
+[role="status"],
+[role="alert"] {
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+[role="status"] {
+  background: rgba(33, 150, 243, 0.2);
+  border: 1px solid rgba(33, 150, 243, 0.4);
+  color: var(--flab-info);
+}
+
+[role="alert"] {
+  background: rgba(244, 67, 54, 0.2);
+  border: 1px solid rgba(244, 67, 54, 0.4);
+  color: var(--flab-error);
+}
+
+/* ===== Table Accessibility ===== */
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  font-weight: 600;
+  padding: 12px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+caption {
+  font-weight: 600;
+  text-align: left;
+  padding: 12px;
+  font-size: 16px;
+}
+
+/* ===== Print Accessibility ===== */
+
+@media print {
+  /* Ensure good contrast in print */
+  body {
+    background: white;
+    color: black;
+  }
+
+  /* Show URLs for links */
+  a::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #555;
+  }
+
+  /* Hide interactive elements */
+  button,
+  .flab-tool,
+  .flab-action,
+  [aria-hidden="true"] {
+    display: none;
+  }
+
+  /* Ensure focus indicators are visible */
+  :focus {
+    outline: 2px solid black;
+  }
+}

@@ -1,0 +1,448 @@
+/* Sidepanel Redesign - Responsive Styles */
+
+/* ===== Breakpoint Variables ===== */
+:root {
+  --breakpoint-xs: 360px;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ===== Large Tablets and Small Desktops (768px - 1024px) ===== */
+@media (max-width: 1024px) {
+  .flab-sidepanel {
+    width: 280px;
+    min-width: 280px;
+    padding: var(--space-4);
+    gap: var(--space-5);
+  }
+
+  .flab-title {
+    font-size: 22px;
+  }
+
+  .flab-tool {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .flab-action {
+    padding: 11px 18px;
+    font-size: 13px;
+  }
+
+  .toolbar-row .flab-action {
+    font-size: 11px;
+    padding: 9px 12px;
+  }
+}
+
+/* ===== Tablets and Large Phones (481px - 768px) ===== */
+@media (max-width: 768px) {
+  .flab-app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    gap: var(--space-4);
+    padding: var(--space-4);
+    border-radius: var(--radius-2xl);
+  }
+
+  .flab-sidepanel {
+    order: 2;
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-top: 1px solid var(--flab-outline);
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
+
+  /* Remove decorative gradient on mobile */
+  .flab-sidepanel::before {
+    display: none;
+  }
+
+  /* Remove decorative accent line */
+  .flab-header::after {
+    display: none;
+  }
+
+  .flab-pitch-wrapper {
+    order: 1;
+    min-height: 400px;
+  }
+
+  /* Horizontal toolbar on mobile */
+  .flab-toolbar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--gap-sm);
+  }
+
+  .flab-tool {
+    flex: 1 1 calc(50% - 4px);
+    min-width: 140px;
+    padding: 12px 14px;
+    font-size: 13px;
+    justify-content: center;
+  }
+
+  /* Actions layout */
+  .flab-actions {
+    gap: var(--gap-md);
+  }
+
+  .flab-action {
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+
+  .toolbar-row {
+    flex-wrap: wrap;
+  }
+
+  .toolbar-row .flab-action {
+    flex: 1 1 auto;
+    min-width: 100px;
+  }
+
+  /* Hide keyboard shortcuts on mobile */
+  .flab-keytips {
+    display: none;
+  }
+}
+
+/* ===== Small Phones (360px - 480px) ===== */
+@media (max-width: 480px) {
+  body.flab-body {
+    padding: 12px 8px;
+  }
+
+  .flab-app {
+    gap: var(--gap-md);
+    padding: var(--gap-md);
+    border-radius: var(--radius-xl);
+  }
+
+  .flab-sidepanel {
+    padding: var(--gap-md);
+    gap: var(--space-4);
+  }
+
+  .flab-title {
+    font-size: 20px;
+  }
+
+  .flab-badge {
+    font-size: 10px;
+    padding: 2px 8px;
+  }
+
+  .flab-subtitle {
+    font-size: 13px;
+  }
+
+  /* Stacked toolbar buttons on small screens */
+  .flab-toolbar {
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  .flab-tool {
+    flex: 1 1 100%;
+    min-width: 100%;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  .flab-tool svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .flab-actions {
+    gap: var(--gap-sm);
+  }
+
+  .flab-action {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  /* Stack buttons in toolbar rows */
+  .toolbar-row .flab-action {
+    flex: 1 1 100%;
+    font-size: 14px;
+    padding: 12px 16px;
+  }
+
+  /* Compact button groups */
+  .btn-group {
+    grid-template-columns: 1fr;
+    gap: var(--gap-sm);
+  }
+
+  .btn-group .flab-action {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  /* Compact modals */
+  .flab-help__content {
+    padding: var(--space-4);
+    max-width: calc(100vw - 32px);
+  }
+
+  /* Pitch adjustments */
+  .flab-pitch-wrapper {
+    min-height: 300px;
+  }
+}
+
+/* ===== Extra Small Phones (< 360px) ===== */
+@media (max-width: 359px) {
+  body.flab-body {
+    padding: 8px 4px;
+  }
+
+  .flab-app {
+    gap: var(--gap-sm);
+    padding: var(--gap-sm);
+    border-radius: var(--radius-lg);
+  }
+
+  .flab-sidepanel {
+    padding: 10px;
+    gap: var(--gap-md);
+  }
+
+  .flab-title {
+    font-size: 18px;
+  }
+
+  .flab-tool,
+  .flab-action {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .toolbar-row .flab-action {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+}
+
+/* ===== Landscape Orientation on Mobile ===== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .flab-app {
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .flab-sidepanel {
+    order: 1;
+    border-right: 1px solid var(--flab-outline);
+    border-top: none;
+    max-height: 100%;
+    overflow-y: auto;
+  }
+
+  .flab-pitch-wrapper {
+    order: 2;
+  }
+
+  /* Vertical toolbar in landscape */
+  .flab-toolbar {
+    flex-direction: column;
+  }
+
+  .flab-tool {
+    flex: 1 1 auto;
+  }
+
+  /* Hide keyboard shortcuts in landscape mobile */
+  .flab-keytips {
+    display: none;
+  }
+}
+
+/* ===== Touch Device Optimizations ===== */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .flab-tool,
+  .flab-action,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Remove hover animations on touch */
+  .flab-tool:hover,
+  .flab-action:hover,
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: none;
+  }
+
+  /* Enhanced active states for touch feedback */
+  .flab-tool:active,
+  .flab-action:active,
+  button:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+
+  /* Larger tap areas for icons */
+  .btn-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Increase spacing for fat finger syndrome */
+  .toolbar-row {
+    gap: var(--gap-md);
+  }
+}
+
+/* ===== High DPI / Retina Displays ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .flab-tool svg,
+  .flab-action svg {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Sharper borders on high DPI */
+  .flab-sidepanel,
+  .flab-tool,
+  .flab-action,
+  .btn-primary,
+  .btn-secondary {
+    border-width: 0.5px;
+  }
+}
+
+/* ===== Large Desktops (1280px+) ===== */
+@media (min-width: 1280px) {
+  .flab-sidepanel {
+    width: 340px;
+    min-width: 340px;
+    padding: var(--space-7);
+    gap: var(--space-7);
+  }
+
+  .flab-title {
+    font-size: 28px;
+  }
+
+  .flab-subtitle {
+    font-size: 15px;
+  }
+
+  .flab-tool {
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+
+  .flab-action {
+    padding: 14px 24px;
+    font-size: 15px;
+  }
+}
+
+/* ===== Extra Large Desktops (1536px+) ===== */
+@media (min-width: 1536px) {
+  .flab-sidepanel {
+    width: 360px;
+    min-width: 360px;
+  }
+}
+
+/* ===== Reduced Motion Preference ===== */
+@media (prefers-reduced-motion: reduce) {
+  .flab-sidepanel,
+  .flab-tool,
+  .flab-action,
+  button {
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Disable entrance animations */
+  .flab-sidepanel.animate-in > * {
+    animation: none !important;
+  }
+}
+
+/* ===== High Contrast Mode ===== */
+@media (prefers-contrast: high) {
+  .flab-tool,
+  .flab-action,
+  button {
+    border-width: 2px;
+    border-color: currentColor;
+  }
+
+  .flab-tool:focus,
+  .flab-action:focus,
+  button:focus {
+    outline-width: 4px;
+    outline-offset: 4px;
+  }
+}
+
+/* ===== Forced Colors Mode (Windows High Contrast) ===== */
+@media (forced-colors: active) {
+  .flab-tool,
+  .flab-action,
+  button {
+    border: 1px solid ButtonText;
+  }
+
+  .flab-tool:focus,
+  .flab-action:focus,
+  button:focus {
+    outline: 3px solid Highlight;
+  }
+
+  .flab-tool[aria-pressed="true"] {
+    background: Highlight;
+    color: HighlightText;
+  }
+}
+
+/* ===== Print Styles ===== */
+@media print {
+  .flab-sidepanel {
+    display: none;
+  }
+
+  .flab-app {
+    grid-template-columns: 1fr;
+  }
+
+  .flab-pitch-wrapper {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* ===== Container Query Support (Future-proofing) ===== */
+@supports (container-type: inline-size) {
+  .flab-sidepanel {
+    container-type: inline-size;
+    container-name: sidepanel;
+  }
+
+  @container sidepanel (max-width: 280px) {
+    .flab-tool {
+      font-size: 12px;
+      padding: 10px 12px;
+    }
+
+    .toolbar-row .flab-action {
+      font-size: 11px;
+    }
+  }
+}

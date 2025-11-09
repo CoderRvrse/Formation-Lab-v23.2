@@ -8,6 +8,12 @@
 @import url("./components/ball.css");
 @import url("./components/fullscreen.css");
 
+/* Sidepanel Redesign - Modern UI Components */
+@import url("./components/sidepanel-redesign/index.css");
+
+/* Accessibility Enhancements - WCAG AA Compliance */
+@import url("./components/accessibility.css");
+
 :root {
   color-scheme: light;
   --flab-bg-start: #05122e;
