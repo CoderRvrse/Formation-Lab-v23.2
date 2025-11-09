@@ -50,9 +50,15 @@
 
           <!-- Orientation: Landscape/Portrait/Flip (3 wide) -->
           <div class="actions-row actions-row--three">
-            <button type="button" class="flab-action" id="btnLandscape" title="Landscape">L</button>
-            <button type="button" class="flab-action" id="btnPortrait" title="Portrait">P</button>
-            <button type="button" class="flab-action" id="btnFlip" title="Flip">↔</button>
+            <button type="button" class="flab-action" id="btnLandscape" title="Landscape mode">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#landscape"></use></svg>
+            </button>
+            <button type="button" class="flab-action" id="btnPortrait" title="Portrait mode">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#portrait"></use></svg>
+            </button>
+            <button type="button" class="flab-action" id="btnFlip" title="Flip orientation">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#flip"></use></svg>
+            </button>
           </div>
 
           <!-- Pass Style (Full width dropdown) -->
@@ -72,17 +78,31 @@
 
           <!-- Presets: Save/Apply/Manage (3 wide) -->
           <div class="actions-row actions-row--three">
-            <button type="button" class="flab-action flab-action--sm" id="btnSavePreset" title="Save">S</button>
-            <button type="button" class="flab-action flab-action--sm" id="btnApplyDefault" title="Apply">A</button>
-            <button type="button" class="flab-action flab-action--sm" id="btnManagePresets" title="Manage">M</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnSavePreset" title="Save current formation">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#save-preset"></use></svg>
+            </button>
+            <button type="button" class="flab-action flab-action--sm" id="btnApplyDefault" title="Apply default preset">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#apply-preset"></use></svg>
+            </button>
+            <button type="button" class="flab-action flab-action--sm" id="btnManagePresets" title="Manage presets">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#manage-presets"></use></svg>
+            </button>
           </div>
 
           <!-- Playback Controls (hidden by default) -->
           <div id="passPlaybackControls" style="display: none;" class="actions-row actions-row--four">
-            <button type="button" class="flab-action flab-action--sm" id="btnPlayLast" disabled title="▶ Last">▶L</button>
-            <button type="button" class="flab-action flab-action--sm" id="btnPlayAll" disabled title="▶ All">▶A</button>
-            <button type="button" class="flab-action flab-action--sm" id="btnStopPlayback" disabled title="Stop">⏹</button>
-            <button type="button" class="flab-action flab-action--sm" id="btnDiagnostics" title="Diag">🔍</button>
+            <button type="button" class="flab-action flab-action--sm" id="btnPlayLast" disabled title="Play last pass">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#play"></use></svg>
+            </button>
+            <button type="button" class="flab-action flab-action--sm" id="btnPlayAll" disabled title="Play all passes">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#skip-back"></use></svg>
+            </button>
+            <button type="button" class="flab-action flab-action--sm" id="btnStopPlayback" disabled title="Stop playback">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#stop"></use></svg>
+            </button>
+            <button type="button" class="flab-action flab-action--sm" id="btnDiagnostics" title="Diagnostics">
+              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#diagnostic"></use></svg>
+            </button>
           </div>
         </div>
       </section>

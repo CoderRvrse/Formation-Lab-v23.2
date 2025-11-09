@@ -211,11 +211,18 @@
   padding: 7px 10px;
   min-height: 34px;
   gap: 4px;
+  justify-content: center;
 }
 
 .flab-action--sm svg {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
+}
+
+/* Icon-only buttons (no text) */
+.flab-action--sm:has(svg:only-child) {
+  padding: 8px;
+  min-width: 34px;
 }
 
 /* Pass style dropdown button - Enhanced dropdown styling */
