@@ -10,7 +10,7 @@
   background-image: var(--pitch-url);
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   border-radius: 16px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
   cursor: default;
