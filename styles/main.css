@@ -7,6 +7,7 @@
 @import url("./components/passstyle.css");
 @import url("./components/ball.css");
 @import url("./components/fullscreen.css");
+@import url("./components/pitch-border.css");
 
 :root {
   color-scheme: light;
