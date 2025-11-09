@@ -140,45 +140,57 @@
   gap: 5px;
 }
 
-/* Base Button Style */
+/* Base Button Style - Primary Action Button */
 .flab-action {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  padding: 9px 11px;
+  padding: 10px 14px;
   background: var(--flab-accent);
   color: #0b2b66;
-  border: none;
-  border-radius: 6px;
-  font-size: 11px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   user-select: none;
-  min-height: 36px;
+  min-height: 38px;
+  position: relative;
+  overflow: hidden;
 }
 
-.flab-action:hover:not(:disabled) {
+/* Pressed/Active state */
+.flab-action:active:not(:disabled),
+.flab-action[aria-pressed="true"] {
+  transform: scale(0.96);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
   background: var(--flab-accent-dark);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2);
 }
 
-.flab-action:active:not(:disabled) {
-  transform: translateY(0);
-  box-shadow: 0 1px 3px rgba(255, 193, 7, 0.1);
+/* Hover state - lift effect */
+.flab-action:hover:not(:disabled):not(:active) {
+  background: var(--flab-accent-dark);
+  transform: translateY(-2px);
+  box-shadow:
+    0 6px 16px rgba(255, 193, 7, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Focus state */
 .flab-action:focus-visible {
   outline: 2px solid #0b2b66;
-  outline-offset: 1px;
+  outline-offset: 2px;
 }
 
+/* Disabled state */
 .flab-action:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
 }
 
 .flab-action svg {
@@ -186,13 +198,19 @@
   height: 14px;
   fill: currentColor;
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.flab-action:hover:not(:disabled) svg {
+  transform: scale(1.1);
 }
 
 /* Small button variant for compact rows */
 .flab-action--sm {
-  font-size: 10px;
-  padding: 6px 8px;
-  min-height: 32px;
+  font-size: 11px;
+  padding: 7px 10px;
+  min-height: 34px;
+  gap: 4px;
 }
 
 .flab-action--sm svg {
@@ -200,7 +218,29 @@
   height: 12px;
 }
 
-/* Pass style dropdown button */
+/* Pass style dropdown button - Enhanced dropdown styling */
+#btnPassStyle {
+  position: relative;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.05), rgba(255, 193, 7, 0.02));
+  border: 1.5px solid rgba(255, 193, 7, 0.3);
+  justify-content: space-between;
+}
+
+#btnPassStyle:hover:not(:disabled):not([aria-expanded="true"]) {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.12), rgba(255, 193, 7, 0.08));
+  border-color: rgba(255, 193, 7, 0.5);
+  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.15);
+}
+
+#btnPassStyle[aria-expanded="true"] {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.1));
+  border-color: var(--flab-accent);
+  box-shadow:
+    0 4px 16px rgba(255, 193, 7, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  color: var(--flab-accent);
+}
+
 .passstyle-trigger {
   display: flex;
   align-items: center;
@@ -212,17 +252,26 @@
 .passstyle-trigger__name {
   font-weight: 600;
   font-size: 12px;
+  color: var(--flab-muted);
+  letter-spacing: 0.3px;
+}
+
+.passstyle-value {
+  font-weight: 700;
+  color: var(--flab-accent);
+  display: inline-block;
 }
 
 .passstyle-trigger__chevron {
-  width: 12px;
-  height: 12px;
-  transition: transform 0.2s ease;
+  width: 10px;
+  height: 6px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
+  stroke: var(--flab-accent);
 }
 
-.flab-action[id="btnPassStyle"][aria-expanded="true"] .passstyle-trigger__chevron {
-  transform: scaleY(-1);
+#btnPassStyle[aria-expanded="true"] .passstyle-trigger__chevron {
+  transform: scaleY(-1) translateY(-1px);
 }
 
 

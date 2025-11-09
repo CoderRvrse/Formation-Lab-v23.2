@@ -120,8 +120,32 @@ body.theme-light .flab-action:disabled {
 }
 
 /* Pass style button in light mode */
+body.theme-light #btnPassStyle {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.08), rgba(0, 102, 204, 0.04));
+  border: 1.5px solid rgba(0, 102, 204, 0.25);
+}
+
+body.theme-light #btnPassStyle:hover:not(:disabled):not([aria-expanded="true"]) {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.15), rgba(0, 102, 204, 0.1));
+  border-color: rgba(0, 102, 204, 0.4);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.12);
+}
+
+body.theme-light #btnPassStyle[aria-expanded="true"] {
+  background: linear-gradient(135deg, rgba(0, 102, 204, 0.18), rgba(0, 102, 204, 0.12));
+  border-color: var(--flab-accent);
+  box-shadow:
+    0 4px 16px rgba(0, 102, 204, 0.2),
+    inset 0 1px 0 rgba(0, 102, 204, 0.15);
+  color: var(--flab-accent);
+}
+
 body.theme-light .passstyle-trigger__name {
-  color: white;
+  color: var(--flab-muted);
+}
+
+body.theme-light .passstyle-trigger__chevron {
+  stroke: var(--flab-accent);
 }
 
 /* Keyboard tips in light mode */
