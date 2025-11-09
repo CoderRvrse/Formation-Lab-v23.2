@@ -44,7 +44,12 @@ export function enterFullscreen() {
   if (button) {
     button.setAttribute('aria-pressed', 'true');
     button.classList.add('flab-action--active');
+    const span = button.querySelector('span');
+    if (span) span.textContent = 'Exit Fullscreen';
   }
+
+  // Add close X button
+  addCloseButton();
 
   // Trigger any resize handlers
   window.dispatchEvent(new Event('resize'));
@@ -81,13 +86,46 @@ export function exitFullscreen() {
   if (button) {
     button.setAttribute('aria-pressed', 'false');
     button.classList.remove('flab-action--active');
+    const span = button.querySelector('span');
+    if (span) span.textContent = 'Fullscreen';
   }
+
+  // Remove close X button
+  removeCloseButton();
 
   // Trigger any resize handlers
   window.dispatchEvent(new Event('resize'));
 
   isFullscreen = false;
   console.log('✅ Fullscreen mode disabled');
+}
+
+/**
+ * Add close X button in fullscreen mode
+ */
+function addCloseButton() {
+  // Remove existing if any
+  removeCloseButton();
+
+  const closeBtn = document.createElement('button');
+  closeBtn.id = 'fullscreen-close-btn';
+  closeBtn.className = 'fullscreen-close-btn';
+  closeBtn.innerHTML = '×';
+  closeBtn.setAttribute('aria-label', 'Exit fullscreen');
+  closeBtn.setAttribute('title', 'Exit fullscreen (Esc or F11)');
+  closeBtn.addEventListener('click', exitFullscreen);
+
+  document.body.appendChild(closeBtn);
+}
+
+/**
+ * Remove close X button
+ */
+function removeCloseButton() {
+  const existing = document.getElementById('fullscreen-close-btn');
+  if (existing) {
+    existing.remove();
+  }
 }
 
 /**
@@ -100,9 +138,9 @@ function showFullscreenHint() {
     toast.className = 'flab-toast flab-toast--info';
     toast.style.cssText = `
       position: fixed;
-      bottom: 20px;
+      bottom: 80px;
       right: 20px;
-      background: rgba(76, 175, 80, 0.9);
+      background: rgba(76, 175, 80, 0.95);
       color: white;
       padding: 12px 16px;
       border-radius: 8px;
@@ -112,23 +150,32 @@ function showFullscreenHint() {
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
       animation: slideIn 0.3s ease-out;
     `;
-    toast.textContent = 'Press Esc to exit fullscreen or click Fullscreen button';
+    toast.textContent = 'Press Esc or F11 to exit fullscreen';
     document.body.appendChild(toast);
 
     setTimeout(() => {
       toast.style.animation = 'slideOut 0.3s ease-out';
       setTimeout(() => toast.remove(), 300);
-    }, 3000);
+    }, 4000);
   }, 100);
 }
 
 /**
- * Handle Escape key to exit fullscreen
+ * Handle keyboard shortcuts for fullscreen
  */
-function handleEscapeKey(e) {
+function handleFullscreenKeys(e) {
+  // Escape to exit fullscreen
   if (e.key === 'Escape' && isFullscreen) {
     e.preventDefault();
     exitFullscreen();
+    return;
+  }
+
+  // F11 to toggle fullscreen
+  if (e.key === 'F11') {
+    e.preventDefault();
+    toggleFullscreen();
+    return;
   }
 }
 
@@ -146,13 +193,13 @@ export function initFullscreen() {
   // Wire up button click
   button.addEventListener('click', toggleFullscreen);
 
-  // Handle Escape key
-  document.addEventListener('keydown', handleEscapeKey);
+  // Handle keyboard shortcuts (Esc and F11)
+  document.addEventListener('keydown', handleFullscreenKeys);
 
   // Track fullscreen state
   FLAB.fullscreenEnabled = true;
 
-  console.log('✅ Fullscreen feature initialized');
+  console.log('✅ Fullscreen feature initialized (Hotkeys: F11 toggle, Esc exit)');
 }
 
 /**
@@ -165,7 +212,7 @@ export function destroyFullscreen() {
     button.removeEventListener('click', toggleFullscreen);
   }
 
-  document.removeEventListener('keydown', handleEscapeKey);
+  document.removeEventListener('keydown', handleFullscreenKeys);
 
   if (isFullscreen) {
     exitFullscreen();
