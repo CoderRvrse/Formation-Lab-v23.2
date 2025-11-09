@@ -1,22 +1,22 @@
 /* ═══════════════════════════════════════════════════════════════
-   FORMATION LAB - PROFESSIONAL SIDEPANEL & TOOLBAR
-   Modern, organized, clean button layout with semantic grouping
+   FORMATION LAB - CLEAN, MINIMAL SIDEPANEL
+   Premium layout with smart button hierarchy and spacing
    ═══════════════════════════════════════════════════════════════ */
 
 /* ─────────────────────────────────────────────────────────────
    SIDEPANEL CONTAINER
    ───────────────────────────────────────────────────────────── */
 .flab-sidepanel {
-  width: 280px;
-  min-width: 280px;
+  width: 240px;
+  min-width: 240px;
   background: var(--flab-surface);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-right: 1px solid var(--flab-outline);
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  gap: 20px;
+  padding: 16px;
+  gap: 16px;
   overflow-y: auto;
 }
 
@@ -25,69 +25,73 @@
    ───────────────────────────────────────────────────────────── */
 .flab-header {
   text-align: center;
-  padding-bottom: 4px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--flab-outline);
 }
 
 .flab-title {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
-  margin: 0 0 6px 0;
+  margin: 0 0 2px 0;
   color: var(--flab-text);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.2px;
 }
 
 .flab-badge {
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
   color: var(--flab-muted);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 3px 10px;
-  border-radius: 12px;
-  margin-left: 6px;
-  letter-spacing: 0.5px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 2px 8px;
+  border-radius: 10px;
+  margin-left: 4px;
+  letter-spacing: 0.4px;
 }
 
 .flab-subtitle {
-  font-size: 12px;
+  font-size: 11px;
   color: var(--flab-muted);
   margin: 0;
-  line-height: 1.5;
+  line-height: 1.4;
   font-weight: 400;
+  display: none;
 }
 
 /* ─────────────────────────────────────────────────────────────
    TOOLBAR - EDITOR MODE BUTTONS (Select/Pass/Erase/Help)
    ───────────────────────────────────────────────────────────── */
 .flab-toolbar {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
   border-bottom: 1px solid var(--flab-outline);
-  padding-bottom: 16px;
+  padding-bottom: 12px;
 }
 
 .flab-tool {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 12px;
-  padding: 10px 14px;
+  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 12px;
   background: var(--flab-tool-bg);
   border: 1px solid var(--flab-tool-border);
   border-radius: 8px;
   color: var(--flab-text);
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
-  text-align: left;
+  transition: all 0.2s ease;
+  text-align: center;
   white-space: nowrap;
   user-select: none;
+  min-height: 50px;
 }
 
 .flab-tool:hover:not([aria-pressed="true"]) {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-1px);
 }
 
@@ -104,84 +108,62 @@
 }
 
 .flab-tool svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: currentColor;
   flex-shrink: 0;
 }
 
-/* Special style for help button */
-.flab-tool--help {
-  margin-top: 2px;
-}
-
 /* ─────────────────────────────────────────────────────────────
-   ACTIONS SECTION - PRIMARY & SECONDARY ACTIONS
+   ACTIONS SECTION - CLEAN, MINIMAL BUTTON LAYOUT
    ───────────────────────────────────────────────────────────── */
 .flab-actions {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 10px;
 }
 
-/* Action Group Container */
-.action-group {
-  display: flex;
-  flex-direction: column;
+/* Action rows for grouping related buttons */
+.actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 8px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--flab-outline);
 }
 
-.action-group:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
+.actions-row--tight {
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
 }
 
-.action-group__title {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--flab-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 0 4px;
-  margin-bottom: 2px;
-  margin-top: 4px;
-}
-
-.action-group:first-child .action-group__title {
-  margin-top: 0;
-}
-
-/* Primary Actions */
+/* Primary Actions - Full Width */
 .flab-action {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 11px 14px;
+  padding: 10px 12px;
   background: var(--flab-accent);
   color: #0b2b66;
   border: none;
-  border-radius: 8px;
-  font-size: 13px;
+  border-radius: 6px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.2, 0, 0.38, 0.9);
+  transition: all 0.2s ease;
   white-space: nowrap;
   user-select: none;
-  min-height: 40px;
+  min-height: 38px;
 }
 
 .flab-action:hover:not(:disabled) {
   background: var(--flab-accent-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
 }
 
 .flab-action:active:not(:disabled) {
   transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.15);
+  box-shadow: 0 1px 4px rgba(255, 193, 7, 0.1);
 }
 
 .flab-action:focus-visible {
@@ -201,43 +183,33 @@
   flex-shrink: 0;
 }
 
-/* Secondary Actions (grouped in rows) */
-.toolbar-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px;
+/* Button Variants */
+.flab-action--primary {
+  grid-column: 1 / -1;
 }
 
-.toolbar-row .flab-action {
+.flab-action--secondary {
   font-size: 11px;
   padding: 8px 10px;
   min-height: 36px;
 }
 
-.toolbar-row .flab-action svg {
+.flab-action--full {
+  grid-column: 1 / -1;
+}
+
+.flab-action--compact {
+  font-size: 10px;
+  padding: 6px 8px;
+  min-height: 32px;
+}
+
+.flab-action--compact svg {
   width: 14px;
   height: 14px;
 }
 
-/* Two-column row variant */
-.toolbar-row--two {
-  grid-template-columns: 1fr 1fr;
-}
-
-.toolbar-row--two .flab-action {
-  font-size: 12px;
-  padding: 9px 12px;
-  min-height: 38px;
-}
-
 /* Pass style dropdown button */
-.flab-action[id="btnPassStyle"] {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 11px 14px;
-}
-
 .passstyle-trigger {
   display: flex;
   align-items: center;
@@ -248,7 +220,7 @@
 
 .passstyle-trigger__name {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 12px;
 }
 
 .passstyle-trigger__chevron {
@@ -260,19 +232,6 @@
 
 .flab-action[id="btnPassStyle"][aria-expanded="true"] .passstyle-trigger__chevron {
   transform: scaleY(-1);
-}
-
-/* Playback controls (hidden by default) */
-#passPlaybackControls {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6px;
-}
-
-#passPlaybackControls .flab-action {
-  font-size: 11px;
-  padding: 8px 10px;
-  min-height: 36px;
 }
 
 /* ─────────────────────────────────────────────────────────────

@@ -36,77 +36,63 @@
           </button>
         </nav>
         <div class="flab-actions" aria-label="Primary actions">
-          <!-- Export & Reset -->
-          <div class="action-group">
-            <button type="button" class="flab-action" id="exportButton">
+          <!-- Primary Actions Row -->
+          <div class="actions-row">
+            <button type="button" class="flab-action flab-action--primary" id="exportButton" title="Export current formation as PNG">
               <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#export"></use></svg>
-              <span>Export PNG</span>
+              <span>Export</span>
             </button>
-            <button type="button" class="flab-action" id="resetButton">
+            <button type="button" class="flab-action flab-action--primary" id="resetButton" title="Reset to default 4-3-3 formation">
               <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#reset"></use></svg>
-              <span>Reset 4-3-3</span>
+              <span>Reset</span>
             </button>
           </div>
 
-          <!-- Formations & Presets -->
-          <div class="action-group">
-            <span class="action-group__title">Formations</span>
-            <div class="toolbar-row--two">
-              <button type="button" class="flab-action" id="btnLandscape">Landscape</button>
-              <button type="button" class="flab-action" id="btnPortrait">Portrait</button>
+          <!-- Formation Controls -->
+          <div class="actions-row">
+            <button type="button" class="flab-action flab-action--secondary" id="btnLandscape" title="Switch to landscape orientation">Landscape</button>
+            <button type="button" class="flab-action flab-action--secondary" id="btnPortrait" title="Switch to portrait orientation">Portrait</button>
+          </div>
+
+          <button type="button" class="flab-action flab-action--full" id="btnFlip" title="Flip formation sides">Flip Sides</button>
+
+          <!-- Preset & Style Controls -->
+          <button type="button" class="flab-action flab-action--primary" id="btnPassStyle" aria-haspopup="menu" aria-expanded="false" title="Choose pass arrow style">
+            <div class="passstyle-trigger">
+              <span class="passstyle-trigger__name">Solid</span>
+              <svg class="passstyle-trigger__chevron" aria-hidden="true" focusable="false" width="12" height="8" viewBox="0 0 12 8">
+                <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
-            <button type="button" class="flab-action" id="btnFlip" style="grid-column: 1 / -1;">Flip Sides</button>
-          </div>
+          </button>
 
-          <!-- Presets -->
-          <div class="action-group">
-            <span class="action-group__title">Presets</span>
-            <div class="toolbar-row">
-              <button type="button" class="flab-action" id="btnSavePreset">Save</button>
-              <button type="button" class="flab-action" id="btnApplyDefault">Apply</button>
-              <button type="button" class="flab-action" id="btnManagePresets">Manage</button>
-            </div>
-          </div>
+          <!-- Display Mode -->
+          <button type="button" class="flab-action flab-action--full" id="btnFullscreen" title="Toggle fullscreen mode" aria-label="Toggle fullscreen mode">
+            <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#expand"></use></svg>
+            <span>Fullscreen</span>
+          </button>
 
-          <!-- Pass Styles -->
-          <div class="action-group">
-            <span class="action-group__title">Pass Style</span>
-            <button type="button" class="flab-action" id="btnPassStyle" aria-haspopup="menu" aria-expanded="false" style="grid-column: 1 / -1;">
-              <div class="passstyle-trigger">
-                <span class="passstyle-trigger__name">Solid</span>
-                <svg class="passstyle-trigger__chevron" aria-hidden="true" focusable="false" width="12" height="8" viewBox="0 0 12 8">
-                  <path d="M1 1.5L6 6.5L11 1.5" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </button>
-          </div>
-
-          <!-- Display -->
-          <div class="action-group">
-            <span class="action-group__title">Display</span>
-            <button type="button" class="flab-action" id="btnFullscreen" title="Toggle fullscreen mode" aria-label="Toggle fullscreen mode" style="grid-column: 1 / -1;">
-              <svg aria-hidden="true" focusable="false"><use href="assets/icons.svg#expand"></use></svg>
-              <span>Fullscreen</span>
-            </button>
+          <!-- Preset Actions (Compact) -->
+          <div class="actions-row actions-row--tight">
+            <button type="button" class="flab-action flab-action--compact" id="btnSavePreset" title="Save current formation">Save</button>
+            <button type="button" class="flab-action flab-action--compact" id="btnApplyDefault" title="Apply default preset">Apply</button>
+            <button type="button" class="flab-action flab-action--compact" id="btnManagePresets" title="Manage presets">Manage</button>
           </div>
 
           <!-- Playback Controls (hidden by default) -->
-          <div id="passPlaybackControls" style="display: none;" class="action-group">
-            <span class="action-group__title">Playback</span>
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
-              <button type="button" class="flab-action" id="btnPlayLast" disabled title="Play last pass sequence">
-                <span>▶ Last</span>
-              </button>
-              <button type="button" class="flab-action" id="btnPlayAll" disabled title="Play all passes">
-                <span>▶ All</span>
-              </button>
-              <button type="button" class="flab-action" id="btnStopPlayback" disabled title="Stop playback">
-                <span>⏹ Stop</span>
-              </button>
-              <button type="button" class="flab-action" id="btnDiagnostics" title="Show ball playback diagnostics">
-                <span>🔍 Diag</span>
-              </button>
-            </div>
+          <div id="passPlaybackControls" style="display: none;" class="actions-row">
+            <button type="button" class="flab-action flab-action--compact" id="btnPlayLast" disabled title="Play last pass sequence">
+              <span>▶ Last</span>
+            </button>
+            <button type="button" class="flab-action flab-action--compact" id="btnPlayAll" disabled title="Play all passes">
+              <span>▶ All</span>
+            </button>
+            <button type="button" class="flab-action flab-action--compact" id="btnStopPlayback" disabled title="Stop playback">
+              <span>⏹</span>
+            </button>
+            <button type="button" class="flab-action flab-action--compact" id="btnDiagnostics" title="Show ball playback diagnostics">
+              <span>🔍</span>
+            </button>
           </div>
         </div>
         <section class="flab-keytips" aria-label="Keyboard shortcuts">
