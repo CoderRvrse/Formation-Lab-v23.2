@@ -97,10 +97,6 @@ body.flab-body {
   overflow: hidden;
 }
 
-.flab-app.flab-app--sidepanel-collapsed .flab-pitch-wrapper {
-  min-width: 100%;
-}
-
 /* Noscript and help modal styles */
 .flab-noscript {
   display: block;

@@ -54,20 +54,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: transparent;
+  border: 1px solid transparent;
   border-radius: 6px;
   cursor: pointer;
   color: var(--flab-text);
-  transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: all 0.3s ease;
   padding: 0;
-  will-change: background, border-color, color;
+  will-change: background, border-color, color, opacity;
   z-index: 50;
+  opacity: 0;
 }
 
-.flab-collapse-toggle:hover {
-  background: rgba(255, 193, 7, 0.2);
-  border-color: rgba(255, 193, 7, 0.4);
+.flab-collapse-toggle:hover,
+.flab-collapse-toggle:focus-visible,
+.flab-app:hover .flab-collapse-toggle {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
   color: var(--flab-accent);
   transform: scale(1.08);
 }
