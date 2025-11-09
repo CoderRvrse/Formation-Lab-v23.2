@@ -26,6 +26,7 @@ import { initTheme } from './theme.js';
 import { initShare } from './share.js';
 import { initFullscreen } from './fullscreen.js';
 import { initPlayerEditor } from './player-editor.js';
+import { initKeyboardShortcuts } from './keyboard-shortcuts.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 

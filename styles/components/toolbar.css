@@ -235,55 +235,39 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   KEYBOARD TIPS - QUICK REFERENCE AT BOTTOM
+   KEYBOARD SHORTCUTS BUTTON - MINIMAL (?) INDICATOR
    ───────────────────────────────────────────────────────────── */
-.flab-keytips {
-  background: rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  padding: 12px 14px;
+.flab-keytips-btn {
   margin-top: auto;
-  border: 1px solid var(--flab-outline);
-}
-
-.flab-keytips h2 {
-  font-size: 11px;
-  font-weight: 700;
-  margin: 0 0 10px 0;
-  color: var(--flab-text);
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.flab-keytips ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.flab-keytips li {
-  font-size: 11px;
-  color: var(--flab-muted);
-  margin-bottom: 5px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
-  gap: 6px;
-  line-height: 1.4;
-}
-
-.flab-keytips li:last-child {
-  margin-bottom: 0;
-}
-
-.flab-keytips kbd {
+  justify-content: center;
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
-  padding: 2px 5px;
-  font-size: 9px;
-  font-family: 'Monaco', 'Courier New', monospace;
+  border: 1px solid var(--flab-outline);
+  border-radius: 6px;
+  color: var(--flab-muted);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  align-self: center;
+}
+
+.flab-keytips-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
   color: var(--flab-text);
-  font-weight: 500;
-  white-space: nowrap;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.flab-keytips-btn:active {
+  transform: scale(0.95);
+}
+
+.flab-keytips-btn:focus-visible {
+  outline: 2px solid var(--flab-accent);
+  outline-offset: 2px;
 }
 
 /* ─────────────────────────────────────────────────────────────
