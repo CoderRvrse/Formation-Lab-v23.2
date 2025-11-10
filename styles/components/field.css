@@ -75,6 +75,7 @@
   padding: 16px;
   min-height: 0;
   overflow: visible;
+  pointer-events: auto;
 }
 
 /* Field container must be a positioning context */
