@@ -23,10 +23,45 @@
 
         <!-- Animated connecting lines between corners -->
         <svg class="flab-corner-lines" aria-hidden="true" width="100%" height="100%">
+          <defs>
+            <path id="pathTop" d="M 0,0 L 100%,0" fill="none" />
+            <path id="pathRight" d="M 100%,0 L 100%,100%" fill="none" />
+            <path id="pathBottom" d="M 100%,100% L 0,100%" fill="none" />
+            <path id="pathLeft" d="M 0,100% L 0,0" fill="none" />
+          </defs>
+
           <line class="flab-corner-line flab-line--top" x1="0" y1="0" x2="100%" y2="0"></line>
           <line class="flab-corner-line flab-line--right" x1="100%" y1="0" x2="100%" y2="100%"></line>
           <line class="flab-corner-line flab-line--bottom" x1="100%" y1="100%" x2="0" y2="100%"></line>
           <line class="flab-corner-line flab-line--left" x1="0" y1="100%" x2="0" y2="0"></line>
+
+          <!-- Animated text along top border -->
+          <text class="flab-border-text flab-border-text--top">
+            <textPath href="#pathTop" startOffset="0%" text-anchor="middle">
+              ⚽ TEAM • COACH • SOCCER • FORMATION • DRILL ⚽ TEAM • COACH • SOCCER • FORMATION • DRILL
+            </textPath>
+          </text>
+
+          <!-- Animated text along right border -->
+          <text class="flab-border-text flab-border-text--right">
+            <textPath href="#pathRight" startOffset="0%" text-anchor="middle">
+              ⚽ SOCCER • TEAM • COACH • DRILL • FORMATION ⚽ SOCCER • TEAM • COACH • DRILL • FORMATION
+            </textPath>
+          </text>
+
+          <!-- Animated text along bottom border -->
+          <text class="flab-border-text flab-border-text--bottom">
+            <textPath href="#pathBottom" startOffset="0%" text-anchor="middle">
+              ⚽ FORMATION • DRILL • SOCCER • TEAM • COACH ⚽ FORMATION • DRILL • SOCCER • TEAM • COACH
+            </textPath>
+          </text>
+
+          <!-- Animated text along left border -->
+          <text class="flab-border-text flab-border-text--left">
+            <textPath href="#pathLeft" startOffset="0%" text-anchor="middle">
+              ⚽ COACH • FORMATION • TEAM • SOCCER • DRILL ⚽ COACH • FORMATION • TEAM • SOCCER • DRILL
+            </textPath>
+          </text>
         </svg>
 
         <div class="flab-field" id="pitchMount" data-field-version="v23.4">
