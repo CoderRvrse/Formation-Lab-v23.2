@@ -362,7 +362,7 @@
   width: 40px;
   height: 40px;
   pointer-events: none !important;
-  z-index: 5;
+  z-index: 1;
   border: 2px solid transparent;
   border-radius: 8px;
 }
@@ -654,7 +654,7 @@
     0 0 80px rgba(76, 175, 80, 0.1);
   transition: box-shadow 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .flab-pitch-wrapper:hover {
@@ -672,7 +672,7 @@
   top: 0;
   left: 0;
   pointer-events: none !important;
-  z-index: 4;
+  z-index: 0;
 }
 
 .flab-corner-line {
