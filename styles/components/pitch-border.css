@@ -653,10 +653,164 @@
     0 0 40px rgba(255, 193, 7, 0.15),
     0 0 80px rgba(76, 175, 80, 0.1);
   transition: box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .flab-pitch-wrapper:hover {
   box-shadow:
     0 0 50px rgba(255, 193, 7, 0.25),
     0 0 100px rgba(76, 175, 80, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   ANIMATED CORNER CONNECTING LINES
+   ═══════════════════════════════════════════════════════════════ */
+
+.flab-corner-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.flab-corner-line {
+  stroke-width: 2px;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.3;
+}
+
+/* Top line (yellow) */
+.flab-line--top {
+  stroke: rgba(255, 193, 7, 0.6);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: linePulseTop 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.4));
+}
+
+/* Right line (cyan) */
+.flab-line--right {
+  stroke: rgba(33, 150, 243, 0.6);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: linePulseRight 8s ease-in-out infinite 2s;
+  filter: drop-shadow(0 0 8px rgba(33, 150, 243, 0.4));
+}
+
+/* Bottom line (green) */
+.flab-line--bottom {
+  stroke: rgba(76, 175, 80, 0.6);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: linePulseBottom 8s ease-in-out infinite 4s;
+  filter: drop-shadow(0 0 8px rgba(76, 175, 80, 0.4));
+}
+
+/* Left line (magenta) */
+.flab-line--left {
+  stroke: rgba(156, 39, 176, 0.6);
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: linePulseLeft 8s ease-in-out infinite 6s;
+  filter: drop-shadow(0 0 8px rgba(156, 39, 176, 0.4));
+}
+
+/* Line pulse animations - each side cycles independently */
+@keyframes linePulseTop {
+  0%, 100% {
+    stroke-dashoffset: 1000;
+    opacity: 0.2;
+    stroke-width: 2px;
+  }
+  25% {
+    stroke-dashoffset: 750;
+    opacity: 0.4;
+    stroke-width: 2.5px;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 12px rgba(255, 193, 7, 0.6));
+  }
+  75% {
+    stroke-dashoffset: 250;
+    opacity: 0.5;
+    stroke-width: 2.5px;
+  }
+}
+
+@keyframes linePulseRight {
+  0%, 100% {
+    stroke-dashoffset: 1000;
+    opacity: 0.2;
+    stroke-width: 2px;
+  }
+  25% {
+    stroke-dashoffset: 750;
+    opacity: 0.4;
+    stroke-width: 2.5px;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 12px rgba(33, 150, 243, 0.6));
+  }
+  75% {
+    stroke-dashoffset: 250;
+    opacity: 0.5;
+    stroke-width: 2.5px;
+  }
+}
+
+@keyframes linePulseBottom {
+  0%, 100% {
+    stroke-dashoffset: 1000;
+    opacity: 0.2;
+    stroke-width: 2px;
+  }
+  25% {
+    stroke-dashoffset: 750;
+    opacity: 0.4;
+    stroke-width: 2.5px;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 12px rgba(76, 175, 80, 0.6));
+  }
+  75% {
+    stroke-dashoffset: 250;
+    opacity: 0.5;
+    stroke-width: 2.5px;
+  }
+}
+
+@keyframes linePulseLeft {
+  0%, 100% {
+    stroke-dashoffset: 1000;
+    opacity: 0.2;
+    stroke-width: 2px;
+  }
+  25% {
+    stroke-dashoffset: 750;
+    opacity: 0.4;
+    stroke-width: 2.5px;
+  }
+  50% {
+    stroke-dashoffset: 0;
+    opacity: 0.8;
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 12px rgba(156, 39, 176, 0.6));
+  }
+  75% {
+    stroke-dashoffset: 250;
+    opacity: 0.5;
+    stroke-width: 2.5px;
+  }
 }
