@@ -353,109 +353,154 @@
   --border-secondary: rgba(76, 175, 80, 0.6);
 }
 
-/* Four independent corner accents with staggered cycling animations */
+/* ═══════════════════════════════════════════════════════════════
+   FOUR CORNER ROTATING ACCENT ELEMENTS
+   ═══════════════════════════════════════════════════════════════ */
 
-/* Top-left corner (yellow) */
-.flab-pitch-wrapper::before {
-  content: '';
+.flab-corner-marker {
   position: absolute;
-  top: -8px;
-  left: -8px;
   width: 40px;
   height: 40px;
-  border: 2px solid rgba(255, 193, 7, 0.6);
-  border-right: transparent;
-  border-bottom: transparent;
-  border-radius: 8px 0 0 0;
   pointer-events: none;
   z-index: 3;
-  animation: cornerPulseTopLeft 8s ease-in-out infinite;
+  border: 2px solid transparent;
+  border-radius: 8px;
+}
+
+/* Top-left corner (yellow) */
+.flab-corner--top-left {
+  top: -8px;
+  left: -8px;
+  border-top: 2px solid rgba(255, 193, 7, 0.6);
+  border-left: 2px solid rgba(255, 193, 7, 0.6);
+  border-radius: 8px 0 0 0;
+  animation: cornerRotateTopLeft 10s linear infinite;
   box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 15px rgba(255, 193, 7, 0.3);
 }
 
 /* Top-right corner (cyan) */
-.flab-pitch-wrapper {
-  position: relative;
-}
-
-.flab-pitch-wrapper::after {
-  content: '';
-  position: absolute;
+.flab-corner--top-right {
   top: -8px;
   right: -8px;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(33, 150, 243, 0.6);
-  border-left: transparent;
-  border-bottom: transparent;
+  border-top: 2px solid rgba(33, 150, 243, 0.6);
+  border-right: 2px solid rgba(33, 150, 243, 0.6);
   border-radius: 0 8px 0 0;
-  pointer-events: none;
-  z-index: 3;
-  animation: cornerPulseTopRight 8s ease-in-out infinite 2s;
+  animation: cornerRotateTopRight 10s linear infinite;
   box-shadow: 0 0 20px rgba(33, 150, 243, 0.4), inset 0 0 15px rgba(33, 150, 243, 0.3);
 }
 
-/* Bottom-right corner (green) - added via data attribute pseudo-element wrapper */
-.flab-field::before {
-  animation:
-    borderGlow 8s ease infinite,
-    scanningLine 6s ease-in-out infinite 0.5s,
-    cornerPulseBottomRight 8s ease-in-out infinite 4s;
+/* Bottom-right corner (green) */
+.flab-corner--bottom-right {
+  bottom: -8px;
+  right: -8px;
+  border-bottom: 2px solid rgba(76, 175, 80, 0.6);
+  border-right: 2px solid rgba(76, 175, 80, 0.6);
+  border-radius: 0 0 8px 0;
+  animation: cornerRotateBottomRight 10s linear infinite;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4), inset 0 0 15px rgba(76, 175, 80, 0.3);
 }
 
-/* Bottom-left corner (magenta) - adds extra visual layer */
-.flab-field::after {
-  animation:
-    borderGlow 8s ease infinite,
-    cornerPulseBottomLeft 8s ease-in-out infinite 6s;
+/* Bottom-left corner (magenta) */
+.flab-corner--bottom-left {
+  bottom: -8px;
+  left: -8px;
+  border-bottom: 2px solid rgba(156, 39, 176, 0.6);
+  border-left: 2px solid rgba(156, 39, 176, 0.6);
+  border-radius: 0 0 0 8px;
+  animation: cornerRotateBottomLeft 10s linear infinite;
+  box-shadow: 0 0 20px rgba(156, 39, 176, 0.4), inset 0 0 15px rgba(156, 39, 176, 0.3);
 }
 
-/* Independent corner pulse animations */
-@keyframes cornerPulseTopLeft {
+/* Rotating corner animations - each corner cycles through brightness */
+@keyframes cornerRotateTopLeft {
   0%, 100% {
-    opacity: 0.4;
-    border-color: rgba(255, 193, 7, 0.6);
-    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 15px rgba(255, 193, 7, 0.3);
+    opacity: 0.3;
+    border-color: rgba(255, 193, 7, 0.4);
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.2), inset 0 0 8px rgba(255, 193, 7, 0.15);
+  }
+  25% {
+    opacity: 0.6;
+    border-color: rgba(255, 193, 7, 0.7);
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 12px rgba(255, 193, 7, 0.25);
   }
   50% {
     opacity: 1;
     border-color: rgba(255, 193, 7, 0.95);
-    box-shadow: 0 0 40px rgba(255, 193, 7, 0.7), inset 0 0 25px rgba(255, 193, 7, 0.5);
+    box-shadow: 0 0 35px rgba(255, 193, 7, 0.7), inset 0 0 20px rgba(255, 193, 7, 0.5);
+  }
+  75% {
+    opacity: 0.6;
+    border-color: rgba(255, 193, 7, 0.7);
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 12px rgba(255, 193, 7, 0.25);
   }
 }
 
-@keyframes cornerPulseTopRight {
+@keyframes cornerRotateTopRight {
   0%, 100% {
-    opacity: 0.4;
-    border-color: rgba(33, 150, 243, 0.6);
-    box-shadow: 0 0 20px rgba(33, 150, 243, 0.4), inset 0 0 15px rgba(33, 150, 243, 0.3);
+    opacity: 0.3;
+    border-color: rgba(33, 150, 243, 0.4);
+    box-shadow: 0 0 10px rgba(33, 150, 243, 0.2), inset 0 0 8px rgba(33, 150, 243, 0.15);
+  }
+  25% {
+    opacity: 0.6;
+    border-color: rgba(33, 150, 243, 0.7);
+    box-shadow: 0 0 20px rgba(33, 150, 243, 0.4), inset 0 0 12px rgba(33, 150, 243, 0.25);
   }
   50% {
     opacity: 1;
     border-color: rgba(33, 150, 243, 0.95);
-    box-shadow: 0 0 40px rgba(33, 150, 243, 0.7), inset 0 0 25px rgba(33, 150, 243, 0.5);
+    box-shadow: 0 0 35px rgba(33, 150, 243, 0.7), inset 0 0 20px rgba(33, 150, 243, 0.5);
+  }
+  75% {
+    opacity: 0.6;
+    border-color: rgba(33, 150, 243, 0.7);
+    box-shadow: 0 0 20px rgba(33, 150, 243, 0.4), inset 0 0 12px rgba(33, 150, 243, 0.25);
   }
 }
 
-@keyframes cornerPulseBottomRight {
+@keyframes cornerRotateBottomRight {
   0%, 100% {
-    opacity: 0.4;
-    filter: drop-shadow(0 0 10px rgba(76, 175, 80, 0.3));
+    opacity: 0.3;
+    border-color: rgba(76, 175, 80, 0.4);
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.2), inset 0 0 8px rgba(76, 175, 80, 0.15);
+  }
+  25% {
+    opacity: 0.6;
+    border-color: rgba(76, 175, 80, 0.7);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.4), inset 0 0 12px rgba(76, 175, 80, 0.25);
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 25px rgba(76, 175, 80, 0.6));
+    border-color: rgba(76, 175, 80, 0.95);
+    box-shadow: 0 0 35px rgba(76, 175, 80, 0.7), inset 0 0 20px rgba(76, 175, 80, 0.5);
+  }
+  75% {
+    opacity: 0.6;
+    border-color: rgba(76, 175, 80, 0.7);
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.4), inset 0 0 12px rgba(76, 175, 80, 0.25);
   }
 }
 
-@keyframes cornerPulseBottomLeft {
+@keyframes cornerRotateBottomLeft {
   0%, 100% {
-    opacity: 0.4;
-    filter: drop-shadow(0 0 10px rgba(156, 39, 176, 0.3));
+    opacity: 0.3;
+    border-color: rgba(156, 39, 176, 0.4);
+    box-shadow: 0 0 10px rgba(156, 39, 176, 0.2), inset 0 0 8px rgba(156, 39, 176, 0.15);
+  }
+  25% {
+    opacity: 0.6;
+    border-color: rgba(156, 39, 176, 0.7);
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.4), inset 0 0 12px rgba(156, 39, 176, 0.25);
   }
   50% {
     opacity: 1;
-    filter: drop-shadow(0 0 25px rgba(156, 39, 176, 0.6));
+    border-color: rgba(156, 39, 176, 0.95);
+    box-shadow: 0 0 35px rgba(156, 39, 176, 0.7), inset 0 0 20px rgba(156, 39, 176, 0.5);
+  }
+  75% {
+    opacity: 0.6;
+    border-color: rgba(156, 39, 176, 0.7);
+    box-shadow: 0 0 20px rgba(156, 39, 176, 0.4), inset 0 0 12px rgba(156, 39, 176, 0.25);
   }
 }
 
@@ -486,48 +531,42 @@
   }
 }
 
-/* Fullscreen corner accents - larger with all 4 corners independent */
-.flab-body--fullscreen .flab-pitch-wrapper::before {
+/* Fullscreen corner accents - scale up corners for immersive experience */
+.flab-body--fullscreen .flab-corner-marker {
   width: 60px;
   height: 60px;
+}
+
+.flab-body--fullscreen .flab-corner--top-left,
+.flab-body--fullscreen .flab-corner--top-right,
+.flab-body--fullscreen .flab-corner--bottom-right,
+.flab-body--fullscreen .flab-corner--bottom-left {
   border-width: 3px;
-  animation: cornerPulseTopLeftFS 6s ease-in-out infinite;
-  box-shadow: 0 0 50px rgba(255, 193, 7, 0.7), inset 0 0 30px rgba(255, 193, 7, 0.6);
+  animation-duration: 8s;
+  top: -12px;
+  left: -12px;
+  right: auto;
+  bottom: auto;
 }
 
-.flab-body--fullscreen .flab-pitch-wrapper::after {
-  width: 60px;
-  height: 60px;
-  border-width: 3px;
-  animation: cornerPulseTopRightFS 6s ease-in-out infinite 1.5s;
-  box-shadow: 0 0 50px rgba(33, 150, 243, 0.7), inset 0 0 30px rgba(33, 150, 243, 0.6);
+.flab-body--fullscreen .flab-corner--top-right {
+  top: -12px;
+  right: -12px;
+  left: auto;
 }
 
-/* Fullscreen independent corner animations */
-@keyframes cornerPulseTopLeftFS {
-  0%, 100% {
-    opacity: 0.5;
-    border-color: rgba(255, 193, 7, 0.7);
-    box-shadow: 0 0 40px rgba(255, 193, 7, 0.5), inset 0 0 20px rgba(255, 193, 7, 0.4);
-  }
-  50% {
-    opacity: 1;
-    border-color: rgba(255, 193, 7, 0.95);
-    box-shadow: 0 0 60px rgba(255, 193, 7, 0.8), inset 0 0 35px rgba(255, 193, 7, 0.6);
-  }
+.flab-body--fullscreen .flab-corner--bottom-right {
+  bottom: -12px;
+  right: -12px;
+  left: auto;
+  top: auto;
 }
 
-@keyframes cornerPulseTopRightFS {
-  0%, 100% {
-    opacity: 0.5;
-    border-color: rgba(33, 150, 243, 0.7);
-    box-shadow: 0 0 40px rgba(33, 150, 243, 0.5), inset 0 0 20px rgba(33, 150, 243, 0.4);
-  }
-  50% {
-    opacity: 1;
-    border-color: rgba(33, 150, 243, 0.95);
-    box-shadow: 0 0 60px rgba(33, 150, 243, 0.8), inset 0 0 35px rgba(33, 150, 243, 0.6);
-  }
+.flab-body--fullscreen .flab-corner--bottom-left {
+  bottom: -12px;
+  left: -12px;
+  right: auto;
+  top: auto;
 }
 
 /* Scanning line effect for extra visual interest */
