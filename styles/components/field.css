@@ -35,7 +35,7 @@
   border-radius: 16px;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
   cursor: default;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .flab-field::before {
