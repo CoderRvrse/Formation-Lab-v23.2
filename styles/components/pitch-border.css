@@ -342,3 +342,188 @@
     filter: blur(1px);
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ENHANCED NEON CORNER ACCENTS & INTERACTIVE ANIMATIONS
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Corner accent elements for enhanced visual appeal */
+.flab-field::before {
+  --border-accent: rgba(255, 193, 7, 0.8);
+  --border-secondary: rgba(76, 175, 80, 0.6);
+}
+
+/* Dynamic neon corner glow effect */
+.flab-pitch-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 193, 7, 0.6);
+  border-right: transparent;
+  border-bottom: transparent;
+  border-radius: 8px 0 0 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: cornerGlow 3s ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 15px rgba(255, 193, 7, 0.3);
+}
+
+.flab-pitch-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(76, 175, 80, 0.6);
+  border-left: transparent;
+  border-top: transparent;
+  border-radius: 0 0 8px 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: cornerGlow 3s ease-in-out infinite 1.5s;
+  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4), inset 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes cornerGlow {
+  0%, 100% {
+    opacity: 0.4;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 15px rgba(255, 193, 7, 0.3);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 35px rgba(255, 193, 7, 0.8), inset 0 0 25px rgba(255, 193, 7, 0.6);
+  }
+}
+
+/* Rotating edge highlight for landscape mode */
+.flab-field:not(.is-portrait) {
+  position: relative;
+  overflow: visible;
+}
+
+.flab-field:not(.is-portrait)::before {
+  animation: borderPulseHorizontal 2s ease-in-out infinite;
+}
+
+@keyframes borderPulseHorizontal {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 20px rgba(0, 0, 0, 0.3),
+      0 0 15px rgba(255, 255, 255, 0.1),
+      0 0 30px rgba(255, 193, 7, 0.1);
+    filter: drop-shadow(0 0 3px rgba(255, 193, 7, 0.2));
+  }
+  50% {
+    box-shadow:
+      inset 0 0 20px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba(255, 193, 7, 0.3),
+      0 0 45px rgba(255, 193, 7, 0.2);
+    filter: drop-shadow(0 0 6px rgba(255, 193, 7, 0.4));
+  }
+}
+
+/* Fullscreen corner accents */
+.flab-body--fullscreen .flab-pitch-wrapper::before,
+.flab-body--fullscreen .flab-pitch-wrapper::after {
+  width: 60px;
+  height: 60px;
+  border-width: 3px;
+  animation-duration: 2s;
+  box-shadow: 0 0 40px rgba(255, 193, 7, 0.6), inset 0 0 25px rgba(255, 193, 7, 0.5);
+}
+
+/* Scanning line effect for extra visual interest */
+.flab-field {
+  position: relative;
+}
+
+.flab-field::before {
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 45%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 55%,
+      transparent 100%
+    ) no-repeat,
+    transparent;
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  animation:
+    borderGlow 8s ease infinite,
+    scanningLine 6s ease-in-out infinite 0.5s;
+}
+
+@keyframes scanningLine {
+  0% {
+    background-position: -100% 0, 0 0;
+  }
+  50% {
+    background-position: 200% 0, 0 0;
+  }
+  100% {
+    background-position: -100% 0, 0 0;
+  }
+}
+
+/* Interactive hover state for enhanced engagement */
+.flab-pitch-wrapper:hover::before,
+.flab-pitch-wrapper:hover::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+
+.flab-pitch-wrapper:hover .flab-field::before {
+  animation-play-state: paused;
+  border-color: rgba(255, 193, 7, 0.9);
+  box-shadow:
+    inset 0 0 20px rgba(0, 0, 0, 0.3),
+    0 0 25px rgba(255, 193, 7, 0.4),
+    0 0 50px rgba(255, 193, 7, 0.2);
+}
+
+.flab-pitch-wrapper:hover .flab-field::after {
+  animation-play-state: paused;
+  opacity: 0.8;
+}
+
+/* Pulsing accent for active interactions */
+.flab-field[data-active="true"]::before {
+  border-color: rgba(255, 193, 7, 0.9);
+  animation: activePulse 0.6s ease-in-out !important;
+}
+
+@keyframes activePulse {
+  0%, 100% {
+    border-color: rgba(255, 193, 7, 0.6);
+    box-shadow:
+      inset 0 0 20px rgba(0, 0, 0, 0.3),
+      0 0 15px rgba(255, 193, 7, 0.2);
+  }
+  50% {
+    border-color: rgba(255, 193, 7, 1);
+    box-shadow:
+      inset 0 0 20px rgba(0, 0, 0, 0.3),
+      0 0 35px rgba(255, 193, 7, 0.5),
+      0 0 60px rgba(255, 193, 7, 0.3);
+  }
+}
+
+/* Extra glow layer for maximum wow-factor */
+.flab-pitch-wrapper {
+  box-shadow:
+    0 0 40px rgba(255, 193, 7, 0.15),
+    0 0 80px rgba(76, 175, 80, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.flab-pitch-wrapper:hover {
+  box-shadow:
+    0 0 50px rgba(255, 193, 7, 0.25),
+    0 0 100px rgba(76, 175, 80, 0.15);
+}
