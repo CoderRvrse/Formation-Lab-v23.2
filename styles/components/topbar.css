@@ -197,13 +197,25 @@
 
 .flab-body--fullscreen .flab-controls-sheet {
   position: fixed;
-  inset: 0;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, calc(100vw - 48px));
+  max-height: 60vh;
+  background: rgba(8, 16, 32, 0.93);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 16px 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transform: none;
-  width: 100%;
-  max-width: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+  z-index: 45;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 /* Quick access overlay controls */
@@ -271,10 +283,56 @@ body.flab-body--fullscreen .flab-quick-erase {
 }
 
 .flab-body--fullscreen .flab-controls-sheet.is-open {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transform: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Fullscreen panel content styling */
+.flab-body--fullscreen .flab-controls-sheet .flab-sidepanel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flab-body--fullscreen .flab-controls-sheet .flab-tool,
+.flab-body--fullscreen .flab-controls-sheet .flab-action {
+  width: 100%;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f5f7ff;
+  font-weight: 500;
+  font-size: 13px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.flab-body--fullscreen .flab-controls-sheet .flab-action:hover:not(:disabled) {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.08));
+  transform: translateY(-1px);
+}
+
+.flab-body--fullscreen .flab-controls-sheet .actions-row,
+.flab-body--fullscreen .flab-controls-sheet .actions-row--three,
+.flab-body--fullscreen .flab-controls-sheet .actions-row--four {
+  display: flex;
+  width: 100%;
+  gap: 8px;
+}
+
+.flab-body--fullscreen .flab-controls-sheet .actions-row--three {
+  flex-wrap: wrap;
+}
+
+.flab-body--fullscreen .flab-controls-sheet .actions-row .flab-action--sm {
+  flex: 1;
+}
+
+.flab-body--fullscreen .flab-controls-sheet .flab-action--share-compact {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
