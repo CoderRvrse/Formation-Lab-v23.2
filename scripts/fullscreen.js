@@ -4,7 +4,6 @@
  */
 
 import { FLAB } from './state.js';
-import { openPitchControls, closePitchControls } from './pitch-controls.js';
 
 let isFullscreen = false;
 let originalSidepanelDisplay = null;
@@ -344,6 +343,18 @@ function syncFullscreenOverlayState() {
     fullscreenControlsHandle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   }
   console.debug(`[FLAB] fullscreen overlay ${isOpen ? 'visible' : 'hidden'} (sheet state)`);
+}
+
+function closePitchControls() {
+  const sheet = getControlsSheet();
+  if (!sheet) return;
+  sheet.classList.remove('is-open');
+}
+
+function openPitchControls() {
+  const sheet = getControlsSheet();
+  if (!sheet) return;
+  sheet.classList.add('is-open');
 }
 
 function toggleFullscreenOverlay(event) {
