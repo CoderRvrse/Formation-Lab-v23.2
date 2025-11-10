@@ -1,0 +1,348 @@
+/* Pitch bottom drawer + controls tab */
+
+.flab-controls-tab {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+  color: var(--flab-text);
+  font-weight: 600;
+  letter-spacing: 0.25px;
+  cursor: pointer;
+  z-index: 40;
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.35),
+    inset 0 0 8px rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.flab-controls-tab:focus-visible {
+  outline: 2px solid var(--flab-accent);
+  outline-offset: 3px;
+}
+
+.flab-controls-tab svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s ease;
+}
+
+.flab-controls-tab[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+
+.flab-controls-sheet {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, calc(100% + 24px));
+  width: min(940px, calc(100% - 32px));
+  max-height: none;
+  border-radius: 36px;
+  background: radial-gradient(circle at 30% 15%, rgba(255, 255, 255, 0.1), rgba(8, 16, 32, 0.95));
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.55),
+    inset 0 0 24px rgba(255, 255, 255, 0.05);
+  padding: clamp(24px, 3vw, 38px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+  z-index: 35;
+  overflow: visible;
+}
+
+.flab-controls-sheet.is-open {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.flab-controls-sheet .flab-sidepanel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(18px, 1.8vw, 28px);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  width: 100%;
+  color: var(--flab-text);
+}
+
+.flab-controls-sheet .flab-header,
+.flab-controls-sheet .flab-header__top {
+  display: none;
+}
+
+.flab-controls-sheet .flab-toolbar,
+.flab-controls-sheet .flab-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: clamp(12px, 1.3vw, 18px);
+  padding: clamp(16px, 1.8vw, 24px);
+  border-radius: 30px;
+  background: rgba(4, 8, 20, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 24px 40px rgba(0, 0, 0, 0.45);
+}
+
+.flab-controls-sheet .flab-share-footer {
+  padding-top: 14px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.flab-controls-sheet .flab-tool,
+.flab-controls-sheet .flab-action {
+  width: clamp(140px, 22vw, 220px);
+  border-radius: 999px;
+  padding: 12px 22px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #f5f7ff;
+  font-weight: 600;
+  box-shadow:
+    0 12px 26px rgba(0, 0, 0, 0.35),
+    inset 0 1px 4px rgba(255, 255, 255, 0.2);
+  text-align: center;
+}
+
+/* Prominent Share button - full width yellow style */
+.flab-controls-sheet .flab-action--share-prominent {
+  width: 100%;
+  max-width: none;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.95), rgba(255, 193, 7, 0.85));
+  border: 2px solid rgba(255, 193, 7, 0.6);
+  color: #0b2b66;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  box-shadow:
+    0 12px 28px rgba(255, 193, 7, 0.25),
+    inset 0 1px 4px rgba(255, 255, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.flab-controls-sheet .flab-action--share-prominent:hover {
+  background: linear-gradient(135deg, rgba(255, 193, 7, 1), rgba(255, 193, 7, 0.95));
+  border-color: rgba(255, 193, 7, 0.8);
+  box-shadow:
+    0 14px 32px rgba(255, 193, 7, 0.35),
+    inset 0 1px 4px rgba(255, 255, 255, 0.4);
+  transform: translateY(-1px);
+}
+
+.flab-controls-sheet .flab-action--share-prominent:active {
+  transform: scale(0.98);
+  box-shadow:
+    0 8px 16px rgba(255, 193, 7, 0.2),
+    inset 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.flab-controls-sheet .flab-action--share-prominent svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.flab-controls-sheet .actions-row,
+.flab-controls-sheet .actions-row--three,
+.flab-controls-sheet .actions-row--four {
+  display: contents;
+}
+
+.flab-controls-sheet .passstyle-trigger__name {
+  display: none;
+}
+
+.flab-controls-sheet .passstyle-value {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.flab-body--fullscreen .flab-controls-tab {
+  display: none;
+}
+
+.flab-body--fullscreen .flab-controls-sheet {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: none;
+  width: 100%;
+  max-width: none;
+}
+
+/* Quick access overlay controls */
+.flab-quick-controls {
+  position: absolute;
+  left: clamp(12px, 2vw, 28px);
+  top: clamp(12px, 2vw, 28px);
+  display: inline-flex;
+  gap: 8px;
+  z-index: 45;
+}
+
+.flab-quick-controls--bottom .flab-tool--quick {
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: rgba(6, 12, 28, 0.9);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+.flab-tool--quick svg {
+  width: 14px;
+  height: 14px;
+}
+
+.flab-quick-erase {
+  position: absolute;
+  right: clamp(12px, 2vw, 24px);
+  top: calc(clamp(12px, 2vw, 24px) + 110px);
+  border-radius: 16px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: rgba(6, 12, 28, 0.9);
+  font-weight: 600;
+  box-shadow:
+    0 12px 22px rgba(0, 0, 0, 0.3),
+    inset 0 1px 3px rgba(255, 255, 255, 0.4);
+  z-index: 45;
+}
+
+body.flab-body--fullscreen .flab-quick-controls,
+body.flab-body--fullscreen .flab-quick-erase {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .flab-quick-controls {
+    left: 50%;
+    transform: translateX(-50%);
+    top: calc(clamp(12px, 2vw, 24px) + 60px);
+  }
+
+  .flab-quick-erase {
+    top: calc(clamp(12px, 2vw, 24px) + 160px);
+  }
+}
+
+.flab-body--fullscreen .flab-controls-sheet.is-open {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: none;
+}
+
+@media (max-width: 768px) {
+  .flab-controls-sheet {
+    width: calc(100% - 24px);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .flab-controls-sheet .actions-row {
+    flex-wrap: wrap;
+  }
+
+  .flab-controls-sheet .flab-toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .flab-controls-tab {
+    padding: 9px 14px;
+    gap: 6px;
+  }
+
+  .flab-controls-tab__label {
+    font-size: 14px;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   TOP CENTER SELECT/PASS BUTTONS
+   ───────────────────────────────────────────────────────────── */
+
+.flab-overlay-controls--top-center {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-20%);
+  display: flex;
+  gap: 120px;
+  z-index: 40;
+}
+
+.flab-overlay-controls--top-center .flab-overlay-btn {
+  padding: 12px 24px;
+  background: rgba(255, 193, 7, 0.9);
+  border: 2px solid rgba(255, 193, 7, 0.8);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  min-width: auto;
+  min-height: 48px;
+}
+
+/* Theme button in center */
+.flab-overlay-controls--top-center .flab-overlay-btn--theme-center {
+  padding: 0;
+  min-width: 48px;
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+@media (max-width: 640px) {
+  .flab-overlay-controls--top-center {
+    gap: 60px;
+  }
+
+  .flab-overlay-controls--top-center .flab-overlay-btn {
+    padding: 10px 18px;
+    font-size: 12px;
+    min-height: 42px;
+  }
+
+  .flab-overlay-controls--top-center .flab-overlay-btn span {
+    display: none;
+  }
+
+  .flab-overlay-controls--top-center .flab-overlay-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+}

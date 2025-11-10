@@ -1,8 +1,8 @@
-# Formation Lab v23.4.3
+# Formation Lab v23.4.8
 
 > Youth soccer tactics board with drag, pass arrows, and instant exports
 
-![Version](https://img.shields.io/badge/version-23.4.3-blue.svg)
+![Version](https://img.shields.io/badge/version-23.4.8-blue.svg)
 
 Formation Lab is a modern web application for designing soccer formations and tactical plays. Built with vanilla JavaScript ES6 modules, it features intuitive drag-and-drop player positioning, sophisticated pass arrow drawing, and high-quality PNG export capabilities.
 
@@ -15,6 +15,12 @@ Formation Lab is a modern web application for designing soccer formations and ta
 - **📸 Export**: High-quality PNG export with canvas rendering parity
 - **⚡ Performance**: Optimized for 60fps interactions with micro-optimizations
 - **🛡️ Quality Assured**: 20+ automated checks with CI pipeline
+- **🌙 Dark/Light Mode**: Theme toggle with local storage persistence
+- **🔄 Undo/Redo**: Full undo/redo system (Ctrl+Z/Ctrl+Y) plus Z key for quick pass undo
+- **🗑️ Smart Erase**: Clear individual passes or all passes with confirmation dialogs
+- **🎬 Fullscreen Mode**: Immersive editing experience with all controls accessible
+- **📤 Share Formation**: Social sharing (Facebook, Twitter, LinkedIn, Instagram, Email) with link copy
+- **⌨️ Keyboard Shortcuts**: Tab to cycle players, arrow keys to nudge, Escape to cancel
 
 ## 🚀 Quick Start
 

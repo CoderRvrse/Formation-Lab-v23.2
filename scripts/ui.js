@@ -45,8 +45,8 @@ function setMode(mode) {
   const clamped = ['select', 'pass', 'erase'].includes(mode) ? mode : 'select';
   set('mode', clamped);
 
-  // Update button states
-  const toolButtons = document.querySelectorAll('.flab-tool[data-mode]');
+  // Update button states (both sidepanel and overlay)
+  const toolButtons = document.querySelectorAll('.flab-tool[data-mode], .flab-overlay-btn[data-mode]');
   toolButtons.forEach(btn => {
     const pressed = btn.dataset.mode === FLAB.mode;
     btn.setAttribute("aria-pressed", pressed ? "true" : "false");
@@ -187,8 +187,8 @@ function logAcceptanceChecklist() {
 
 // Wire up all UI interactions
 export function wireUI() {
-  // Mode buttons
-  document.querySelectorAll('.flab-tool[data-mode]').forEach(btn => {
+  // Mode buttons (sidepanel tools, overlay buttons, and undo/redo buttons)
+  document.querySelectorAll('.flab-tool[data-mode], .flab-overlay-btn[data-mode], .flab-undo-redo-btn[data-mode]').forEach(btn => {
     btn.addEventListener('click', () => {
       setMode(btn.dataset.mode);
     });
@@ -284,6 +284,38 @@ export function wireUI() {
         handleResize();
       });
     }, 16); // ~60fps throttling
+  });
+
+  // Undo/Redo buttons
+  import('./undo-redo.js').then(({ undoManager }) => {
+    const btnUndo = document.getElementById('btnUndo');
+    const btnRedo = document.getElementById('btnRedo');
+
+    if (btnUndo) {
+      btnUndo.addEventListener('click', () => {
+        undoManager.undo();
+      });
+    }
+
+    if (btnRedo) {
+      btnRedo.addEventListener('click', () => {
+        undoManager.redo();
+      });
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      // Undo: Ctrl+Z or Cmd+Z
+      if ((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey) {
+        e.preventDefault();
+        undoManager.undo();
+      }
+      // Redo: Ctrl+Y or Cmd+Y or Ctrl+Shift+Z
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+        e.preventDefault();
+        undoManager.redo();
+      }
+    });
   });
 
   // Wire up pass playback controls
@@ -451,6 +483,17 @@ function setupPassPlaybackControls() {
       showBallPlaybackDiagnostics();
     });
   }
+
+  document.querySelectorAll('[data-proxy]').forEach(btn => {
+    const targetSelector = btn.getAttribute('data-proxy');
+    if (!targetSelector) return;
+    btn.addEventListener('click', () => {
+      const target = document.querySelector(targetSelector);
+      if (target) {
+        target.click();
+      }
+    });
+  });
 
   // Pass click handling for one-click play
   const arrowLayer = document.getElementById('arrow-layer');

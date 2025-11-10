@@ -293,8 +293,8 @@ export function initUndoRedo() {
   // Add keyboard shortcuts
   document.addEventListener('keydown', handleUndoRedoKeys);
 
-  // Add undo/redo buttons to UI if they don't exist
-  addUndoRedoButtons();
+  // Undo/Redo buttons are already in HTML overlay at top right (#btnUndo, #btnRedo)
+  // No need to create duplicate buttons in Tools panel
 
   // Initial UI update
   undoManager.updateUI();

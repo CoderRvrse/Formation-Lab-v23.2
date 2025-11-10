@@ -1,5 +1,5 @@
 // Orientation module for Formation Lab
-import { set, FLAB, PITCH_LAND, PITCH_PORT } from './state.js';
+import { set, FLAB, PITCH_LAND } from './state.js';
 
 /**
  * Detect if we're on a mobile device vs desktop
@@ -18,13 +18,14 @@ function isMobileDevice() {
 }
 
 export function setOrientation(mode) {
-  set('orientation', mode);
+  // Landscape is our default/stable mode for now
+  set('orientation', 'landscape');
   const fieldEl = document.querySelector('.flab-field');
-  fieldEl?.classList.toggle('is-portrait', mode === 'portrait');
-  // swap pitch asset via CSS var (use relative path from CSS context)
-  const pitchPath = mode === 'portrait' ? '../../assets/portrait/pitch-portrait.svg' : '../../assets/landscape/pitch-landscape.svg';
+  fieldEl?.classList.remove('is-portrait');
+
+  // Always point to the landscape asset until portrait mode is reintroduced
   document.documentElement.style.setProperty('--pitch-url',
-    `url("${pitchPath}")`
+    `url("../../assets/landscape/pitch-landscape.svg")`
   );
 
   // Import render functions when needed
@@ -45,19 +46,8 @@ export function flipSides(){
 }
 
 export function autoOrientation() {
-  const field = document.querySelector('.flab-field');
-  const r = field?.clientWidth / Math.max(1, field?.clientHeight || 1);
-
-  // On desktop in fullscreen mode, always use landscape regardless of monitor orientation
-  // This prevents incorrect rotation when dragging to portrait monitors
-  const isFullscreen = document.body.classList.contains('flab-body--fullscreen');
-  if (!isMobileDevice() && isFullscreen) {
-    setOrientation('landscape');
-    return;
-  }
-
-  // Otherwise, auto-detect based on viewport aspect ratio
-  setOrientation(r >= 1 ? 'landscape' : 'portrait');
+  // Temporarily force landscape everywhere for stability
+  setOrientation('landscape');
 }
 
 window.__mod_orientation = true;

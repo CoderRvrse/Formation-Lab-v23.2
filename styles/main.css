@@ -4,6 +4,7 @@
 @import url("./components/player-editor.css");
 @import url("./components/arrows.css");
 @import url("./components/toolbar.css");
+@import url("./components/topbar.css");
 @import url("./components/share.css");
 @import url("./components/presets.css");
 @import url("./components/passstyle.css");
@@ -58,43 +59,50 @@ body.flab-body {
     linear-gradient(160deg, var(--flab-bg-start), var(--flab-bg-end));
   color: var(--flab-text);
   display: flex;
-  align-items: stretch;
-  justify-content: center;
-  padding: 24px clamp(16px, 3vw, 48px);
+  flex-direction: column;
   font-size: 16px;
   line-height: 1.5;
 }
 
 .flab-app {
-  display: grid;
-  grid-template-columns: minmax(280px, 360px) minmax(320px, 1fr);
-  gap: clamp(16px, 3vw, 48px);
-  width: min(1180px, 100%);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px clamp(16px, 3vw, 48px);
+  width: 100%;
+  min-height: 0;
+}
+
+.flab-pitch-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1340px;
+  height: auto;
+  flex: 0 1 auto;
+  margin: 0 auto;
   background: linear-gradient(180deg, rgba(10, 25, 68, 0.84), rgba(10, 25, 68, 0.72));
   border-radius: 24px;
   padding: clamp(18px, 3vw, 28px);
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   position: relative;
   isolation: isolate;
-  transition: grid-template-columns 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Collapsed sidepanel state */
-.flab-app.flab-app--sidepanel-collapsed {
-  grid-template-columns: 0 1fr;
-  gap: 0;
+/* Fullscreen mode - take entire screen */
+.flab-body--fullscreen .flab-pitch-wrapper {
+  padding: 0;
+  border-radius: 0;
+  background: linear-gradient(160deg, var(--flab-bg-start), var(--flab-bg-end));
+  box-shadow: none;
+  max-width: 100vw;
+  max-height: 100vh;
 }
 
 .flab-sidepanel {
   transition: all 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
-.flab-app.flab-app--sidepanel-collapsed .flab-sidepanel {
-  width: 0 !important;
-  min-width: 0 !important;
-  padding: 0 !important;
-  opacity: 0;
-  overflow: hidden;
 }
 
 /* Noscript and help modal styles */

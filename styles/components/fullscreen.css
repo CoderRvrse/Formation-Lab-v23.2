@@ -15,22 +15,21 @@
 
 .flab-app--fullscreen .flab-pitch-wrapper {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100vw;
   height: 100vh;
   padding: 0;
   margin: 0;
-  display: block;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
 }
 
 .flab-app--fullscreen .flab-field {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw !important;
-  height: 100vh !important;
+  position: relative;
+  width: min(100vw, calc(100vh * (105 / 68)));
+  height: auto;
   max-width: none;
   max-height: none;
   border-radius: 0;
@@ -39,6 +38,7 @@
   background-position: center center !important;
   background-repeat: no-repeat !important;
 }
+
 
 /* Animated grass green border light for fullscreen pitch */
 .flab-app--fullscreen .flab-field::before {
@@ -159,169 +159,12 @@ body.flab-body--fullscreen .flab-app {
   overflow: hidden;
 }
 
-/* Floating toolbar in fullscreen mode */
-.flab-app--fullscreen .flab-toolbar {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  flex-direction: row;
-  gap: 8px;
-  z-index: 100;
-  background: rgba(5, 24, 60, 0.85);
-  padding: 8px;
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-}
-
-.flab-app--fullscreen .flab-toolbar .flab-tool {
-  padding: 8px 10px;
-  font-size: 12px;
-  min-width: auto;
-}
-
-.flab-app--fullscreen .flab-toolbar .flab-tool span {
-  display: none;
-}
-
-.flab-app--fullscreen .flab-toolbar .flab-tool:hover span {
-  display: inline;
-  margin-left: 6px;
-}
-
-/* Floating action buttons in fullscreen mode */
-.flab-app--fullscreen .flab-actions {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  z-index: 100;
-  max-height: calc(100vh - 40px);
-  overflow-y: auto;
-}
-
-.flab-app--fullscreen .flab-actions > * {
-  min-width: 44px;
-  min-height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flab-app--fullscreen .flab-actions .flab-action {
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: 50%;
-  background: rgba(5, 24, 60, 0.85);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: var(--flab-text);
-  font-size: 0;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  transition: all 0.2s ease;
-}
-
-.flab-app--fullscreen .flab-actions .flab-action:hover {
-  background: rgba(12, 68, 140, 0.9);
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-}
-
-.flab-app--fullscreen .flab-actions .flab-action svg {
-  width: 20px;
-  height: 20px;
-}
-
-.flab-app--fullscreen .flab-actions .toolbar-row {
-  flex-direction: column;
-  gap: 4px;
-}
-
-.flab-app--fullscreen .flab-actions .toolbar-row .flab-action {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  padding: 8px 12px;
-  font-size: 12px;
-  text-align: center;
-  white-space: nowrap;
-}
-
 /* Hide keytips in fullscreen */
 .flab-app--fullscreen .flab-keytips {
   display: none;
 }
 
-/* Floating help button */
-.flab-app--fullscreen .flab-toolbar .flab-tool--help {
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  left: auto;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border-radius: 50%;
-  background: rgba(5, 24, 60, 0.85);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.flab-app--fullscreen .flab-toolbar .flab-tool--help:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-}
-
-.flab-app--fullscreen .flab-toolbar .flab-tool--help span {
-  display: none;
-}
-
-/* Button indicator for fullscreen mode */
-.flab-action--active {
-  background-color: rgba(76, 175, 80, 0.6) !important;
-  border-color: rgba(76, 175, 80, 0.8) !important;
-}
-
 /* Fullscreen close X button */
-.fullscreen-close-btn {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  width: 48px;
-  height: 48px;
-  background: rgba(220, 53, 69, 0.9);
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-radius: 50%;
-  font-size: 32px;
-  line-height: 1;
-  cursor: pointer;
-  z-index: 10002;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transition: all 0.2s ease;
-  font-family: Arial, sans-serif;
-  font-weight: 300;
-  padding: 0;
-  backdrop-filter: blur(10px);
-}
-
-.fullscreen-close-btn:hover {
-  background: rgba(220, 53, 69, 1);
-  transform: scale(1.1) rotate(90deg);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-}
-
-.fullscreen-close-btn:active {
-  transform: scale(0.95) rotate(90deg);
-}
-
 /* Escape hint animation */
 @keyframes slideIn {
   from {
@@ -426,6 +269,17 @@ body.flab-body--fullscreen .flab-app {
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(255, 193, 7, 0.3);
 }
 
+.flab-app--fullscreen .flab-field .flab-fullscreen-overlay:hover {
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 14px 32px rgba(0, 0, 0, 0.45),
+    inset 0 1px 4px rgba(255, 255, 255, 0.3);
+}
+
+.flab-app--fullscreen .flab-field .flab-fullscreen-overlay:active {
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.35);
+}
+
 /* Hide overlay in normal mode, show in fullscreen */
 .flab-field .flab-fullscreen-overlay {
   display: flex;
@@ -516,4 +370,519 @@ body.flab-body--fullscreen .flab-app {
     width: 18px;
     height: 18px;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   OVERLAY CONTROLS ROW (Fullscreen, Theme, Select, Pass, Erase)
+   ───────────────────────────────────────────────────────────── */
+
+.flab-overlay-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 40;
+  pointer-events: auto;
+}
+
+.flab-overlay-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 12px;
+  min-width: 44px;
+  min-height: 44px;
+  background: rgba(255, 193, 7, 0.95);
+  color: #0b2b66;
+  border: 2px solid rgba(255, 193, 7, 0.8);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(255, 193, 7, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.flab-overlay-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+.flab-overlay-btn:hover {
+  background: rgba(255, 193, 7, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.6), inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+.flab-overlay-btn:active {
+  transform: translateY(0);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* Icon-only buttons */
+.flab-overlay-btn--theme {
+  padding: 0;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.flab-overlay-btn--theme svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Active state for mode buttons (Select, Pass, Erase) */
+.flab-overlay-btn[data-mode][aria-pressed="true"] {
+  background: rgba(255, 193, 7, 1);
+  border-color: #ffd447;
+  box-shadow:
+    0 6px 20px rgba(255, 193, 7, 0.6),
+    inset 0 1px 3px rgba(255, 255, 255, 0.5),
+    inset 0 0 0 2px rgba(255, 193, 7, 0.3);
+}
+
+/* Fullscreen mode styles for overlay controls - KEEP VISIBLE */
+.flab-app--fullscreen .flab-overlay-controls {
+  display: flex;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   FULLSCREEN BUTTON CORNER (bottom right, like YouTube)
+   ───────────────────────────────────────────────────────────── */
+
+.flab-fullscreen-btn-corner {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 193, 7, 0.85);
+  color: #0b2b66;
+  border: 2px solid rgba(255, 193, 7, 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 35;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(255, 193, 7, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  font-size: 0;
+  pointer-events: auto;
+}
+
+
+.flab-fullscreen-btn-corner svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flab-fullscreen-btn-corner:hover {
+  background: rgba(255, 193, 7, 0.95);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.4);
+}
+
+.flab-fullscreen-btn-corner:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* Keep fullscreen button visible */
+.flab-app--fullscreen .flab-fullscreen-btn-corner {
+  display: flex;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   THEME BUTTON CORNER (top left)
+   ───────────────────────────────────────────────────────────── */
+
+.flab-theme-btn-corner {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 193, 7, 0.85);
+  color: #0b2b66;
+  border: 2px solid rgba(255, 193, 7, 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 35;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(255, 193, 7, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  font-size: 0;
+  pointer-events: auto;
+}
+
+.flab-theme-btn-corner svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flab-theme-btn-corner:hover {
+  background: rgba(255, 193, 7, 0.95);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.4);
+}
+
+.flab-theme-btn-corner:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* Keep theme button visible */
+.flab-app--fullscreen .flab-theme-btn-corner {
+  display: flex;
+}
+
+/* ─────────────────────────────────────────────────────────────
+   UNDO/REDO BUTTONS (top right)
+   ───────────────────────────────────────────────────────────── */
+
+.flab-undo-redo-btn {
+  position: absolute;
+  top: 12px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 193, 7, 0.85);
+  color: #0b2b66;
+  border: 2px solid rgba(255, 193, 7, 0.7);
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 36;
+  padding: 0;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 16px rgba(255, 193, 7, 0.35), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+  font-size: 0;
+  pointer-events: auto;
+}
+
+/* Undo button positioning (top of the stack) */
+.flab-undo-redo-btn--undo {
+  top: 68px;
+  right: 12px;
+}
+
+/* Redo button positioning (below undo) */
+.flab-undo-redo-btn--redo {
+  top: 120px;
+  right: 12px;
+}
+
+/* Erase button positioning (below redo) */
+.flab-undo-redo-btn--erase {
+  top: 172px;
+  right: 12px;
+}
+
+.flab-undo-redo-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.flab-undo-redo-btn:hover {
+  background: rgba(255, 193, 7, 0.95);
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5), inset 0 1px 3px rgba(255, 255, 255, 0.4);
+}
+
+.flab-undo-redo-btn:active {
+  transform: scale(0.95);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(255, 193, 7, 0.3);
+}
+
+/* Keep undo/redo/erase buttons visible */
+.flab-app--fullscreen .flab-undo-redo-btn {
+  display: flex;
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .flab-theme-btn-corner {
+    top: 8px;
+    left: 8px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .flab-theme-btn-corner svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .flab-fullscreen-btn-corner {
+    bottom: 8px;
+    right: 8px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .flab-fullscreen-btn-corner svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .flab-undo-redo-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .flab-undo-redo-btn--undo {
+    top: 60px;
+    right: 8px;
+  }
+
+  .flab-undo-redo-btn--redo {
+    top: 108px;
+    right: 8px;
+  }
+
+  .flab-undo-redo-btn--erase {
+    top: 156px;
+    right: 8px;
+  }
+
+  .flab-undo-redo-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Mobile optimization */
+@media (max-width: 640px) {
+  .flab-overlay-controls {
+    top: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+
+  .flab-overlay-btn {
+    padding: 6px 10px;
+    min-width: 40px;
+    min-height: 40px;
+    font-size: 11px;
+  }
+
+  .flab-overlay-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .flab-overlay-btn--select span,
+  .flab-overlay-btn--pass span,
+  .flab-overlay-btn--erase span {
+    display: none;
+  }
+}
+
+/* Floating toolbelt injected in fullscreen */
+.flab-fullscreen-controls {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(32px, 5vh, 80px);
+  transform: translate(-50%, 140%);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(5, 10, 28, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.6),
+    inset 0 0 12px rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 1200;
+  width: auto;
+  max-width: 500px;
+}
+
+body.flab-body--fullscreen .flab-fullscreen-controls {
+  display: flex;
+}
+
+body.flab-body--fullscreen .flab-fullscreen-controls.is-open {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.flab-fullscreen-controls .flab-toolbar,
+.flab-fullscreen-controls .flab-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: none;
+  padding: 0;
+}
+
+.flab-fullscreen-controls .flab-tool,
+.flab-fullscreen-controls .flab-action {
+  width: auto;
+  min-width: 80px;
+  max-width: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.flab-fullscreen-controls .flab-tool svg,
+.flab-fullscreen-controls .flab-action svg {
+  width: 18px;
+  height: 18px;
+}
+
+.flab-fullscreen-controls .actions-row,
+.flab-fullscreen-controls .actions-row--three,
+.flab-fullscreen-controls .actions-row--four {
+  display: contents;
+}
+
+.flab-fullscreen-controls .passstyle-trigger__name {
+  display: none;
+}
+
+.flab-fullscreen-controls .passstyle-value {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 768px) {
+  .flab-fullscreen-controls {
+    width: calc(100% - 32px);
+    padding: 14px 18px;
+  }
+}
+
+/* Center-top close button - HIDDEN */
+.fullscreen-close-btn {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(6, 12, 28, 0.85);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1300;
+  box-shadow:
+    0 10px 28px rgba(0, 0, 0, 0.45),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.fullscreen-close-btn:hover {
+  background: rgba(10, 20, 44, 0.95);
+  transform: translateX(-50%) scale(1.08);
+}
+
+.fullscreen-close-btn:active {
+  transform: translateX(-50%) scale(0.95);
+}
+.flab-fullscreen-controls__handle {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(12px, 4vh, 48px);
+  transform: translateX(-50%);
+  display: none;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(5, 10, 28, 0.85);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  z-index: 1250;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.4),
+    inset 0 1px 3px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+body.flab-body--fullscreen .flab-fullscreen-controls__handle {
+  display: inline-flex;
+}
+
+.flab-fullscreen-controls__handle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.flab-fullscreen-controls__handle[aria-expanded='true'] svg {
+  transform: rotate(180deg);
+}
+
+.flab-fullscreen-controls__handle:hover {
+  background: rgba(8, 16, 40, 0.95);
+}
+
+.flab-fullscreen-controls__handle:active {
+  transform: translateX(-50%) scale(0.97);
 }

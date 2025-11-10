@@ -26,7 +26,7 @@ import { initTheme } from './theme.js';
 import { initShare } from './share.js';
 import { initFullscreen } from './fullscreen.js';
 import { initPlayerEditor } from './player-editor.js';
-import { initSidepanelCollapse } from './sidepanel-collapse.js';
+import { initPitchControls } from './pitch-controls.js';
 
 console.log(`🚀 Formation Lab ${FLAB.version} starting...`);
 
@@ -102,8 +102,8 @@ window.addEventListener('DOMContentLoaded', async () => {
   // Initialize player editor (double-click to edit)
   initPlayerEditor();
 
-  // Initialize sidepanel collapse functionality
-  initSidepanelCollapse();
+  // Initialize bottom drawer controls tab
+  initPitchControls();
 
   // Initialize ball animation system
   import('./animate.js').then(({ ensureBallLayer, preloadBall }) => {

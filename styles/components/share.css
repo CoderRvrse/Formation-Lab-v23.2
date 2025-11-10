@@ -1,16 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════
-   FORMATION LAB - PROFESSIONAL SHARE FOOTER
+   FORMATION LAB - PROFESSIONAL SHARE MENU
    Elegant social media sharing with Lucide icons
    ═══════════════════════════════════════════════════════════════ */
-
-.flab-share-footer {
-  margin-top: auto;
-  padding-top: 12px;
-  border-top: 1px solid var(--flab-outline);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
 
 .flab-share-toggle {
   display: flex;
@@ -30,7 +21,7 @@
   user-select: none;
   min-height: 38px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .flab-share-toggle:hover {
@@ -58,12 +49,25 @@
   transform: scale(1.1);
 }
 
-/* Share menu - grid of social icons */
+/* Share menu - floating overlay on pitch */
 .flab-share-menu {
+  position: fixed;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
-  animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 8px;
+  padding: 20px;
+  background: rgba(4, 8, 20, 0.98);
+  border: 2px solid rgba(255, 193, 7, 0.3);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 0 24px rgba(255, 255, 255, 0.05);
+  z-index: 1000;
+  animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 240px;
+  width: fit-content;
+  pointer-events: auto;
 }
 
 @keyframes slideDown {

@@ -16,16 +16,41 @@ export function initShare() {
 
   if (!shareToggle) return;
 
-  // Toggle share menu visibility
+  // Position and toggle share menu visibility
   shareToggle.addEventListener('click', (e) => {
     e.stopPropagation();
     const isVisible = shareMenu.style.display !== 'none';
-    shareMenu.style.display = isVisible ? 'none' : 'grid';
+
+    if (!isVisible) {
+      // Close the Tools panel
+      const controlsTab = document.getElementById('btnControlsTab');
+      const controlsSheet = document.getElementById('pitchControlsSheet');
+      if (controlsSheet && controlsSheet.classList.contains('is-open')) {
+        controlsTab.click();
+      }
+
+      // Position menu in center of viewport
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+
+      shareMenu.style.position = 'fixed';
+      shareMenu.style.top = (vh / 2 - 60) + 'px'; // Center vertically
+      shareMenu.style.left = (vw / 2 - 110) + 'px'; // Center horizontally
+      shareMenu.style.display = 'grid';
+      shareMenu.style.zIndex = '1000';
+
+      // Show toast notification
+      import('./ui-toast.js').then(({ showToast }) => {
+        showToast('📤 Choose a platform to share your formation!', 'info');
+      });
+    } else {
+      shareMenu.style.display = 'none';
+    }
   });
 
   // Close menu when clicking outside
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.flab-share-footer')) {
+    if (!e.target.closest('#btnShareToggle') && !e.target.closest('#shareMenu')) {
       shareMenu.style.display = 'none';
     }
   });
