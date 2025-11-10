@@ -202,6 +202,25 @@ export function wireUI() {
   const resetButton = document.getElementById('resetButton');
   resetButton?.addEventListener('click', resetFormation);
 
+  // Controls tab button (Tools panel toggle)
+  const btnControlsTab = document.getElementById('btnControlsTab');
+  const pitchControlsSheet = document.getElementById('pitchControlsSheet');
+
+  btnControlsTab?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = pitchControlsSheet?.classList.contains('is-open');
+
+    if (isOpen) {
+      // Close the panel
+      pitchControlsSheet.classList.remove('is-open');
+      btnControlsTab.setAttribute('aria-expanded', 'false');
+    } else {
+      // Open the panel
+      pitchControlsSheet.classList.add('is-open');
+      btnControlsTab.setAttribute('aria-expanded', 'true');
+    }
+  });
+
   // Preset buttons
   const btnSavePreset = document.getElementById('btnSavePreset');
   const btnApplyDefault = document.getElementById('btnApplyDefault');
@@ -316,6 +335,26 @@ export function wireUI() {
         undoManager.redo();
       }
     });
+  });
+
+  // Close controls sheet when clicking on pitch
+  const pitchWrapper = document.querySelector('.flab-pitch-wrapper');
+  const pitchField = document.querySelector('.flab-field');
+
+  pitchWrapper?.addEventListener('click', (e) => {
+    // Don't close if clicking on a control button or the sheet itself
+    if (e.target.closest('.flab-controls-tab') || e.target.closest('.flab-controls-sheet')) {
+      return;
+    }
+
+    // Close the panel if it's open
+    const pitchControlsSheet = document.getElementById('pitchControlsSheet');
+    const btnControlsTab = document.getElementById('btnControlsTab');
+
+    if (pitchControlsSheet?.classList.contains('is-open')) {
+      pitchControlsSheet.classList.remove('is-open');
+      btnControlsTab?.setAttribute('aria-expanded', 'false');
+    }
   });
 
   // Wire up pass playback controls
