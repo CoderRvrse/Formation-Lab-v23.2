@@ -56,13 +56,13 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   padding: 20px;
-  background: rgba(4, 8, 20, 0.98);
-  border: 2px solid rgba(255, 193, 7, 0.3);
+  background: linear-gradient(135deg, rgba(0, 77, 152, 0.92), rgba(168, 19, 62, 0.85));
+  border: 2px solid rgba(237, 187, 0, 0.3);
   border-radius: 16px;
   backdrop-filter: blur(16px);
   box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.5),
-    inset 0 0 24px rgba(255, 255, 255, 0.05);
+    0 20px 50px rgba(0, 77, 152, 0.4),
+    inset 0 0 24px rgba(237, 187, 0, 0.08);
   z-index: 1000;
   animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   min-width: 240px;
@@ -88,10 +88,10 @@
   justify-content: center;
   width: 36px;
   height: 36px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(237, 187, 0, 0.15);
+  border: 1.5px solid rgba(237, 187, 0, 0.3);
   border-radius: 6px;
-  color: var(--flab-text);
+  color: #f5f7ff;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
@@ -99,11 +99,11 @@
 }
 
 .flab-share-link:hover {
-  background: var(--flab-accent);
-  border-color: var(--flab-accent);
-  color: #0b2b66;
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.9), rgba(255, 237, 2, 0.8));
+  border-color: rgba(237, 187, 0, 0.9);
+  color: #004D98;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+  box-shadow: 0 4px 12px rgba(237, 187, 0, 0.4);
 }
 
 .flab-share-link:active {
@@ -134,27 +134,35 @@ body.theme-light .flab-share-footer {
   border-top-color: var(--flab-outline);
 }
 
+body.theme-light .flab-share-menu {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(230, 240, 249, 0.95));
+  border-color: rgba(0, 77, 152, 0.2);
+  box-shadow:
+    0 20px 50px rgba(0, 77, 152, 0.15),
+    inset 0 0 24px rgba(237, 187, 0, 0.08);
+}
+
 body.theme-light .flab-share-toggle {
-  background: var(--flab-accent);
-  color: white;
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.95), rgba(255, 237, 2, 0.85));
+  color: #004D98;
 }
 
 body.theme-light .flab-share-toggle:hover {
-  background: var(--flab-accent-dark);
+  background: linear-gradient(135deg, rgba(237, 187, 0, 1), rgba(255, 237, 2, 0.95));
   box-shadow:
-    0 6px 16px rgba(0, 102, 204, 0.3),
+    0 6px 16px rgba(237, 187, 0, 0.3),
     0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 body.theme-light .flab-share-link {
-  background: rgba(0, 0, 0, 0.05);
-  border-color: rgba(0, 0, 0, 0.1);
-  color: var(--flab-text);
+  background: rgba(0, 77, 152, 0.08);
+  border-color: rgba(0, 77, 152, 0.2);
+  color: #004D98;
 }
 
 body.theme-light .flab-share-link:hover {
-  background: var(--flab-accent);
-  border-color: var(--flab-accent);
-  color: white;
-  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.25);
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.9), rgba(255, 237, 2, 0.8));
+  border-color: rgba(237, 187, 0, 0.8);
+  color: #004D98;
+  box-shadow: 0 4px 12px rgba(237, 187, 0, 0.3);
 }
