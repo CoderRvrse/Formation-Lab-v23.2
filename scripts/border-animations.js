@@ -38,6 +38,9 @@ export function initBorderAnimations() {
   // Add corner accent animation markers
   createCornerMarkers(pitchWrapper);
 
+  // Initialize border text animations
+  initBorderTextAnimations();
+
   console.log('✨ Border animations initialized');
 }
 
@@ -152,6 +155,82 @@ function initializeKeyframes() {
     }
   `;
   document.head.appendChild(style);
+}
+
+/**
+ * Initialize animated text along pitch borders
+ * Uses requestAnimationFrame to smoothly animate textPath startOffset
+ */
+function initBorderTextAnimations() {
+  const textElements = document.querySelectorAll('.flab-border-text');
+
+  if (textElements.length === 0) {
+    console.warn('Border text animations: no text elements found');
+    return;
+  }
+
+  // Animation config - maps direction to speed and offset range
+  const animConfig = {
+    'top': { duration: 12000, startOffsetStart: '0%', startOffsetEnd: '100%' },
+    'right': { duration: 12000, startOffsetStart: '0%', startOffsetEnd: '100%' },
+    'bottom': { duration: 12000, startOffsetStart: '100%', startOffsetEnd: '0%' },
+    'left': { duration: 12000, startOffsetStart: '100%', startOffsetEnd: '0%' }
+  };
+
+  textElements.forEach(textEl => {
+    const direction = textEl.classList.contains('flab-border-text--top') ? 'top'
+      : textEl.classList.contains('flab-border-text--right') ? 'right'
+      : textEl.classList.contains('flab-border-text--bottom') ? 'bottom'
+      : 'left';
+
+    const config = animConfig[direction];
+    const textPath = textEl.querySelector('textPath');
+
+    if (!textPath) return;
+
+    // Make sure text is visible
+    textEl.style.display = 'block';
+    textEl.setAttribute('font-family', 'Arial, sans-serif');
+    textEl.setAttribute('font-size', '13');
+    textEl.setAttribute('font-weight', '600');
+
+    // Set color based on direction
+    const colors = {
+      'top': 'rgba(255, 193, 7, 0.9)',    // gold
+      'right': 'rgba(33, 150, 243, 0.9)',  // cyan
+      'bottom': 'rgba(76, 175, 80, 0.9)',  // green
+      'left': 'rgba(156, 39, 176, 0.9)'    // magenta
+    };
+    textEl.setAttribute('fill', colors[direction]);
+
+    // Animate using requestAnimationFrame
+    let startTime = null;
+    let reverse = false;
+
+    function animate(currentTime) {
+      if (startTime === null) startTime = currentTime;
+      const elapsed = currentTime - startTime;
+      const progress = (elapsed % config.duration) / config.duration;
+
+      // Oscillate: 0 -> 1 -> 0
+      const oscillated = progress < 0.5 ? progress * 2 : (1 - progress) * 2;
+
+      // Parse start/end offsets as numbers
+      const startNum = parseInt(config.startOffsetStart);
+      const endNum = parseInt(config.startOffsetEnd);
+
+      // Calculate current offset
+      const currentOffset = startNum + (endNum - startNum) * oscillated;
+
+      textPath.setAttribute('startOffset', currentOffset + '%');
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+  });
+
+  console.log('📝 Border text animations initialized');
 }
 
 // Initialize keyframes on script load
