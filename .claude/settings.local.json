@@ -14,7 +14,8 @@
       "Bash(/dev/null)",
       "Bash(git push:*)",
       "Bash(git reset:*)",
-      "Bash(cd:*)"
+      "Bash(cd:*)",
+      "Bash(README.md)"
     ],
     "deny": [],
     "ask": []
