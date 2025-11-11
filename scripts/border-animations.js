@@ -191,8 +191,8 @@ function initBorderTextAnimations() {
     // Make sure text is visible
     textEl.style.display = 'block';
     textEl.setAttribute('font-family', 'Arial, sans-serif');
-    textEl.setAttribute('font-size', '13');
-    textEl.setAttribute('font-weight', '600');
+    textEl.setAttribute('font-size', '16');
+    textEl.setAttribute('font-weight', '700');
 
     // Set color based on direction
     const colors = {
