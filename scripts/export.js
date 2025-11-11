@@ -35,6 +35,99 @@ function logTelemetry(event, data) {
   console.log(`Telemetry: ${event}`, data);
 }
 
+/**
+ * Draw border decorations (corner markers, lines, and text)
+ * to match the animated pitch border styling
+ */
+function drawBorderDecorations(ctx, wCss, hCss) {
+  const cornerSize = 40;
+  const lineWidth = 2;
+  const cornerRadius = 8;
+
+  // FC Barcelona color palette
+  const colors = [
+    'rgba(0, 77, 152, 0.6)',        // Blue (Blau)
+    'rgba(168, 19, 62, 0.6)',       // Claret (Grana)
+    'rgba(237, 187, 0, 0.6)',       // Gold
+    'rgba(255, 237, 2, 0.6)',       // Yellow (senyera)
+    'rgba(219, 0, 48, 0.6)',        // Bright Red
+  ];
+  const primaryColor = colors[0]; // Use blue as primary for export
+
+  ctx.save();
+
+  // Draw corner markers
+  const corners = [
+    { x: 0, y: 0, label: 'top-left' },
+    { x: wCss - cornerSize, y: 0, label: 'top-right' },
+    { x: wCss - cornerSize, y: hCss - cornerSize, label: 'bottom-right' },
+    { x: 0, y: hCss - cornerSize, label: 'bottom-left' }
+  ];
+
+  corners.forEach((corner, index) => {
+    ctx.strokeStyle = primaryColor;
+    ctx.lineWidth = lineWidth;
+    ctx.beginPath();
+
+    // Draw corner bracket based on position
+    if (index === 0) {
+      // Top-left
+      ctx.moveTo(corner.x, corner.y + cornerRadius);
+      ctx.lineTo(corner.x, corner.y);
+      ctx.lineTo(corner.x + cornerRadius, corner.y);
+    } else if (index === 1) {
+      // Top-right
+      ctx.moveTo(corner.x + cornerSize - cornerRadius, corner.y);
+      ctx.lineTo(corner.x + cornerSize, corner.y);
+      ctx.lineTo(corner.x + cornerSize, corner.y + cornerRadius);
+    } else if (index === 2) {
+      // Bottom-right
+      ctx.moveTo(corner.x + cornerSize, corner.y + cornerSize - cornerRadius);
+      ctx.lineTo(corner.x + cornerSize, corner.y + cornerSize);
+      ctx.lineTo(corner.x + cornerSize - cornerRadius, corner.y + cornerSize);
+    } else if (index === 3) {
+      // Bottom-left
+      ctx.moveTo(corner.x + cornerRadius, corner.y + cornerSize);
+      ctx.lineTo(corner.x, corner.y + cornerSize);
+      ctx.lineTo(corner.x, corner.y + cornerSize - cornerRadius);
+    }
+
+    ctx.stroke();
+  });
+
+  // Draw border lines with slight glow effect
+  ctx.strokeStyle = primaryColor;
+  ctx.lineWidth = lineWidth;
+  ctx.shadowColor = 'rgba(0, 77, 152, 0.4)';
+  ctx.shadowBlur = 8;
+
+  // Top line
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+  ctx.lineTo(wCss, 0);
+  ctx.stroke();
+
+  // Right line
+  ctx.beginPath();
+  ctx.moveTo(wCss, 0);
+  ctx.lineTo(wCss, hCss);
+  ctx.stroke();
+
+  // Bottom line
+  ctx.beginPath();
+  ctx.moveTo(wCss, hCss);
+  ctx.lineTo(0, hCss);
+  ctx.stroke();
+
+  // Left line
+  ctx.beginPath();
+  ctx.moveTo(0, hCss);
+  ctx.lineTo(0, 0);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
 function applyCanvasPassStyle(ctx) {
   const s = FLAB.passStyle;
   ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--pass-color').trim() || "#f0c419";
@@ -314,6 +407,9 @@ export async function exportPNG() {
     // 2) Draw arrows/jerseys/halo-based passes
     drawArrows(ctx, wCss, hCss);
     drawPlayers(ctx, wCss, hCss);
+
+    // 3) Draw border decorations (corner markers and lines)
+    drawBorderDecorations(ctx, wCss, hCss);
 
     // Add subtle watermark
     ctx.save();

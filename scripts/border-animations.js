@@ -160,6 +160,7 @@ function initializeKeyframes() {
 /**
  * Initialize animated text along pitch borders
  * Uses requestAnimationFrame to smoothly animate textPath startOffset
+ * Left border scrolls down, right border scrolls up (bouncing effect)
  */
 function initBorderTextAnimations() {
   const textElements = document.querySelectorAll('.flab-border-text');
@@ -169,68 +170,111 @@ function initBorderTextAnimations() {
     return;
   }
 
-  // Animation config - maps direction to speed and offset range
+  // Animation config - continuous seamless flow on both sides
+  // Left scrolls down (0-100), right scrolls up in sync (100-0), creating continuous flow effect
   const animConfig = {
-    'top': { duration: 12000, startOffsetStart: '0%', startOffsetEnd: '100%' },
-    'right': { duration: 12000, startOffsetStart: '0%', startOffsetEnd: '100%' },
-    'bottom': { duration: 12000, startOffsetStart: '100%', startOffsetEnd: '0%' },
-    'left': { duration: 12000, startOffsetStart: '100%', startOffsetEnd: '0%' }
+    'left': { duration: 20000, startOffsetStart: 0, startOffsetEnd: 100, reverse: false },
+    'right': { duration: 20000, startOffsetStart: 100, startOffsetEnd: 0, reverse: true }
   };
 
   textElements.forEach(textEl => {
-    const direction = textEl.classList.contains('flab-border-text--top') ? 'top'
-      : textEl.classList.contains('flab-border-text--right') ? 'right'
-      : textEl.classList.contains('flab-border-text--bottom') ? 'bottom'
-      : 'left';
+    const isLeftBorder = textEl.classList.contains('flab-border-text--left');
+    const isRightBorder = textEl.classList.contains('flab-border-text--right');
+
+    let direction = null;
+    if (isLeftBorder) direction = 'left';
+    else if (isRightBorder) direction = 'right';
+    else return;
 
     const config = animConfig[direction];
     const textPath = textEl.querySelector('textPath');
 
-    if (!textPath) return;
+    if (!textPath) {
+      console.warn(`Border text (${direction}): textPath not found`);
+      return;
+    }
 
-    // Make sure text is visible
-    textEl.style.display = 'block';
-    textEl.setAttribute('font-family', 'Arial, sans-serif');
-    textEl.setAttribute('font-size', '16');
-    textEl.setAttribute('font-weight', '700');
+    // Ensure text is visible - SVG attributes with FC Barcelona Play-style font
+    // Using geometric sans-serif that matches Barcelona Play aesthetic
+    textEl.setAttribute('font-family', 'Montserrat, Futura, "Century Gothic", "Arial Black", sans-serif');
+    textEl.setAttribute('font-size', '0.5');  // Super tiny SVG units!
+    textEl.setAttribute('font-weight', '900');
+    textEl.setAttribute('dominant-baseline', 'middle');
+    textEl.setAttribute('text-anchor', 'middle');
+    textEl.setAttribute('paint-order', 'stroke fill');
+    textEl.setAttribute('letter-spacing', '-0.05');  // Condensed spacing
 
-    // Set color based on direction
-    const colors = {
-      'top': 'rgba(255, 193, 7, 0.9)',    // gold
-      'right': 'rgba(33, 150, 243, 0.9)',  // cyan
-      'bottom': 'rgba(76, 175, 80, 0.9)',  // green
-      'left': 'rgba(156, 39, 176, 0.9)'    // magenta
-    };
-    textEl.setAttribute('fill', colors[direction]);
+    // Offset text away from border lines
+    const textDy = isLeftBorder ? '4' : '4';  // Left: above path, Right: below path
+    textEl.setAttribute('dy', textDy);
 
-    // Animate using requestAnimationFrame
+    // Magenta color for text
+    textEl.setAttribute('fill', 'rgba(156, 39, 176, 1)');
+    textEl.setAttribute('stroke', 'rgba(0, 0, 0, 0.7)');
+    textEl.setAttribute('stroke-width', '0.15');
+
+    // Dynamic color cycling palette - FC Barcelona official colors
+    const colors = [
+      'rgba(0, 77, 152, 1)',       // Blue (Blau)
+      'rgba(168, 19, 62, 1)',      // Claret (Grana)
+      'rgba(237, 187, 0, 1)',      // Gold
+      'rgba(255, 237, 2, 1)',      // Yellow (senyera)
+      'rgba(219, 0, 48, 1)',       // Bright Red
+      'rgba(0, 77, 152, 1)'        // Blue (loop back)
+    ];
+
+    // Infinite seamless ticker-tape animation with dynamic color & glow
     let startTime = null;
-    let reverse = false;
 
     function animate(currentTime) {
       if (startTime === null) startTime = currentTime;
       const elapsed = currentTime - startTime;
       const progress = (elapsed % config.duration) / config.duration;
 
-      // Oscillate: 0 -> 1 -> 0
-      const oscillated = progress < 0.5 ? progress * 2 : (1 - progress) * 2;
+      // Linear continuous scroll - synchronized on both sides
+      let offset;
+      if (config.reverse) {
+        // Right border: animate from 100 to 0 (scrolling up, picks up where left left off)
+        offset = config.startOffsetStart + (config.startOffsetEnd - config.startOffsetStart) * progress;
+      } else {
+        // Left border: animate from 0 to 100 (scrolling down)
+        offset = config.startOffsetStart + (config.startOffsetEnd - config.startOffsetStart) * progress;
+      }
 
-      // Parse start/end offsets as numbers
-      const startNum = parseInt(config.startOffsetStart);
-      const endNum = parseInt(config.startOffsetEnd);
+      // Color cycling every loop (0.0 to 1.0 = 1 full cycle)
+      const colorIndex = Math.floor(progress * colors.length) % colors.length;
+      const nextColorIndex = (colorIndex + 1) % colors.length;
+      const colorProgress = (progress * colors.length) % 1;
 
-      // Calculate current offset
-      const currentOffset = startNum + (endNum - startNum) * oscillated;
+      // Smooth color interpolation between palette colors
+      const currentColor = colors[colorIndex];
+      const nextColor = colors[nextColorIndex];
 
-      textPath.setAttribute('startOffset', currentOffset + '%');
+      // Pulse/glow effect - oscillates from 0.6 to 1.0 opacity
+      const pulseEffect = 0.6 + Math.sin(elapsed / 300) * 0.4;
+
+      // Apply color with dynamic glow
+      textEl.setAttribute('fill', currentColor);
+      textEl.setAttribute('opacity', pulseEffect.toString());
+
+      // Enhanced stroke glow based on pulse
+      const strokeWidth = 0.15 + Math.sin(elapsed / 250) * 0.1;
+      textEl.setAttribute('stroke-width', strokeWidth.toString());
+
+      // Shadow effect by adjusting stroke opacity
+      const strokeOpacity = 0.5 + Math.cos(elapsed / 350) * 0.3;
+      textEl.setAttribute('stroke', `rgba(0, 0, 0, ${strokeOpacity})`);
+
+      textPath.setAttribute('startOffset', offset + '%');
 
       requestAnimationFrame(animate);
     }
 
     requestAnimationFrame(animate);
+    console.log(`✏️ Border text (${direction}): animated along path`);
   });
 
-  console.log('📝 Border text animations initialized');
+  console.log(`📝 Border text animations started (${textElements.length} elements)`);
 }
 
 // Initialize keyframes on script load

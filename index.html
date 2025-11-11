@@ -6,6 +6,9 @@
     <title>Formation Lab v23.4.7.1</title>
     <meta name="description" content="Formation Lab v23.4.7.1 – youth soccer tactics board with drag, pass arrows, and export." />
     <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="styles/main.css?v=23.4.7.2" />
     <link rel="stylesheet" href="styles/light-mode.css?v=23.4.7.2" />
   </head>
@@ -22,12 +25,12 @@
         <div class="flab-corner-marker flab-corner--bottom-left" aria-hidden="true"></div>
 
         <!-- Animated connecting lines between corners -->
-        <svg class="flab-corner-lines" aria-hidden="true" width="100%" height="100%">
+        <svg class="flab-corner-lines" aria-hidden="true" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
           <defs>
-            <path id="pathTop" d="M 0,0 L 100%,0" fill="none" />
-            <path id="pathRight" d="M 100%,0 L 100%,100%" fill="none" />
-            <path id="pathBottom" d="M 100%,100% L 0,100%" fill="none" />
-            <path id="pathLeft" d="M 0,100% L 0,0" fill="none" />
+            <path id="pathTop" d="M 0,8 L 100,8" fill="none" />
+            <path id="pathRight" d="M 98,0 L 98,100" fill="none" />
+            <path id="pathBottom" d="M 100,92 L 0,92" fill="none" />
+            <path id="pathLeft" d="M 2,98 L 2,2" fill="none" />
           </defs>
 
           <line class="flab-corner-line flab-line--top" x1="0" y1="0" x2="100%" y2="0"></line>
@@ -35,31 +38,17 @@
           <line class="flab-corner-line flab-line--bottom" x1="100%" y1="100%" x2="0" y2="100%"></line>
           <line class="flab-corner-line flab-line--left" x1="0" y1="100%" x2="0" y2="0"></line>
 
-          <!-- Animated text along top border -->
-          <text class="flab-border-text flab-border-text--top" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="rgba(255, 193, 7, 0.95)">
-            <textPath href="#pathTop" startOffset="0%" text-anchor="middle" spacing="auto">
-              ⚽ TEAM • COACH • SOCCER • FORMATION • DRILL ⚽ TEAM • COACH • SOCCER • FORMATION • DRILL
-            </textPath>
-          </text>
-
-          <!-- Animated text along right border -->
-          <text class="flab-border-text flab-border-text--right" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="rgba(33, 150, 243, 0.95)">
-            <textPath href="#pathRight" startOffset="0%" text-anchor="middle" spacing="auto">
-              ⚽ SOCCER • TEAM • COACH • DRILL • FORMATION ⚽ SOCCER • TEAM • COACH • DRILL • FORMATION
-            </textPath>
-          </text>
-
-          <!-- Animated text along bottom border -->
-          <text class="flab-border-text flab-border-text--bottom" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="rgba(76, 175, 80, 0.95)">
-            <textPath href="#pathBottom" startOffset="0%" text-anchor="middle" spacing="auto">
-              ⚽ FORMATION • DRILL • SOCCER • TEAM • COACH ⚽ FORMATION • DRILL • SOCCER • TEAM • COACH
-            </textPath>
-          </text>
-
-          <!-- Animated text along left border -->
-          <text class="flab-border-text flab-border-text--left" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="rgba(156, 39, 176, 0.95)">
+          <!-- Animated text along left border (scrolling down) -->
+          <text class="flab-border-text flab-border-text--left" font-family="Montserrat, Futura, Century Gothic, Arial Black, sans-serif" font-size="0.5" font-weight="900" fill="rgba(156, 39, 176, 0.95)" letter-spacing="-0.05">
             <textPath href="#pathLeft" startOffset="0%" text-anchor="middle" spacing="auto">
-              ⚽ COACH • FORMATION • TEAM • SOCCER • DRILL ⚽ COACH • FORMATION • TEAM • SOCCER • DRILL
+              FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA •
+            </textPath>
+          </text>
+
+          <!-- Animated text along right border (scrolling up) -->
+          <text class="flab-border-text flab-border-text--right" font-family="Montserrat, Futura, Century Gothic, Arial Black, sans-serif" font-size="0.5" font-weight="900" fill="rgba(156, 39, 176, 0.95)" letter-spacing="-0.05">
+            <textPath href="#pathRight" startOffset="0%" text-anchor="middle" spacing="auto">
+              FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA • FC BARCELONA •
             </textPath>
           </text>
         </svg>

@@ -470,3 +470,27 @@ body.theme-light .flab-body--fullscreen .flab-controls-sheet .flab-action:hover:
   border-color: rgba(0, 77, 152, 0.38) !important;
   box-shadow: 0 6px 14px rgba(0, 77, 152, 0.15), inset 0 1px 2px rgba(237, 187, 0, 0.12) !important;
 }
+
+/* Fullscreen Tools handle button in light mode */
+body.theme-light .flab-fullscreen-controls__handle {
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.92), rgba(255, 237, 2, 0.88));
+  border-color: rgba(237, 187, 0, 0.5);
+  color: #004D98;
+  box-shadow:
+    0 12px 28px rgba(237, 187, 0, 0.2),
+    inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
+body.theme-light .flab-fullscreen-controls__handle:hover {
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.98), rgba(255, 237, 2, 0.95));
+  border-color: rgba(237, 187, 0, 0.7);
+  box-shadow:
+    0 12px 28px rgba(237, 187, 0, 0.3),
+    inset 0 1px 3px rgba(255, 255, 255, 0.6);
+}
+
+body.theme-light .flab-fullscreen-controls__handle:active {
+  box-shadow:
+    0 6px 16px rgba(237, 187, 0, 0.15),
+    inset 0 2px 4px rgba(0, 0, 0, 0.08);
+}

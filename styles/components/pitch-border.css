@@ -367,48 +367,48 @@
   border-radius: 8px;
 }
 
-/* Top-left corner (yellow) */
+/* Top-left corner - cycles through FC Barcelona colors */
 .flab-corner--top-left {
   top: -8px;
   left: -8px;
-  border-top: 2px solid rgba(255, 193, 7, 0.6);
-  border-left: 2px solid rgba(255, 193, 7, 0.6);
+  border-top: 2px solid rgba(0, 77, 152, 0.6);
+  border-left: 2px solid rgba(0, 77, 152, 0.6);
   border-radius: 8px 0 0 0;
-  animation: cornerRotateTopLeft 10s linear infinite;
-  box-shadow: 0 0 20px rgba(255, 193, 7, 0.4), inset 0 0 15px rgba(255, 193, 7, 0.3);
+  animation: cornerRotateTopLeft 10s linear infinite, cornerColorCycle 20s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
 }
 
-/* Top-right corner (cyan) */
+/* Top-right corner - cycles through FC Barcelona colors */
 .flab-corner--top-right {
   top: -8px;
   right: -8px;
-  border-top: 2px solid rgba(33, 150, 243, 0.6);
-  border-right: 2px solid rgba(33, 150, 243, 0.6);
+  border-top: 2px solid rgba(0, 77, 152, 0.6);
+  border-right: 2px solid rgba(0, 77, 152, 0.6);
   border-radius: 0 8px 0 0;
-  animation: cornerRotateTopRight 10s linear infinite;
-  box-shadow: 0 0 20px rgba(33, 150, 243, 0.4), inset 0 0 15px rgba(33, 150, 243, 0.3);
+  animation: cornerRotateTopRight 10s linear infinite, cornerColorCycle 20s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
 }
 
-/* Bottom-right corner (green) */
+/* Bottom-right corner - cycles through FC Barcelona colors */
 .flab-corner--bottom-right {
   bottom: -8px;
   right: -8px;
-  border-bottom: 2px solid rgba(76, 175, 80, 0.6);
-  border-right: 2px solid rgba(76, 175, 80, 0.6);
+  border-bottom: 2px solid rgba(0, 77, 152, 0.6);
+  border-right: 2px solid rgba(0, 77, 152, 0.6);
   border-radius: 0 0 8px 0;
-  animation: cornerRotateBottomRight 10s linear infinite;
-  box-shadow: 0 0 20px rgba(76, 175, 80, 0.4), inset 0 0 15px rgba(76, 175, 80, 0.3);
+  animation: cornerRotateBottomRight 10s linear infinite, cornerColorCycle 20s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
 }
 
-/* Bottom-left corner (magenta) */
+/* Bottom-left corner - cycles through FC Barcelona colors */
 .flab-corner--bottom-left {
   bottom: -8px;
   left: -8px;
-  border-bottom: 2px solid rgba(156, 39, 176, 0.6);
-  border-left: 2px solid rgba(156, 39, 176, 0.6);
+  border-bottom: 2px solid rgba(0, 77, 152, 0.6);
+  border-left: 2px solid rgba(0, 77, 152, 0.6);
   border-radius: 0 0 0 8px;
-  animation: cornerRotateBottomLeft 10s linear infinite;
-  box-shadow: 0 0 20px rgba(156, 39, 176, 0.4), inset 0 0 15px rgba(156, 39, 176, 0.3);
+  animation: cornerRotateBottomLeft 10s linear infinite, cornerColorCycle 20s linear infinite;
+  box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
 }
 
 /* Rotating corner animations - each corner cycles through brightness */
@@ -501,6 +501,38 @@
     opacity: 0.6;
     border-color: rgba(156, 39, 176, 0.7);
     box-shadow: 0 0 20px rgba(156, 39, 176, 0.4), inset 0 0 12px rgba(156, 39, 176, 0.25);
+  }
+}
+
+/* Corner color cycling - FC Barcelona official colors (6 colors over 20s) */
+@keyframes cornerColorCycle {
+  0% {
+    border-color: rgba(0, 77, 152, 0.6);           /* Blue (Blau) */
+    box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
+  }
+  16.66% {
+    border-color: rgba(168, 19, 62, 0.6);         /* Claret (Grana) */
+    box-shadow: 0 0 20px rgba(168, 19, 62, 0.4), inset 0 0 15px rgba(168, 19, 62, 0.3);
+  }
+  33.33% {
+    border-color: rgba(237, 187, 0, 0.6);         /* Gold */
+    box-shadow: 0 0 20px rgba(237, 187, 0, 0.4), inset 0 0 15px rgba(237, 187, 0, 0.3);
+  }
+  50% {
+    border-color: rgba(255, 237, 2, 0.6);         /* Yellow (senyera) */
+    box-shadow: 0 0 20px rgba(255, 237, 2, 0.4), inset 0 0 15px rgba(255, 237, 2, 0.3);
+  }
+  66.66% {
+    border-color: rgba(219, 0, 48, 0.6);          /* Bright Red */
+    box-shadow: 0 0 20px rgba(219, 0, 48, 0.4), inset 0 0 15px rgba(219, 0, 48, 0.3);
+  }
+  83.33% {
+    border-color: rgba(0, 77, 152, 0.6);          /* Blue (Blau) */
+    box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
+  }
+  100% {
+    border-color: rgba(0, 77, 152, 0.6);          /* Blue (loop back) */
+    box-shadow: 0 0 20px rgba(0, 77, 152, 0.4), inset 0 0 15px rgba(0, 77, 152, 0.3);
   }
 }
 
@@ -682,40 +714,40 @@
   opacity: 0.4;
 }
 
-/* Top line (yellow) */
+/* Top line - cycles through FC Barcelona colors */
 .flab-line--top {
-  stroke: rgba(255, 180, 0, 0.8);
+  stroke: rgba(0, 77, 152, 0.8);
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: linePulseTop 8s ease-in-out infinite;
-  filter: drop-shadow(0 0 10px rgba(255, 180, 0, 0.5));
+  animation: linePulseTop 8s ease-in-out infinite, lineColorCycle 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.5));
 }
 
-/* Right line (cyan) */
+/* Right line - cycles through FC Barcelona colors */
 .flab-line--right {
-  stroke: rgba(0, 150, 255, 0.8);
+  stroke: rgba(0, 77, 152, 0.8);
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: linePulseRight 8s ease-in-out infinite 2s;
-  filter: drop-shadow(0 0 10px rgba(0, 150, 255, 0.5));
+  animation: linePulseRight 8s ease-in-out infinite 2s, lineColorCycle 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.5));
 }
 
-/* Bottom line (green) */
+/* Bottom line - cycles through FC Barcelona colors */
 .flab-line--bottom {
-  stroke: rgba(50, 200, 80, 0.8);
+  stroke: rgba(0, 77, 152, 0.8);
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: linePulseBottom 8s ease-in-out infinite 4s;
-  filter: drop-shadow(0 0 10px rgba(50, 200, 80, 0.5));
+  animation: linePulseBottom 8s ease-in-out infinite 4s, lineColorCycle 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.5));
 }
 
-/* Left line (magenta) */
+/* Left line - cycles through FC Barcelona colors matching text animation */
 .flab-line--left {
-  stroke: rgba(200, 50, 200, 0.8);
+  stroke: rgba(0, 77, 152, 0.9);
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: linePulseLeft 8s ease-in-out infinite 6s;
-  filter: drop-shadow(0 0 10px rgba(200, 50, 200, 0.5));
+  animation: linePulseLeft 8s ease-in-out infinite 6s, lineColorCycle 20s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.6));
 }
 
 /* Line pulse animations - each side cycles independently */
@@ -939,5 +971,37 @@
   100% {
     opacity: 0.6;
     text-shadow: 0 0 4px rgba(156, 39, 176, 0.4);
+  }
+}
+
+/* Left line color cycling - FC Barcelona official colors (6 colors over 20s) */
+@keyframes lineColorCycle {
+  0% {
+    stroke: rgba(0, 77, 152, 0.9);       /* Blue (Blau) */
+    filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.6));
+  }
+  16.66% {
+    stroke: rgba(168, 19, 62, 0.9);      /* Claret (Grana) */
+    filter: drop-shadow(0 0 10px rgba(168, 19, 62, 0.6));
+  }
+  33.33% {
+    stroke: rgba(237, 187, 0, 0.9);      /* Gold */
+    filter: drop-shadow(0 0 10px rgba(237, 187, 0, 0.6));
+  }
+  50% {
+    stroke: rgba(255, 237, 2, 0.9);      /* Yellow (senyera) */
+    filter: drop-shadow(0 0 10px rgba(255, 237, 2, 0.6));
+  }
+  66.66% {
+    stroke: rgba(219, 0, 48, 0.9);       /* Bright Red */
+    filter: drop-shadow(0 0 10px rgba(219, 0, 48, 0.6));
+  }
+  83.33% {
+    stroke: rgba(0, 77, 152, 0.9);       /* Blue (Blau) */
+    filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.6));
+  }
+  100% {
+    stroke: rgba(0, 77, 152, 0.9);       /* Blue (loop back) */
+    filter: drop-shadow(0 0 10px rgba(0, 77, 152, 0.6));
   }
 }
