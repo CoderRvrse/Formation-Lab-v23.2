@@ -404,6 +404,24 @@ body.theme-light .flab-noscript {
   color: white;
 }
 
+/* Controls tab (Tools button) in light mode */
+body.theme-light .flab-controls-tab {
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.92), rgba(255, 237, 2, 0.88));
+  border-color: rgba(237, 187, 0, 0.5);
+  color: #004D98;
+  box-shadow:
+    0 8px 20px rgba(237, 187, 0, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.4);
+}
+
+body.theme-light .flab-controls-tab:hover {
+  background: linear-gradient(135deg, rgba(237, 187, 0, 0.98), rgba(255, 237, 2, 0.95));
+  border-color: rgba(237, 187, 0, 0.7);
+  box-shadow:
+    0 8px 20px rgba(237, 187, 0, 0.3),
+    inset 0 1px 3px rgba(255, 255, 255, 0.5);
+}
+
 /* Controls sheet in light mode - Barcelona Blaugrana */
 body.theme-light .flab-controls-sheet {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(230, 240, 249, 0.95));
