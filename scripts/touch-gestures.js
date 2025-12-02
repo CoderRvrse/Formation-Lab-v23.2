@@ -269,11 +269,14 @@ export function getPanPosition() {
  * Check if device supports touch
  */
 export function isTouchDevice() {
-  return (
-    'ontouchstart' in window ||
-    navigator.maxTouchPoints > 0 ||
-    navigator.msMaxTouchPoints > 0
-  );
+  // Check for touch support
+  const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+  
+  // Also check user agent for mobile patterns (fallback for some emulators/devices)
+  const mobilePattern = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+  const isMobileUA = mobilePattern.test(navigator.userAgent);
+
+  return hasTouch || isMobileUA;
 }
 
 /**
