@@ -165,11 +165,21 @@ npm run build
 
 ## Deployment to GitHub
 
-```bash
-git add .
-git commit -m "feat: update formation lab with new features"
-git push origin main
-```
+This project is ready for GitHub Pages.
+
+1.  Push the code to GitHub:
+    ```bash
+    git add .
+    git commit -m "feat: update formation lab with new features"
+    git push origin main
+    ```
+2.  Go to your repository settings on GitHub.
+3.  Navigate to **Pages**.
+4.  Under **Source**, select `Deploy from a branch`.
+5.  Select `main` branch and `/ (root)` folder.
+6.  Click **Save**.
+
+Your site will be live at: `https://CoderRvrse.github.io/Formation-Lab-v23.2/`
 
 ## Development Guide
 See `CLAUDE.md` for detailed developer documentation, common issues, and file locations.
