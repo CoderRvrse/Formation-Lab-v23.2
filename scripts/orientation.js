@@ -21,15 +21,21 @@ export function setOrientation(mode) {
   set('orientation', mode);
   const fieldEl = document.querySelector('.flab-field');
   
+  // Use absolute paths to prevent 404s
+  const getPath = (p) => {
+    const base = new URL('.', window.location.href).href;
+    return `url("${base}${p}")`;
+  };
+
   if (mode === 'portrait') {
     fieldEl?.classList.add('is-portrait');
     document.documentElement.style.setProperty('--pitch-url',
-      `url("assets/portrait/pitch-portrait.svg")`
+      getPath('assets/portrait/pitch-portrait.svg')
     );
   } else {
     fieldEl?.classList.remove('is-portrait');
     document.documentElement.style.setProperty('--pitch-url',
-      `url("assets/landscape/pitch-landscape.svg")`
+      getPath('assets/landscape/pitch-landscape.svg')
     );
   }
 

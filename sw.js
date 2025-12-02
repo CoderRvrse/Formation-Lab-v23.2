@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v23.4.8.3'; // Ball follows ACTUAL visible shaft path - single source of truth
+const CACHE_VERSION = 'v23.4.8.4'; // Fix 404s with absolute paths
 const CACHE_NAME = `flab-${CACHE_VERSION}`;
 const PRECACHE_URLS = [
   './',
