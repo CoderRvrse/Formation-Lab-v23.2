@@ -245,7 +245,10 @@
 
     <!-- Emergency SW bypass: ?sw=off temporarily disables service worker -->
     <script>
-      if (new URL(location).searchParams.get('sw') === 'off') {
+      const swDisabled = new URL(location).searchParams.get('sw') === 'off';
+      window.__SW_DISABLED = swDisabled;
+
+      if (swDisabled) {
         navigator.serviceWorker?.getRegistrations().then(registrations => {
           registrations.forEach(reg => reg.unregister());
           console.log('🚨 Service Worker disabled via ?sw=off');
@@ -269,7 +272,7 @@
     <script src="scripts/version.js?v=23.4.8.5" defer></script>
     <script type="module" src="scripts/main.js?v=23.4.8.5"></script>
     <script>
-      if ('serviceWorker' in navigator) {
+      if ('serviceWorker' in navigator && !window.__SW_DISABLED) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('sw.js').then(registration => {
             console.log('SW registered: ', registration);
@@ -277,6 +280,8 @@
             console.log('SW registration failed: ', registrationError);
           });
         });
+      } else if (window.__SW_DISABLED) {
+        console.log('SW registration skipped due to ?sw=off');
       }
     </script>
   </body>
