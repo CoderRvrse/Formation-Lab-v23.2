@@ -1028,18 +1028,29 @@ a:focus-visible {
 /* Small phones (360px - 480px) */
 @media (max-width: 480px) {
   body.flab-body {
-    padding: 12px 8px;
+    padding: 0;
   }
 
   .flab-app {
-    gap: 12px;
-    padding: 12px;
-    border-radius: 12px;
+    gap: 0;
+    padding: 0;
+    border-radius: 0;
+    display: block; /* Stack vertically */
+  }
+
+  .flab-pitch-wrapper {
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: auto;
+    background: transparent;
   }
 
   .flab-sidepanel {
     padding: 12px;
     gap: 16px;
+    border-radius: 0;
+    border-top: 1px solid var(--flab-outline);
   }
 
   .flab-title {

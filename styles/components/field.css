@@ -9,7 +9,7 @@
   max-width: 1200px;
   height: auto;
   aspect-ratio: 105 / 68; /* Landscape SVG ratio (1575 x 1020) */
-  min-height: clamp(360px, 60vh, 820px);
+  min-height: clamp(280px, 50vh, 820px);
   margin: 0 auto;
   background-image:
     linear-gradient(125deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0)),
@@ -101,10 +101,11 @@
 /* Portrait mode styles */
 .flab-field.is-portrait {
   aspect-ratio: 68 / 105; /* Portrait SVG ratio */
-  max-width: 600px;
+  max-width: 100%;
   min-height: auto;
   height: auto;
-  max-height: 80vh;
+  max-height: 75vh;
+  border-radius: 0;
 }
 
 .flab-field.is-portrait::before {
