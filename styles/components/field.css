@@ -1,6 +1,6 @@
 /* Field component styles */
 :root {
-  --pitch-url: url("../../assets/landscape/pitch-landscape.svg");
+  /* --pitch-url moved to main.css to fix path resolution issues */
 }
 
 .flab-field {

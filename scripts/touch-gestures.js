@@ -293,7 +293,7 @@ export function initTouchGestures() {
 
   // Only initialize on touch devices
   if (!isTouchDevice()) {
-    console.log('Touch gestures: Not a touch device, skipping');
+    console.log('Touch gestures: Not a touch device, skipping. UA:', navigator.userAgent, 'TouchPoints:', navigator.maxTouchPoints);
     return;
   }
 
