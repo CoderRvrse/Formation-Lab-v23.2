@@ -138,5 +138,5 @@ function shouldCache(request) {
 
 function isIndexLike(url) {
   const u = new URL(url, self.location);
-  return u.pathname === '/' || u.pathname.endsWith('/index.html');
+  return u.pathname.endsWith('/') || u.pathname.endsWith('/index.html');
 }
