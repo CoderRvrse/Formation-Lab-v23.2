@@ -1,17 +1,17 @@
-const CACHE_VERSION = 'v23.4.8.4'; // Fix 404s with absolute paths
+const CACHE_VERSION = 'v23.4.8.5'; // Sync with app version for cache busting
 const CACHE_NAME = `flab-${CACHE_VERSION}`;
 const PRECACHE_URLS = [
   './',
   './index.html',
-  './styles/main.css?v=23.4.8.1',
+  './styles/main.css?v=23.4.8.5',
   './styles/components/field.css',
   './styles/components/player.css',
   './styles/components/arrows.css',
   './styles/components/toolbar.css',
   './styles/components/passstyle.css',
   './styles/components/ball.css', // Updated ball styles
-  './scripts/version.js?v=23.4.8.1',
-  './scripts/main.js?v=23.4.8.1',
+  './scripts/version.js?v=23.4.8.5',
+  './scripts/main.js?v=23.4.8.5',
   './scripts/logger.js',
   './scripts/state.js',
   './scripts/geometry.js',
