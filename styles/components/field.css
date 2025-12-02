@@ -98,7 +98,22 @@
   pointer-events: auto;    /* rare: if you add interactive nodes */
 }
 
-/* Portrait mode temporarily disabled; .is-portrait styles intentionally omitted */
+/* Portrait mode styles */
+.flab-field.is-portrait {
+  aspect-ratio: 68 / 105; /* Portrait SVG ratio */
+  max-width: 600px;
+  min-height: auto;
+  height: auto;
+  max-height: 80vh;
+}
+
+.flab-field.is-portrait::before {
+  /* Adjust glow for portrait if needed */
+  box-shadow:
+    inset 0 0 45px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(46, 204, 113, 0.25),
+    0 12px 28px rgba(0, 0, 0, 0.38);
+}
 
 @keyframes pitchGlowPulse {
   0% {

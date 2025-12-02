@@ -5,7 +5,7 @@ import { preloadArrowAssets } from './assets.arrows.js';
 import { ensureHalo, relayoutAllPlayers } from './render.js';
 import { initDrag } from './drag.js';
 import { initPassTool } from './pass.js';
-import { setOrientation } from './orientation.js';
+import { setOrientation, autoOrientation } from './orientation.js';
 import { wireUI } from './ui.js';
 import { initKeyboard } from './keyboard.js';
 import { loadSettings } from './persist.js';
@@ -64,7 +64,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   // Initialize core components
   ensureHalo();
-  setOrientation(FLAB.orientation || 'landscape');
+  autoOrientation();
   relayoutAllPlayers();
 
   // Initialize interaction systems

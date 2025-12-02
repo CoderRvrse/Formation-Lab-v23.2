@@ -18,15 +18,20 @@ function isMobileDevice() {
 }
 
 export function setOrientation(mode) {
-  // Landscape is our default/stable mode for now
-  set('orientation', 'landscape');
+  set('orientation', mode);
   const fieldEl = document.querySelector('.flab-field');
-  fieldEl?.classList.remove('is-portrait');
-
-  // Always point to the landscape asset until portrait mode is reintroduced
-  document.documentElement.style.setProperty('--pitch-url',
-    `url("../../assets/landscape/pitch-landscape.svg")`
-  );
+  
+  if (mode === 'portrait') {
+    fieldEl?.classList.add('is-portrait');
+    document.documentElement.style.setProperty('--pitch-url',
+      `url("assets/portrait/pitch-portrait.svg")`
+    );
+  } else {
+    fieldEl?.classList.remove('is-portrait');
+    document.documentElement.style.setProperty('--pitch-url',
+      `url("assets/landscape/pitch-landscape.svg")`
+    );
+  }
 
   // Import render functions when needed
   import('./render.js').then(({ relayoutAllPlayers, renderArrows }) => {
@@ -46,8 +51,25 @@ export function flipSides(){
 }
 
 export function autoOrientation() {
-  // Temporarily force landscape everywhere for stability
-  setOrientation('landscape');
+  // If it's a mobile device, respect the screen orientation
+  if (isMobileDevice()) {
+    const isPortrait = window.innerHeight > window.innerWidth;
+    setOrientation(isPortrait ? 'portrait' : 'landscape');
+  } else {
+    // Desktop defaults to landscape
+    setOrientation('landscape');
+  }
 }
+
+// Listen for orientation changes
+window.addEventListener('resize', () => {
+  // Debounce slightly
+  clearTimeout(window._orientTimer);
+  window._orientTimer = setTimeout(autoOrientation, 200);
+});
+
+window.addEventListener('orientationchange', () => {
+  setTimeout(autoOrientation, 100);
+});
 
 window.__mod_orientation = true;
